@@ -1,6 +1,7 @@
 # Claude Code Sample Repository
 
 このリポジトリはClaude Codeを使用するためのサンプルプロジェクトです。
+生成AI APIは企画基盤Tが配備したAWSのbedrockを利用します。
 
 ## Claude Codeについて
 
