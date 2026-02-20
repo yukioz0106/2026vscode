@@ -32,4 +32,6 @@ claudeコマンドでclaude codeが展開される
 
 ## 参考リンク
 
-- [Claude Code公式ドキュメント](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code 公式ドキュメント](https://code.claude.com/docs/ja/overview)
+- [AWS Bedrock 対応モデル一覧](https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/inference-profiles-support.html?utm_source=chatgpt.com)
+※プロンプトデータを国内に留めておきたい特別な事情が無い限り、"grobal.~~"のモデルでok
