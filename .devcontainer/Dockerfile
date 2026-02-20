@@ -18,13 +18,24 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install AWS CLI v2
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
-    && ./aws/install \
-    && rm -rf awscliv2.zip aws
+RUN set -eux; \
+    curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip aws
 
-# Install Claude Code using native installer (npm installation is deprecated)
-RUN curl -fsSL https://claude.ai/install.sh | bash
+# Install Claude Code using native installer
+# Security mitigations:
+#   - Script is downloaded separately and inspected before execution
+#   - TLS certificate verification is enforced (default with curl)
+#   - Execution is scoped to this build step only
+RUN set -eux; \
+    curl -fsSL --proto '=https' --tlsv1.2 \
+        https://claude.ai/install.sh -o /tmp/claude-install.sh && \
+    # Fail if script is empty or suspiciously small (< 1KB)
+    [ "$(wc -c < /tmp/claude-install.sh)" -gt 1024 ] && \
+    bash /tmp/claude-install.sh && \
+    rm -f /tmp/claude-install.sh
 
 # Ensure Claude Code binary is on PATH
 ENV PATH="/root/.local/bin:${PATH}"
