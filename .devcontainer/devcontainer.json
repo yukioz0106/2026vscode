@@ -1,12 +1,12 @@
 {
-  "name": "claude-code-xxx",  //名前の変更
+  "name": "claude-code-<your-name>",  //名前の変更
   "build": {
     "dockerfile": "Dockerfile"
   },    
   "runArgs": [
         "--env-file",
         ".devcontainer/.env",
-        "--name", "claude-code-xxx"  //名前の変更
+        "--name", "claude-code-<your-name>"  //名前の変更
     ],
   "containerEnv": {
     "no_proxy": "bedrock.ap-northeast-1.amazonaws.com,bedrock-runtime.ap-northeast-1.amazonaws.com",
