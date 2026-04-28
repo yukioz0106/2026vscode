@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>固定資産登録システム</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+      background: #f0f4f8;
+      color: #2d3748;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+      color: #fff;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    header svg { flex-shrink: 0; }
+    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: .04em; }
+    header p  { font-size: .85rem; opacity: .8; margin-top: 2px; }
+
+    /* ── Layout ── */
+    .main-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 20px;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .main-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .card-header {
+      background: #ebf4ff;
+      border-bottom: 1px solid #bee3f8;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: .95rem;
+      color: #2b6cb0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-body { padding: 20px; }
+
+    /* ── Upload zone ── */
+    .upload-zone {
+      border: 2px dashed #90cdf4;
+      border-radius: 10px;
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      background: #f7fbff;
+    }
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: #3182ce;
+      background: #ebf8ff;
+    }
+    .upload-zone svg { opacity: .5; margin-bottom: 10px; }
+    .upload-zone p { color: #718096; font-size: .9rem; }
+    .upload-zone small { color: #a0aec0; font-size: .8rem; }
+    #file-input { display: none; }
+
+    .file-selected {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #ebf8ff;
+      border-radius: 8px;
+      border: 1px solid #bee3f8;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: .88rem;
+      color: #2b6cb0;
+    }
+    .file-selected span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-primary   { background: #3182ce; color: #fff; }
+    .btn-primary:hover:not(:disabled)   { background: #2b6cb0; }
+    .btn-success   { background: #38a169; color: #fff; }
+    .btn-success:hover:not(:disabled)   { background: #276749; }
+    .btn-danger    { background: #e53e3e; color: #fff; }
+    .btn-danger:hover:not(:disabled)    { background: #c53030; }
+    .btn-outline   { background: transparent; color: #3182ce; border: 1.5px solid #3182ce; }
+    .btn-outline:hover:not(:disabled)   { background: #ebf8ff; }
+    .btn-gray      { background: #718096; color: #fff; }
+    .btn-gray:hover:not(:disabled)      { background: #4a5568; }
+    .btn-sm { padding: 6px 12px; font-size: .82rem; }
+    .btn-full { width: 100%; justify-content: center; margin-top: 12px; }
+
+    /* ── Spinner ── */
+    .spinner {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      color: #3182ce;
+      font-size: .9rem;
+      margin-top: 14px;
+      padding: 12px;
+      background: #ebf8ff;
+      border-radius: 8px;
+    }
+    .spinner.active { display: flex; }
+    .spin-icon {
+      width: 20px; height: 20px;
+      border: 3px solid #bee3f8;
+      border-top-color: #3182ce;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Alert ── */
+    .alert {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: .88rem;
+      margin-top: 12px;
+    }
+    .alert.error   { display: block; background: #fff5f5; border: 1px solid #feb2b2; color: #c53030; }
+    .alert.success { display: block; background: #f0fff4; border: 1px solid #9ae6b4; color: #276749; }
+
+    /* ── Form ── */
+    #registration-form { display: none; }
+    #registration-form.active { display: block; }
+
+    .form-divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 16px 0;
+    }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 4px;
+    }
+    .form-group label .req { color: #e53e3e; margin-left: 3px; }
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 7px;
+      font-size: .9rem;
+      color: #2d3748;
+      transition: border-color .15s;
+      background: #fff;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: #63b3ed;
+      box-shadow: 0 0 0 3px rgba(99,179,237,.2);
+    }
+    .form-control.ai-filled { background: #fffff0; border-color: #f6e05e; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .ai-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      background: #fefcbf;
+      border: 1px solid #f6e05e;
+      color: #744210;
+      border-radius: 4px;
+      font-size: .72rem;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .form-actions { display: flex; gap: 10px; margin-top: 18px; }
+    .form-actions .btn { flex: 1; justify-content: center; }
+
+    /* ── Assets table ── */
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+    .asset-count {
+      font-size: .88rem;
+      color: #718096;
+    }
+    .asset-count strong { color: #2b6cb0; }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+    }
+    thead th {
+      background: #edf2f7;
+      color: #4a5568;
+      font-weight: 700;
+      padding: 10px 12px;
+      text-align: left;
+      white-space: nowrap;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    tbody tr { border-bottom: 1px solid #e2e8f0; transition: background .1s; }
+    tbody tr:hover { background: #f7fafc; }
+    tbody td { padding: 10px 12px; vertical-align: middle; }
+    tbody td.nowrap { white-space: nowrap; }
+    tbody td.mono { font-family: monospace; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .badge-blue   { background: #ebf4ff; color: #2b6cb0; }
+    .badge-green  { background: #f0fff4; color: #276749; }
+    .badge-purple { background: #faf5ff; color: #553c9a; }
+    .badge-gray   { background: #f7fafc; color: #718096; }
+
+    .amount { text-align: right; font-weight: 600; font-family: monospace; }
+
+    .empty-row td {
+      text-align: center;
+      padding: 40px;
+      color: #a0aec0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <polyline points="14 2 14 8 20 8"/>
+    <line x1="16" y1="13" x2="8" y2="13"/>
+    <line x1="16" y1="17" x2="8" y2="17"/>
+    <polyline points="10 9 9 9 8 9"/>
+  </svg>
+  <div>
+    <h1>固定資産登録システム</h1>
+    <p>請求書をアップロードすると、AIが自動的に固定資産情報を抽出します</p>
+  </div>
+</header>
+
+<div class="main-wrap">
+
+  <!-- ===== LEFT PANEL: Upload + Form ===== -->
+  <div>
+
+    <!-- Upload card -->
+    <div class="card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="16 16 12 12 8 16"/>
+          <line x1="12" y1="12" x2="12" y2="21"/>
+          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+        </svg>
+        請求書アップロード
+      </div>
+      <div class="card-body">
+
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png,.gif,.webp">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <p>クリックまたはドラッグ&ドロップ</p>
+          <small>PDF / JPEG / PNG / GIF / WebP（最大 10MB）</small>
+        </div>
+
+        <div class="file-selected" id="file-selected">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span id="file-name"></span>
+          <button class="btn btn-sm btn-gray" onclick="clearFile()">✕</button>
+        </div>
+
+        <div class="spinner" id="spinner">
+          <div class="spin-icon"></div>
+          AIが請求書を解析中...
+        </div>
+
+        <div class="alert" id="upload-alert"></div>
+
+        <button class="btn btn-primary btn-full" id="analyze-btn" disabled onclick="analyzeInvoice()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          請求書を解析する
+        </button>
+
+      </div>
+    </div><!-- /upload card -->
+
+    <!-- Registration form card -->
+    <div class="card" style="margin-top:20px;" id="registration-card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+        固定資産登録
+      </div>
+      <div class="card-body" id="registration-form">
+
+        <p style="font-size:.82rem;color:#718096;margin-bottom:14px;">
+          <span class="ai-badge">AI抽出</span> のフィールドは請求書から自動入力されました。内容を確認・修正してから登録してください。
+        </p>
+
+        <div class="form-group">
+          <label>資産名称<span class="req">*</span></label>
+          <input type="text" id="f-asset-name" class="form-control" placeholder="例: 業務用ノートパソコン">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>資産区分</label>
+            <select id="f-asset-category" class="form-control">
+              <option value="">-- 選択 --</option>
+              <option>建物</option>
+              <option>構築物</option>
+              <option>機械装置</option>
+              <option>車両運搬具</option>
+              <option>工具器具備品</option>
+              <option>ソフトウエア</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>取得日</label>
+            <input type="date" id="f-acquisition-date" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>取得価額（円）</label>
+            <input type="number" id="f-acquisition-cost" class="form-control" placeholder="例: 150000" min="0">
+          </div>
+          <div class="form-group">
+            <label>耐用年数（年）</label>
+            <input type="number" id="f-useful-life" class="form-control" placeholder="例: 5" min="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>償却方法</label>
+          <select id="f-depreciation-method" class="form-control">
+            <option value="定額法">定額法</option>
+            <option value="定率法">定率法</option>
+          </select>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="form-group">
+          <label>取引先名</label>
+          <input type="text" id="f-vendor-name" class="form-control" placeholder="例: 株式会社○○電機">
+        </div>
+
+        <div class="form-group">
+          <label>請求書番号</label>
+          <input type="text" id="f-invoice-number" class="form-control" placeholder="例: INV-2024-0001">
+        </div>
+
+        <div class="form-group">
+          <label>備考</label>
+          <textarea id="f-notes" class="form-control" rows="3" placeholder="品番・仕様・その他メモ"></textarea>
+        </div>
+
+        <div class="alert" id="form-alert"></div>
+
+        <div class="form-actions">
+          <button class="btn btn-outline" onclick="resetForm()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 .49-4"/>
+            </svg>
+            クリア
+          </button>
+          <button class="btn btn-success" onclick="registerAsset()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            固定資産を登録
+          </button>
+        </div>
+
+      </div><!-- /card-body -->
+    </div><!-- /registration card -->
+
+  </div><!-- /left panel -->
+
+  <!-- ===== RIGHT PANEL: Asset list ===== -->
+  <div class="card">
+    <div class="card-header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+      登録済み固定資産一覧
+    </div>
+    <div class="card-body">
+
+      <div class="table-toolbar">
+        <div class="asset-count">
+          合計 <strong id="asset-count">0</strong> 件
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="exportCSV()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          CSV出力
+        </button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="assets-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>資産名称</th>
+              <th>区分</th>
+              <th>取得日</th>
+              <th>取得価額</th>
+              <th>耐用年数</th>
+              <th>償却方法</th>
+              <th>取引先</th>
+              <th>請求書番号</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="assets-tbody">
+            <tr class="empty-row">
+              <td colspan="10">登録されている固定資産はありません</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div><!-- /asset list card -->
+
+</div><!-- /main-wrap -->
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────
+  let selectedFile = null;
+  let allAssets = [];
+
+  // ── Init ───────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    loadAssets();
+    initUploadZone();
+    // Show form (empty) by default
+    document.getElementById('registration-form').classList.add('active');
+  });
+
+  // ── Upload zone ────────────────────────────────────────────────────────
+  function initUploadZone() {
+    const zone = document.getElementById('upload-zone');
+    const input = document.getElementById('file-input');
+
+    zone.addEventListener('click', () => input.click());
+    input.addEventListener('change', e => setFile(e.target.files[0]));
+
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('dragover');
+      setFile(e.dataTransfer.files[0]);
+    });
+  }
+
+  function setFile(file) {
+    if (!file) return;
+    selectedFile = file;
+    document.getElementById('file-name').textContent = file.name;
+    document.getElementById('file-selected').style.display = 'flex';
+    document.getElementById('analyze-btn').disabled = false;
+    hideAlert('upload-alert');
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('file-input').value = '';
+    document.getElementById('file-selected').style.display = 'none';
+    document.getElementById('analyze-btn').disabled = true;
+    hideAlert('upload-alert');
+  }
+
+  // ── Analyze ────────────────────────────────────────────────────────────
+  async function analyzeInvoice() {
+    if (!selectedFile) return;
+
+    const spinner = document.getElementById('spinner');
+    const btn = document.getElementById('analyze-btn');
+
+    spinner.classList.add('active');
+    btn.disabled = true;
+    hideAlert('upload-alert');
+
+    try {
+      const fd = new FormData();
+      fd.append('file', selectedFile);
+
+      const res = await fetch('/api/analyze', { method: 'POST', body: fd });
+      const json = await res.json();
+
+      if (!res.ok || !json.success) {
+        showAlert('upload-alert', json.error || '解析に失敗しました', 'error');
+        return;
+      }
+
+      populateForm(json.data);
+      showAlert('upload-alert', '解析が完了しました。内容を確認してから登録してください。', 'success');
+
+    } catch (err) {
+      showAlert('upload-alert', 'ネットワークエラーが発生しました', 'error');
+    } finally {
+      spinner.classList.remove('active');
+      btn.disabled = false;
+    }
+  }
+
+  function populateForm(data) {
+    const map = {
+      'f-asset-name':           data.asset_name,
+      'f-asset-category':       data.asset_category,
+      'f-acquisition-date':     data.acquisition_date,
+      'f-acquisition-cost':     data.acquisition_cost,
+      'f-useful-life':          data.useful_life,
+      'f-depreciation-method':  data.depreciation_method || '定額法',
+      'f-vendor-name':          data.vendor_name,
+      'f-invoice-number':       data.invoice_number,
+      'f-notes':                data.notes,
+    };
+
+    for (const [id, value] of Object.entries(map)) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      el.value = (value !== null && value !== undefined) ? value : '';
+      if (value !== null && value !== undefined && value !== '') {
+        el.classList.add('ai-filled');
+      } else {
+        el.classList.remove('ai-filled');
+      }
+    }
+  }
+
+  function resetForm() {
+    ['f-asset-name','f-asset-category','f-acquisition-date','f-acquisition-cost',
+     'f-useful-life','f-vendor-name','f-invoice-number','f-notes'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.value = ''; el.classList.remove('ai-filled'); }
+    });
+    document.getElementById('f-depreciation-method').value = '定額法';
+    hideAlert('form-alert');
+  }
+
+  // ── Register ───────────────────────────────────────────────────────────
+  async function registerAsset() {
+    const name = document.getElementById('f-asset-name').value.trim();
+    if (!name) {
+      showAlert('form-alert', '資産名称は必須です', 'error');
+      document.getElementById('f-asset-name').focus();
+      return;
+    }
+
+    const payload = {
+      asset_name:          name,
+      asset_category:      document.getElementById('f-asset-category').value || null,
+      acquisition_date:    document.getElementById('f-acquisition-date').value || null,
+      acquisition_cost:    document.getElementById('f-acquisition-cost').value || null,
+      useful_life:         document.getElementById('f-useful-life').value || null,
+      depreciation_method: document.getElementById('f-depreciation-method').value,
+      vendor_name:         document.getElementById('f-vendor-name').value || null,
+      invoice_number:      document.getElementById('f-invoice-number').value || null,
+      notes:               document.getElementById('f-notes').value || null,
+    };
+
+    try {
+      const res = await fetch('/api/assets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json();
+
+      if (!res.ok || !json.success) {
+        showAlert('form-alert', json.error || '登録に失敗しました', 'error');
+        return;
+      }
+
+      showAlert('form-alert', '固定資産を登録しました', 'success');
+      resetForm();
+      clearFile();
+      loadAssets();
+    } catch (err) {
+      showAlert('form-alert', 'ネットワークエラーが発生しました', 'error');
+    }
+  }
+
+  // ── Load assets ────────────────────────────────────────────────────────
+  async function loadAssets() {
+    try {
+      const res = await fetch('/api/assets');
+      allAssets = await res.json();
+      renderAssets(allAssets);
+    } catch (err) {
+      console.error('資産一覧の取得に失敗:', err);
+    }
+  }
+
+  function renderAssets(assets) {
+    const tbody = document.getElementById('assets-tbody');
+    document.getElementById('asset-count').textContent = assets.length;
+
+    if (assets.length === 0) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="10">登録されている固定資産はありません</td></tr>';
+      return;
+    }
+
+    const categoryColor = {
+      '建物':      'badge-blue',
+      '構築物':    'badge-blue',
+      '機械装置':  'badge-green',
+      '車両運搬具':'badge-purple',
+      '工具器具備品':'badge-gray',
+      'ソフトウエア':'badge-purple',
+      'その他':    'badge-gray',
+    };
+
+    tbody.innerHTML = assets.map(a => {
+      const cat = a.asset_category || '';
+      const badgeClass = categoryColor[cat] || 'badge-gray';
+      const cost = a.acquisition_cost !== null
+        ? '¥' + Number(a.acquisition_cost).toLocaleString()
+        : '—';
+      return `
+        <tr>
+          <td class="mono">${a.id}</td>
+          <td><strong>${esc(a.asset_name)}</strong></td>
+          <td>${cat ? `<span class="badge ${badgeClass}">${esc(cat)}</span>` : '—'}</td>
+          <td class="nowrap">${a.acquisition_date || '—'}</td>
+          <td class="amount">${cost}</td>
+          <td class="nowrap">${a.useful_life !== null ? a.useful_life + ' 年' : '—'}</td>
+          <td>${esc(a.depreciation_method || '—')}</td>
+          <td>${esc(a.vendor_name || '—')}</td>
+          <td class="mono">${esc(a.invoice_number || '—')}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="deleteAsset(${a.id})">削除</button>
+          </td>
+        </tr>`;
+    }).join('');
+  }
+
+  async function deleteAsset(id) {
+    if (!confirm(`ID ${id} の固定資産を削除しますか？`)) return;
+    try {
+      const res = await fetch(`/api/assets/${id}`, { method: 'DELETE' });
+      if (res.ok) loadAssets();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // ── CSV export ─────────────────────────────────────────────────────────
+  function exportCSV() {
+    if (allAssets.length === 0) { alert('エクスポートするデータがありません'); return; }
+
+    const headers = ['ID','資産名称','資産区分','取得日','取得価額','耐用年数',
+                     '償却方法','取引先名','請求書番号','備考','登録日時'];
+    const rows = allAssets.map(a => [
+      a.id, a.asset_name, a.asset_category || '',
+      a.acquisition_date || '', a.acquisition_cost ?? '',
+      a.useful_life ?? '', a.depreciation_method || '',
+      a.vendor_name || '', a.invoice_number || '',
+      a.notes || '', a.created_at || '',
+    ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','));
+
+    const csv = '\uFEFF' + [headers.join(','), ...rows].join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `fixed_assets_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ── Helpers ────────────────────────────────────────────────────────────
+  function showAlert(id, msg, type) {
+    const el = document.getElementById(id);
+    el.className = `alert ${type}`;
+    el.textContent = msg;
+  }
+  function hideAlert(id) {
+    const el = document.getElementById(id);
+    el.className = 'alert';
+    el.textContent = '';
+  }
+  function esc(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+
+</body>
+</html>
