@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>固定資産 AI アシスタント</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', sans-serif;
+      background: #f0f4f8;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    header span {
+      font-size: 0.8rem;
+      opacity: 0.75;
+    }
+
+    #reset-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    #reset-btn:hover { background: rgba(255,255,255,0.15); }
+
+    #chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      max-width: 80%;
+    }
+
+    .message.user { align-self: flex-end; flex-direction: row-reverse; }
+    .message.assistant { align-self: flex-start; }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .message.user .avatar { background: #3b82f6; color: #fff; }
+    .message.assistant .avatar { background: #1a3a5c; color: #fff; }
+
+    .bubble {
+      padding: 12px 16px;
+      border-radius: 16px;
+      line-height: 1.65;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .message.user .bubble {
+      background: #3b82f6;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message.assistant .bubble {
+      background: #fff;
+      color: #1e293b;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .typing .bubble {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    #input-area {
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+      padding: 16px;
+    }
+
+    #input-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    #user-input {
+      flex: 1;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      max-height: 160px;
+      overflow-y: auto;
+      transition: border-color 0.2s;
+    }
+    #user-input:focus { border-color: #3b82f6; }
+
+    #send-btn {
+      background: #1a3a5c;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    #send-btn:hover { background: #2d5a8e; }
+    #send-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+
+    .hint-chips {
+      max-width: 860px;
+      margin: 0 auto 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: #e8f0fe;
+      color: #1a3a5c;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chip:hover { background: #c7d9fc; }
+
+    .welcome {
+      text-align: center;
+      color: #64748b;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .welcome h2 { font-size: 1.4rem; color: #1a3a5c; margin-bottom: 8px; }
+    .welcome p { font-size: 0.9rem; line-height: 1.7; }
+
+    .error-bubble {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>固定資産 AI アシスタント</h1>
+    <span>経理・固定資産会計の専門チャットボット</span>
+  </div>
+  <button id="reset-btn">会話をリセット</button>
+</header>
+
+<div id="chat-container">
+  <div class="welcome">
+    <h2>固定資産に関する質問をどうぞ</h2>
+    <p>法定耐用年数・減価償却計算・資産区分の判定・<br>資本的支出と修繕費の区別など、固定資産会計について回答します。</p>
+  </div>
+</div>
+
+<div id="input-area">
+  <div class="hint-chips">
+    <button class="chip" onclick="setQuestion('PCを30万円で購入しました。どう処理すればいいですか？')">PC購入の処理</button>
+    <button class="chip" onclick="setQuestion('定額法と定率法の違いを教えてください')">定額法 vs 定率法</button>
+    <button class="chip" onclick="setQuestion('車両の法定耐用年数は何年ですか？')">車両の耐用年数</button>
+    <button class="chip" onclick="setQuestion('修繕費と資本的支出の違いは？')">修繕費 vs 資本的支出</button>
+    <button class="chip" onclick="setQuestion('少額減価償却資産の特例について教えてください')">少額資産特例</button>
+  </div>
+  <div id="input-inner">
+    <textarea id="user-input" rows="1" placeholder="固定資産に関する質問を入力…（Shift+Enterで改行）"></textarea>
+    <button id="send-btn">送信</button>
+  </div>
+</div>
+
+<script>
+  const chatContainer = document.getElementById('chat-container');
+  const userInput = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+  const resetBtn = document.getElementById('reset-btn');
+  const sessionId = 'sess_' + Math.random().toString(36).slice(2);
+
+  let isFirstMessage = true;
+
+  function setQuestion(text) {
+    userInput.value = text;
+    userInput.focus();
+    autoResize();
+  }
+
+  function autoResize() {
+    userInput.style.height = 'auto';
+    userInput.style.height = Math.min(userInput.scrollHeight, 160) + 'px';
+  }
+
+  userInput.addEventListener('input', autoResize);
+
+  userInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  sendBtn.addEventListener('click', sendMessage);
+
+  resetBtn.addEventListener('click', async () => {
+    await fetch('/api/reset', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId }),
+    });
+    chatContainer.innerHTML = `
+      <div class="welcome">
+        <h2>固定資産に関する質問をどうぞ</h2>
+        <p>法定耐用年数・減価償却計算・資産区分の判定・<br>資本的支出と修繕費の区別など、固定資産会計について回答します。</p>
+      </div>`;
+    isFirstMessage = true;
+  });
+
+  function appendMessage(role, text, isError = false) {
+    if (isFirstMessage) {
+      chatContainer.innerHTML = '';
+      isFirstMessage = false;
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.className = `message ${role}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = role === 'user' ? '👤' : '🤖';
+
+    const bubble = document.createElement('div');
+    bubble.className = isError ? 'error-bubble' : 'bubble';
+    bubble.textContent = text;
+
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(bubble);
+    chatContainer.appendChild(wrapper);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    return wrapper;
+  }
+
+  async function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text || sendBtn.disabled) return;
+
+    appendMessage('user', text);
+    userInput.value = '';
+    autoResize();
+    sendBtn.disabled = true;
+
+    const typingEl = appendMessage('assistant', '入力中…');
+    typingEl.classList.add('typing');
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, session_id: sessionId }),
+      });
+      const data = await res.json();
+      typingEl.remove();
+
+      if (data.error) {
+        appendMessage('assistant', data.error, true);
+      } else {
+        appendMessage('assistant', data.reply);
+      }
+    } catch {
+      typingEl.remove();
+      appendMessage('assistant', 'ネットワークエラーが発生しました。', true);
+    } finally {
+      sendBtn.disabled = false;
+      userInput.focus();
+    }
+  }
+</script>
+</body>
+</html>

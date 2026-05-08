@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>請求書 - 第2工場建設工事</title>
+  <style>
+    @media print {
+      body { margin: 0; }
+      .no-print { display: none; }
+    }
+    body {
+      font-family: 'MS Mincho', 'Yu Mincho', serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .page {
+      background: #fff;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 20mm 18mm;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    h1.title {
+      text-align: center;
+      font-size: 26pt;
+      letter-spacing: .3em;
+      margin-bottom: 6mm;
+      border-bottom: 3px double #333;
+      padding-bottom: 4mm;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8mm;
+      font-size: 10pt;
+    }
+    .invoice-no { font-size: 10pt; color: #555; }
+    .invoice-no span { font-weight: bold; color: #000; }
+
+    .parties {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8mm;
+    }
+    .bill-to, .bill-from {
+      width: 48%;
+    }
+    .bill-to h2, .bill-from h2 {
+      font-size: 9pt;
+      color: #666;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 2mm;
+      margin-bottom: 3mm;
+      font-weight: normal;
+    }
+    .company-name {
+      font-size: 14pt;
+      font-weight: bold;
+      margin-bottom: 1mm;
+    }
+    .company-sub {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.7;
+    }
+    .stamp-area {
+      text-align: right;
+      margin-top: 2mm;
+    }
+    .stamp {
+      display: inline-block;
+      width: 18mm;
+      height: 18mm;
+      border: 2px solid #c00;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 18mm;
+      color: #c00;
+      font-size: 10pt;
+      font-weight: bold;
+    }
+
+    .summary-box {
+      background: #f8f8f8;
+      border: 2px solid #333;
+      padding: 5mm 8mm;
+      margin-bottom: 8mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .summary-box .label { font-size: 11pt; }
+    .summary-box .amount { font-size: 20pt; font-weight: bold; letter-spacing: .05em; }
+    .summary-box .amount small { font-size: 11pt; }
+    .due-date { font-size: 9pt; color: #555; text-align: right; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 6mm;
+      font-size: 9.5pt;
+    }
+    thead tr {
+      background: #333;
+      color: #fff;
+    }
+    thead th {
+      padding: 3mm 4mm;
+      text-align: center;
+      font-weight: normal;
+    }
+    tbody tr { border-bottom: 1px solid #ddd; }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody td { padding: 3mm 4mm; }
+    td.right { text-align: right; }
+    td.center { text-align: center; }
+
+    .totals {
+      width: 60%;
+      margin-left: auto;
+      font-size: 10pt;
+    }
+    .totals table { margin-bottom: 0; }
+    .totals td { padding: 2mm 4mm; }
+    .totals .total-row { background: #333; color: #fff; font-weight: bold; font-size: 11pt; }
+    .totals .total-row td { padding: 3mm 4mm; }
+
+    .notes {
+      margin-top: 8mm;
+      font-size: 9pt;
+      color: #555;
+      border-top: 1px solid #ccc;
+      padding-top: 4mm;
+      line-height: 1.8;
+    }
+
+    .print-btn {
+      display: block;
+      margin: 16px auto;
+      padding: 10px 32px;
+      background: #319795;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .print-btn:hover { background: #2c7a7b; }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">
+  印刷 / PDF保存（ブラウザのPDF印刷機能を使用）
+</button>
+
+<div class="page">
+
+  <h1 class="title">請 求 書</h1>
+
+  <div class="meta-row">
+    <div class="invoice-no">
+      請求書番号：<span>INV-2024-00847</span><br>
+      発行日：<span>2024年11月30日</span>
+    </div>
+    <div class="invoice-no" style="text-align:right;">
+      お支払期限：<span>2024年12月31日</span>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="bill-to">
+      <h2>請求先</h2>
+      <div class="company-name">株式会社エネルギー産業</div>
+      <div class="company-sub">
+        〒100-0001 東京都千代田区大手町1-1-1<br>
+        経理部　御中
+      </div>
+    </div>
+    <div class="bill-from">
+      <h2>請求元</h2>
+      <div class="company-name">大和建設株式会社</div>
+      <div class="company-sub">
+        〒105-0011 東京都港区芝公園2-3-4<br>
+        建設事業部<br>
+        TEL: 03-1234-5678　FAX: 03-1234-5679<br>
+        登録番号：T1-2345-6789-0123
+      </div>
+      <div class="stamp-area">
+        <div class="stamp">領収済</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <div>
+      <div class="label">下記の通りご請求申し上げます。</div>
+      <div class="label" style="margin-top:2mm;">件名：<strong>第2工場建設工事（基礎・躯体工事 第3期）</strong></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="label">ご請求金額（税込）</div>
+      <div class="amount">¥<small> </small>12,650,000</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40%">工事・品目</th>
+        <th style="width:12%">数量</th>
+        <th style="width:10%">単位</th>
+        <th style="width:15%">単価（円）</th>
+        <th style="width:15%">金額（円）</th>
+        <th style="width:8%">備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>基礎コンクリート打設工事</td>
+        <td class="right">280</td>
+        <td class="center">m³</td>
+        <td class="right">18,500</td>
+        <td class="right">5,180,000</td>
+        <td class="center"></td>
+      </tr>
+      <tr>
+        <td>鉄筋組立工事</td>
+        <td class="right">42</td>
+        <td class="center">t</td>
+        <td class="right">95,000</td>
+        <td class="right">3,990,000</td>
+        <td class="center"></td>
+      </tr>
+      <tr>
+        <td>型枠設置・解体工事</td>
+        <td class="right">1</td>
+        <td class="center">式</td>
+        <td class="right">1,580,000</td>
+        <td class="right">1,580,000</td>
+        <td class="center"></td>
+      </tr>
+      <tr>
+        <td>残土処分・運搬費</td>
+        <td class="right">15</td>
+        <td class="center">台</td>
+        <td class="right">32,000</td>
+        <td class="right">480,000</td>
+        <td class="center"></td>
+      </tr>
+      <tr>
+        <td>諸経費・現場管理費</td>
+        <td class="right">1</td>
+        <td class="center">式</td>
+        <td class="right">270,000</td>
+        <td class="right">270,000</td>
+        <td class="center"></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <table>
+      <tr>
+        <td>小計</td>
+        <td class="right">¥11,500,000</td>
+      </tr>
+      <tr>
+        <td>消費税（10%）</td>
+        <td class="right">¥1,150,000</td>
+      </tr>
+      <tr class="total-row">
+        <td>合計（税込）</td>
+        <td class="right">¥12,650,000</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="notes">
+    <strong>振込先：</strong>〇〇銀行 大手町支店　普通預金　口座番号：1234567　口座名義：ダイワケンセツ（カ<br>
+    <strong>工事場所：</strong>○○県△△市工業団地3丁目5番地（第2工場建設予定地）<br>
+    <strong>工期：</strong>2024年10月1日 ～ 2024年11月30日（第3期）<br>
+    <strong>備考：</strong>本請求は建設工事請負契約書（契約番号：CNT-2024-0312）第3条に基づくものです。<br>
+    　　　次回請求（第4期）は2025年2月末を予定しております。
+  </div>
+
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">
+  印刷 / PDF保存（ブラウザのPDF印刷機能を使用）
+</button>
+
+</body>
+</html>
