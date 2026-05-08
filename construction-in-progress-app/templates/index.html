@@ -281,7 +281,6 @@
     .summary-item .label { color: #718096; font-size: .78rem; margin-bottom: 2px; }
     .summary-item .value { font-weight: 700; color: #2c7a7b; font-size: 1.05rem; font-family: monospace; }
 
-    .preview-card { margin-top: 20px; }
     .preview-card .card-header { cursor: pointer; user-select: none; justify-content: space-between; }
     .preview-card .card-header .toggle-icon { transition: transform .2s; font-size: .85rem; }
     .preview-card.collapsed .toggle-icon { transform: rotate(-90deg); }
@@ -305,6 +304,52 @@
       color: #a0aec0;
       font-size: .88rem;
     }
+
+    .form-control.ai-modified { background: #fff5f5; border-color: #fc8181; }
+    .field-source {
+      display: none;
+      align-items: baseline;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: .78rem;
+      flex-wrap: wrap;
+    }
+    .field-source.visible       { display: flex !important; }
+    .field-source .source-label { color: #718096; white-space: nowrap; }
+    .field-source .source-text  { color: #4a5568; font-weight: 600; }
+    .field-source .modified-badge {
+      display: none;
+      padding: 1px 6px;
+      background: #fff5f5;
+      border: 1px solid #fc8181;
+      color: #c53030;
+      border-radius: 4px;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+    .field-source.has-diff .modified-badge { display: inline-block; }
+    .btn-reset-ai, .btn-confirm-edit {
+      display: none;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: .72rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-reset-ai {
+      background: transparent;
+      border: 1px solid #81e6d9;
+      color: #234e52;
+    }
+    .btn-reset-ai:hover { background: #e6fffa; }
+    .btn-confirm-edit {
+      background: #276749;
+      border: 1px solid #276749;
+      color: #fff;
+    }
+    .btn-confirm-edit:hover { background: #22543d; }
+    .field-source.has-diff .btn-reset-ai    { display: inline-block; }
+    .field-source.has-diff .btn-confirm-edit { display: inline-block; }
   </style>
 </head>
 <body>
@@ -372,29 +417,6 @@
       </div>
     </div>
 
-    <!-- Preview card -->
-    <div class="card preview-card" id="preview-card" style="margin-top:20px;">
-      <div class="card-header" onclick="togglePreview()">
-        <span style="display:flex;align-items:center;gap:8px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
-          帳票プレビュー
-        </span>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="card-body preview-body">
-        <div class="preview-placeholder" id="preview-placeholder">
-          請求書をアップロードするとここにプレビューが表示されます
-        </div>
-        <img id="invoice-preview-img" alt="請求書プレビュー">
-        <iframe id="invoice-preview-iframe" title="請求書プレビュー"></iframe>
-      </div>
-    </div>
-
     <!-- Registration form card -->
     <div class="card" style="margin-top:20px;">
       <div class="card-header">
@@ -407,13 +429,19 @@
       <div class="card-body" id="registration-form">
 
         <p style="font-size:.82rem;color:#718096;margin-bottom:14px;">
-          <span class="ai-badge">AI抽出</span> のフィールドは請求書から自動入力されました。
+          <span class="ai-badge">AI抽出</span> のフィールドは請求書から自動入力されました。帳票原文と異なる場合は <span style="color:#c53030;font-weight:600;">修正済</span> と表示されます。
           <span class="sap-badge">SAP</span> のフィールドはSAP連携に使用されます。
         </p>
 
         <div class="form-group">
           <label>プロジェクト名<span class="req">*</span></label>
           <input type="text" id="f-project-name" class="form-control" placeholder="例: 第2工場建設工事">
+          <div class="field-source" id="src-f-project-name">
+            <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-project-name"></span>
+            <span class="modified-badge">修正済</span>
+            <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-project-name')">修正を確定</button>
+            <button type="button" class="btn-reset-ai" onclick="resetToAI('f-project-name')">AI値に戻す</button>
+          </div>
         </div>
 
         <div class="form-row">
@@ -432,16 +460,34 @@
         <div class="form-group">
           <label>取引先名</label>
           <input type="text" id="f-vendor-name" class="form-control" placeholder="例: 株式会社○○建設">
+          <div class="field-source" id="src-f-vendor-name">
+            <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-vendor-name"></span>
+            <span class="modified-badge">修正済</span>
+            <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-vendor-name')">修正を確定</button>
+            <button type="button" class="btn-reset-ai" onclick="resetToAI('f-vendor-name')">AI値に戻す</button>
+          </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label>請求書番号</label>
             <input type="text" id="f-invoice-number" class="form-control" placeholder="例: INV-2024-0001">
+            <div class="field-source" id="src-f-invoice-number">
+              <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-invoice-number"></span>
+              <span class="modified-badge">修正済</span>
+              <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-invoice-number')">修正を確定</button>
+              <button type="button" class="btn-reset-ai" onclick="resetToAI('f-invoice-number')">AI値に戻す</button>
+            </div>
           </div>
           <div class="form-group">
             <label>請求日</label>
             <input type="date" id="f-invoice-date" class="form-control">
+            <div class="field-source" id="src-f-invoice-date">
+              <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-invoice-date"></span>
+              <span class="modified-badge">修正済</span>
+              <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-invoice-date')">修正を確定</button>
+              <button type="button" class="btn-reset-ai" onclick="resetToAI('f-invoice-date')">AI値に戻す</button>
+            </div>
           </div>
         </div>
 
@@ -450,15 +496,33 @@
         <div class="form-row-3">
           <div class="form-group">
             <label>税抜金額（円）</label>
-            <input type="number" id="f-amount" class="form-control" placeholder="0" min="0" oninput="calcTax()">
+            <input type="number" id="f-amount" class="form-control" placeholder="0" min="0">
+            <div class="field-source" id="src-f-amount">
+              <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-amount"></span>
+              <span class="modified-badge">修正済</span>
+              <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-amount')">修正を確定</button>
+              <button type="button" class="btn-reset-ai" onclick="resetToAI('f-amount')">AI値に戻す</button>
+            </div>
           </div>
           <div class="form-group">
             <label>消費税額（円）</label>
-            <input type="number" id="f-tax-amount" class="form-control" placeholder="0" min="0" oninput="syncTotal()">
+            <input type="number" id="f-tax-amount" class="form-control" placeholder="0" min="0">
+            <div class="field-source" id="src-f-tax-amount">
+              <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-tax-amount"></span>
+              <span class="modified-badge">修正済</span>
+              <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-tax-amount')">修正を確定</button>
+              <button type="button" class="btn-reset-ai" onclick="resetToAI('f-tax-amount')">AI値に戻す</button>
+            </div>
           </div>
           <div class="form-group">
             <label>税込合計（円）<span class="req">*</span></label>
             <input type="number" id="f-total-amount" class="form-control" placeholder="0" min="0">
+            <div class="field-source" id="src-f-total-amount">
+              <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-total-amount"></span>
+              <span class="modified-badge">修正済</span>
+              <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-total-amount')">修正を確定</button>
+              <button type="button" class="btn-reset-ai" onclick="resetToAI('f-total-amount')">AI値に戻す</button>
+            </div>
           </div>
         </div>
 
@@ -485,11 +549,23 @@
         <div class="form-group">
           <label>摘要</label>
           <input type="text" id="f-description" class="form-control" placeholder="例: 第2工場建設 基礎工事（1工期）" maxlength="50">
+          <div class="field-source" id="src-f-description">
+            <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-description"></span>
+            <span class="modified-badge">修正済</span>
+            <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-description')">修正を確定</button>
+            <button type="button" class="btn-reset-ai" onclick="resetToAI('f-description')">AI値に戻す</button>
+          </div>
         </div>
 
         <div class="form-group">
           <label>備考</label>
           <textarea id="f-notes" class="form-control" rows="2" placeholder="品番・仕様・その他メモ"></textarea>
+          <div class="field-source" id="src-f-notes">
+            <span class="source-label">帳票原文:</span><span class="source-text" id="srcval-f-notes"></span>
+            <span class="modified-badge">修正済</span>
+            <button type="button" class="btn-confirm-edit" onclick="confirmEdit('f-notes')">修正を確定</button>
+            <button type="button" class="btn-reset-ai" onclick="resetToAI('f-notes')">AI値に戻す</button>
+          </div>
         </div>
 
         <div class="alert" id="form-alert"></div>
@@ -516,6 +592,31 @@
   </div><!-- /left panel -->
 
   <!-- RIGHT PANEL -->
+  <div>
+
+    <!-- Preview card -->
+    <div class="card preview-card" id="preview-card" style="margin-bottom:24px;">
+      <div class="card-header" onclick="togglePreview()">
+        <span style="display:flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          帳票プレビュー
+        </span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body preview-body">
+        <div class="preview-placeholder" id="preview-placeholder">
+          請求書をアップロードするとここにプレビューが表示されます
+        </div>
+        <img id="invoice-preview-img" alt="請求書プレビュー">
+        <iframe id="invoice-preview-iframe" title="請求書プレビュー"></iframe>
+      </div>
+    </div>
+
   <div class="card">
     <div class="card-header">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -587,18 +688,57 @@
     </div>
   </div>
 
+  </div><!-- /right panel wrapper -->
+
 </div>
 
 <script>
   let selectedFile = null;
   let allEntries = [];
+  // Stores the original AI-extracted values for diff detection
+  const aiOriginalValues = {};
+
+  const AI_FIELDS = [
+    'f-project-name', 'f-vendor-name', 'f-invoice-number', 'f-invoice-date',
+    'f-amount', 'f-tax-amount', 'f-total-amount', 'f-description', 'f-notes',
+  ];
 
   document.addEventListener('DOMContentLoaded', () => {
     loadEntries();
     initUploadZone();
     document.getElementById('registration-form').classList.add('active');
     document.getElementById('f-posting-date').value = today();
+    initFieldListeners();
   });
+
+  function initFieldListeners() {
+    // f-amount: recalc tax then check diff
+    document.getElementById('f-amount').addEventListener('input', () => {
+      calcTax();
+      checkModified('f-amount');
+      checkModified('f-tax-amount');
+      checkModified('f-total-amount');
+    });
+    // f-tax-amount: recalc total then check diff
+    document.getElementById('f-tax-amount').addEventListener('input', () => {
+      syncTotal();
+      checkModified('f-tax-amount');
+      checkModified('f-total-amount');
+    });
+    // f-total-amount: direct edit
+    document.getElementById('f-total-amount').addEventListener('input', () => {
+      checkModified('f-total-amount');
+    });
+    // date fields: use 'change' for cross-browser compatibility
+    document.getElementById('f-invoice-date').addEventListener('change', () => {
+      checkModified('f-invoice-date');
+    });
+    // plain text / textarea fields
+    ['f-project-name', 'f-vendor-name', 'f-invoice-number', 'f-description', 'f-notes']
+      .forEach(id => {
+        document.getElementById(id).addEventListener('input', () => checkModified(id));
+      });
+  }
 
   function today() {
     return new Date().toISOString().slice(0, 10);
@@ -717,13 +857,65 @@
     for (const [id, value] of Object.entries(map)) {
       const el = document.getElementById(id);
       if (!el) continue;
-      el.value = (value !== null && value !== undefined) ? value : '';
-      if (value !== null && value !== undefined && value !== '') {
-        el.classList.add('ai-filled');
-      } else {
-        el.classList.remove('ai-filled');
+      const strVal = (value !== null && value !== undefined) ? String(value) : '';
+      el.value = strVal;
+      aiOriginalValues[id] = strVal;
+
+      const srcDiv = document.getElementById('src-' + id);
+      if (srcDiv) {
+        if (strVal !== '') {
+          document.getElementById('srcval-' + id).textContent = strVal;
+          srcDiv.classList.add('visible');
+          srcDiv.classList.remove('has-diff');
+        } else {
+          srcDiv.classList.remove('visible');
+        }
       }
+
+      el.classList.toggle('ai-filled', strVal !== '');
+      el.classList.remove('ai-modified');
     }
+  }
+
+  function checkModified(id) {
+    const el = document.getElementById(id);
+    const srcDiv = document.getElementById('src-' + id);
+    if (!el || !srcDiv || !(id in aiOriginalValues)) return;
+    const original = aiOriginalValues[id];
+    const current = el.value;
+    if (current !== original) {
+      el.classList.remove('ai-filled');
+      el.classList.add('ai-modified');
+      srcDiv.classList.add('has-diff');
+    } else {
+      el.classList.add('ai-filled');
+      el.classList.remove('ai-modified');
+      srcDiv.classList.remove('has-diff');
+    }
+  }
+
+  function confirmEdit(id) {
+    const el = document.getElementById(id);
+    const srcDiv = document.getElementById('src-' + id);
+    if (!el || !(id in aiOriginalValues)) return;
+    const newVal = el.value;
+    aiOriginalValues[id] = newVal;
+    document.getElementById('srcval-' + id).textContent = newVal;
+    el.classList.remove('ai-modified');
+    el.classList.add('ai-filled');
+    if (srcDiv) srcDiv.classList.remove('has-diff');
+  }
+
+  function resetToAI(id) {
+    const el = document.getElementById(id);
+    const srcDiv = document.getElementById('src-' + id);
+    if (!el || !(id in aiOriginalValues)) return;
+    el.value = aiOriginalValues[id];
+    el.classList.add('ai-filled');
+    el.classList.remove('ai-modified');
+    if (srcDiv) srcDiv.classList.remove('has-diff');
+    if (id === 'f-amount') calcTax();
+    if (id === 'f-tax-amount') syncTotal();
   }
 
   // ── Tax calc ─────────────────────────────────────────────────────────────
@@ -742,11 +934,14 @@
 
   // ── Reset ────────────────────────────────────────────────────────────────
   function resetForm() {
-    ['f-project-name','f-project-code','f-vendor-name','f-invoice-number',
-     'f-invoice-date','f-amount','f-tax-amount','f-total-amount',
-     'f-cost-center','f-wbs-element','f-description','f-notes'].forEach(id => {
+    ['f-project-code','f-cost-center','f-wbs-element',...AI_FIELDS].forEach(id => {
       const el = document.getElementById(id);
-      if (el) { el.value = ''; el.classList.remove('ai-filled'); }
+      if (el) { el.value = ''; el.classList.remove('ai-filled', 'ai-modified'); }
+    });
+    AI_FIELDS.forEach(id => {
+      delete aiOriginalValues[id];
+      const srcDiv = document.getElementById('src-' + id);
+      if (srcDiv) { srcDiv.classList.remove('visible', 'has-diff'); }
     });
     document.getElementById('f-gl-account').value = '1521000';
     document.getElementById('f-posting-date').value = today();
