@@ -4,12 +4,45 @@ import base64
 import sqlite3
 import csv
 import io
+import uuid
 from datetime import datetime
-from flask import Flask, request, jsonify, render_template, g, Response
+from flask import Flask, request, jsonify, render_template, g, session, Response
 import anthropic
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'construction-in-progress-secret')
 DATABASE = 'construction.db'
+
+# ---------------------------------------------------------------------------
+# Chat: system prompt & conversation store
+# ---------------------------------------------------------------------------
+
+SYSTEM_PROMPT = """あなたは経理・会計の専門家AIアシスタントです。特に建設仮勘定・工事会計に精通しており、以下のトピックについて正確かつ丁寧に回答します。
+
+【専門領域】
+- 建設仮勘定の概要と会計処理（取得・振替・完成時の処理）
+- 建設仮勘定の勘定科目コード・GL設定（例: 1521000）
+- 工事進行基準・工事完成基準の選択と適用
+- 建設仮勘定から固定資産への振替タイミングと仕訳
+- 工事請負契約・工事代金の支払管理
+- コストセンター・WBS要素の概念とSAP連携
+- 資本的支出と修繕費の判定（建設・改良工事）
+- 消費税の取扱い（建設仮勘定における仮払消費税）
+- 未成工事支出金との違い
+- 工事台帳・原価管理の基礎
+- 建設業の会計基準・税務処理
+
+【回答スタイル】
+- 日本の会計基準（J-GAAP）および税法（法人税法）に基づいて回答する
+- SAP等のERPシステムとの連携を意識した説明を心がける
+- 金額計算が必要な場合は具体的な計算式を示す
+- 判断が難しいケースでは複数の観点から説明する
+- 必要に応じて税理士・会計士への相談を勧める
+- 親切で分かりやすい言葉で説明する
+
+質問者は経理担当者や建設プロジェクト管理者を想定してください。"""
+
+conversation_store: dict[str, list] = {}
 
 
 def get_db():
@@ -122,6 +155,8 @@ def analyze_invoice_with_claude(file_bytes: bytes, file_type: str) -> dict:
 
 @app.route('/')
 def index():
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())
     return render_template('index.html')
 
 
@@ -307,6 +342,60 @@ def export_csv():
         mimetype='text/csv; charset=utf-8',
         headers={'Content-Disposition': f'attachment; filename="{filename}"'}
     )
+
+
+# ---------------------------------------------------------------------------
+# Chat routes
+# ---------------------------------------------------------------------------
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    if not data or not data.get('message', '').strip():
+        return jsonify({'error': 'メッセージを入力してください'}), 400
+
+    session_id = data.get('session_id') or session.get('session_id', 'default')
+    user_message = data['message'].strip()
+
+    if session_id not in conversation_store:
+        conversation_store[session_id] = []
+
+    conversation_store[session_id].append({
+        "role": "user",
+        "content": user_message,
+    })
+
+    try:
+        client = anthropic.AnthropicBedrock()
+        model = os.environ.get('ANTHROPIC_MODEL', 'anthropic.claude-opus-4-6')
+        response = client.messages.create(
+            model=model,
+            max_tokens=2048,
+            system=SYSTEM_PROMPT,
+            messages=conversation_store[session_id],
+        )
+        assistant_message = response.content[0].text
+
+        conversation_store[session_id].append({
+            "role": "assistant",
+            "content": assistant_message,
+        })
+
+        if len(conversation_store[session_id]) > 40:
+            conversation_store[session_id] = conversation_store[session_id][-40:]
+
+        return jsonify({'reply': assistant_message})
+
+    except Exception as exc:
+        return jsonify({'error': f'エラーが発生しました: {exc}'}), 500
+
+
+@app.route('/api/reset', methods=['POST'])
+def reset_chat():
+    data = request.get_json() or {}
+    session_id = data.get('session_id') or session.get('session_id', 'default')
+    conversation_store.pop(session_id, None)
+    return jsonify({'success': True})
 
 
 if __name__ == '__main__':

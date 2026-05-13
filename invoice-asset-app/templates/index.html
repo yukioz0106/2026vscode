@@ -30,17 +30,172 @@
 
     /* ── Layout ── */
     .main-wrap {
-      max-width: 1280px;
+      max-width: 1600px;
       margin: 0 auto;
       padding: 28px 20px;
       display: grid;
-      grid-template-columns: 400px 1fr;
+      grid-template-columns: 400px 1fr 380px;
       gap: 24px;
       align-items: start;
+    }
+    @media (max-width: 1200px) {
+      .main-wrap { grid-template-columns: 400px 1fr; }
+      .chat-panel { grid-column: 1 / -1; }
     }
     @media (max-width: 900px) {
       .main-wrap { grid-template-columns: 1fr; }
     }
+
+    /* ── Chat panel ── */
+    .chat-panel {
+      display: flex;
+      flex-direction: column;
+      height: 680px;
+    }
+    .chat-panel .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .chat-panel .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    #chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-message {
+      display: flex;
+      gap: 8px;
+      max-width: 92%;
+    }
+    .chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
+    .chat-message.assistant { align-self: flex-start; }
+
+    .chat-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      flex-shrink: 0;
+    }
+    .chat-message.user .chat-avatar { background: #3182ce; color: #fff; }
+    .chat-message.assistant .chat-avatar { background: #1a365d; color: #fff; }
+
+    .chat-bubble {
+      padding: 10px 14px;
+      border-radius: 14px;
+      line-height: 1.6;
+      font-size: .88rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .chat-message.user .chat-bubble {
+      background: #3182ce;
+      color: #fff;
+      border-bottom-right-radius: 3px;
+    }
+    .chat-message.assistant .chat-bubble {
+      background: #fff;
+      color: #1e293b;
+      border-bottom-left-radius: 3px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .chat-message.typing .chat-bubble {
+      color: #94a3b8;
+      font-style: italic;
+    }
+    .chat-bubble.error {
+      background: #fff5f5;
+      color: #c53030;
+    }
+
+    .chat-welcome {
+      text-align: center;
+      color: #718096;
+      padding: 24px 12px;
+      font-size: .85rem;
+      line-height: 1.7;
+    }
+    .chat-welcome strong { color: #2b6cb0; display: block; margin-bottom: 6px; }
+
+    .chat-hint-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .chat-chip {
+      background: #ebf4ff;
+      color: #2b6cb0;
+      border: none;
+      border-radius: 16px;
+      padding: 4px 10px;
+      font-size: .75rem;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .chat-chip:hover { background: #bee3f8; }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      padding: 10px 16px;
+      border-top: 1px solid #e2e8f0;
+      align-items: flex-end;
+    }
+    #chat-input {
+      flex: 1;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: .88rem;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      overflow-y: auto;
+      transition: border-color .15s;
+    }
+    #chat-input:focus { border-color: #63b3ed; }
+    #chat-send-btn {
+      background: #1a365d;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: .88rem;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    #chat-send-btn:hover { background: #2c5282; }
+    #chat-send-btn:disabled { background: #a0aec0; cursor: not-allowed; }
+    .chat-reset-btn {
+      background: transparent;
+      border: 1px solid rgba(43,108,176,.4);
+      color: #2b6cb0;
+      padding: 3px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: .75rem;
+      margin-left: auto;
+    }
+    .chat-reset-btn:hover { background: #ebf4ff; }
 
     /* ── Card ── */
     .card {
@@ -260,6 +415,35 @@
       padding: 40px;
       color: #a0aec0;
     }
+
+    /* ── Invoice preview ── */
+    .preview-card .card-header {
+      cursor: pointer;
+      user-select: none;
+      justify-content: space-between;
+    }
+    .preview-card .toggle-icon { transition: transform .2s; font-size: .85rem; }
+    .preview-card.collapsed .toggle-icon { transform: rotate(-90deg); }
+    .preview-card.collapsed .preview-body { display: none; }
+    .preview-placeholder {
+      text-align: center;
+      padding: 30px;
+      color: #a0aec0;
+      font-size: .88rem;
+    }
+    #invoice-preview-img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: none;
+    }
+    #invoice-preview-iframe {
+      width: 100%;
+      height: 480px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -430,7 +614,33 @@
 
   </div><!-- /left panel -->
 
-  <!-- ===== RIGHT PANEL: Asset list ===== -->
+  <!-- ===== CENTER PANEL: Preview + Asset list ===== -->
+  <div>
+
+  <!-- Preview card -->
+  <div class="card preview-card" id="preview-card" style="margin-bottom:24px;">
+    <div class="card-header" onclick="togglePreview()">
+      <span style="display:flex;align-items:center;gap:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        帳票プレビュー
+      </span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="card-body preview-body">
+      <div class="preview-placeholder" id="preview-placeholder">
+        請求書をアップロードするとここにプレビューが表示されます
+      </div>
+      <img id="invoice-preview-img" alt="請求書プレビュー">
+      <iframe id="invoice-preview-iframe" title="請求書プレビュー"></iframe>
+    </div>
+  </div>
+
+  <!-- Asset list card -->
   <div class="card">
     <div class="card-header">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -486,6 +696,41 @@
     </div>
   </div><!-- /asset list card -->
 
+  </div><!-- /center panel wrapper -->
+
+  <!-- ===== RIGHT PANEL: Chat ===== -->
+  <div class="chat-panel">
+    <div class="card">
+      <div class="card-header" style="justify-content: space-between;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          AI 固定資産アシスタント
+        </div>
+        <button class="chat-reset-btn" id="chat-reset-btn">会話をリセット</button>
+      </div>
+      <div class="card-body">
+        <div id="chat-messages">
+          <div class="chat-welcome">
+            <strong>固定資産に関する質問をどうぞ</strong>
+            法定耐用年数・減価償却計算・資産区分の判定・<br>資本的支出と修繕費の区別など、何でもお答えします。
+          </div>
+        </div>
+        <div class="chat-hint-chips">
+          <button class="chat-chip" onclick="setChatQuestion('PCを30万円で購入しました。どう処理しますか？')">PC購入の処理</button>
+          <button class="chat-chip" onclick="setChatQuestion('定額法と定率法の違いを教えてください')">定額法 vs 定率法</button>
+          <button class="chat-chip" onclick="setChatQuestion('修繕費と資本的支出の違いは？')">修繕費 vs 資本的支出</button>
+          <button class="chat-chip" onclick="setChatQuestion('少額減価償却資産の特例について教えてください')">少額資産特例</button>
+        </div>
+        <div class="chat-input-row">
+          <textarea id="chat-input" rows="1" placeholder="質問を入力…（Enterで送信、Shift+Enterで改行）"></textarea>
+          <button id="chat-send-btn">送信</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /chat panel -->
+
 </div><!-- /main-wrap -->
 
 <script>
@@ -525,6 +770,7 @@
     document.getElementById('file-selected').style.display = 'flex';
     document.getElementById('analyze-btn').disabled = false;
     hideAlert('upload-alert');
+    showPreview(file);
   }
 
   function clearFile() {
@@ -533,6 +779,41 @@
     document.getElementById('file-selected').style.display = 'none';
     document.getElementById('analyze-btn').disabled = true;
     hideAlert('upload-alert');
+    clearPreview();
+  }
+
+  function showPreview(file) {
+    const url = URL.createObjectURL(file);
+    const img = document.getElementById('invoice-preview-img');
+    const iframe = document.getElementById('invoice-preview-iframe');
+    const placeholder = document.getElementById('preview-placeholder');
+    placeholder.style.display = 'none';
+    if (file.type === 'application/pdf') {
+      img.style.display = 'none';
+      img.src = '';
+      iframe.src = url;
+      iframe.style.display = 'block';
+    } else {
+      iframe.style.display = 'none';
+      iframe.src = '';
+      img.src = url;
+      img.style.display = 'block';
+    }
+    document.getElementById('preview-card').classList.remove('collapsed');
+  }
+
+  function clearPreview() {
+    const img = document.getElementById('invoice-preview-img');
+    const iframe = document.getElementById('invoice-preview-iframe');
+    img.style.display = 'none';
+    img.src = '';
+    iframe.style.display = 'none';
+    iframe.src = '';
+    document.getElementById('preview-placeholder').style.display = 'block';
+  }
+
+  function togglePreview() {
+    document.getElementById('preview-card').classList.toggle('collapsed');
   }
 
   // ── Analyze ────────────────────────────────────────────────────────────
@@ -750,6 +1031,102 @@
     return String(str)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;')
       .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Chat ───────────────────────────────────────────────────────────────
+  const chatMessages  = document.getElementById('chat-messages');
+  const chatInput     = document.getElementById('chat-input');
+  const chatSendBtn   = document.getElementById('chat-send-btn');
+  const chatResetBtn  = document.getElementById('chat-reset-btn');
+  const chatSessionId = 'sess_' + Math.random().toString(36).slice(2);
+  let chatFirstMsg    = true;
+
+  function setChatQuestion(text) {
+    chatInput.value = text;
+    chatInput.focus();
+    chatAutoResize();
+  }
+
+  function chatAutoResize() {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+  }
+
+  chatInput.addEventListener('input', chatAutoResize);
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
+  });
+  chatSendBtn.addEventListener('click', sendChatMessage);
+
+  chatResetBtn.addEventListener('click', async () => {
+    await fetch('/api/reset', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: chatSessionId }),
+    });
+    chatMessages.innerHTML = `
+      <div class="chat-welcome">
+        <strong>固定資産に関する質問をどうぞ</strong>
+        法定耐用年数・減価償却計算・資産区分の判定・<br>資本的支出と修繕費の区別など、何でもお答えします。
+      </div>`;
+    chatFirstMsg = true;
+  });
+
+  function appendChatMessage(role, text, isError = false) {
+    if (chatFirstMsg) {
+      chatMessages.innerHTML = '';
+      chatFirstMsg = false;
+    }
+    const wrapper = document.createElement('div');
+    wrapper.className = `chat-message ${role}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'chat-avatar';
+    avatar.textContent = role === 'user' ? '👤' : '🤖';
+
+    const bubble = document.createElement('div');
+    bubble.className = isError ? 'chat-bubble error' : 'chat-bubble';
+    bubble.textContent = text;
+
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(bubble);
+    chatMessages.appendChild(wrapper);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return wrapper;
+  }
+
+  async function sendChatMessage() {
+    const text = chatInput.value.trim();
+    if (!text || chatSendBtn.disabled) return;
+
+    appendChatMessage('user', text);
+    chatInput.value = '';
+    chatAutoResize();
+    chatSendBtn.disabled = true;
+
+    const typingEl = appendChatMessage('assistant', '入力中…');
+    typingEl.classList.add('typing');
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, session_id: chatSessionId }),
+      });
+      const data = await res.json();
+      typingEl.remove();
+      if (data.error) {
+        appendChatMessage('assistant', data.error, true);
+      } else {
+        appendChatMessage('assistant', data.reply);
+      }
+    } catch {
+      typingEl.remove();
+      appendChatMessage('assistant', 'ネットワークエラーが発生しました。', true);
+    } finally {
+      chatSendBtn.disabled = false;
+      chatInput.focus();
+    }
   }
 </script>
 
