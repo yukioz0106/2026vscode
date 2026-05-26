@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TestCompany株式会社 — 戦略と技術が、ビジネスを前進させる。AIと人間の知見を融合した次世代ホームページ制作。コーポレートサイト・LP・ECサイト・リニューアル。渋谷区のWeb制作会社。">
+  <meta name="keywords" content="ホームページ制作,Web制作,コーポレートサイト,LP制作,ECサイト,渋谷,東京,SEO対策">
+  <meta property="og:title" content="TestCompany株式会社 | 戦略と技術が、ビジネスを前進させる。">
+  <meta property="og:description" content="AIと人間のハイブリッドチームによる次世代ホームページ制作。累計420件以上の実績。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://testcompany.co.jp/">
+  <meta property="og:site_name" content="TestCompany株式会社">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TestCompany株式会社 | 戦略と技術が、ビジネスを前進させる。">
+  <meta name="twitter:description" content="AIと人間のハイブリッドチームによる次世代ホームページ制作。累計420件以上の実績。">
+  <title>TestCompany株式会社 | ホームページ制作・Web戦略</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #0A0A0A;
+      --accent: #2563EB;
+      --accent-light: #3B82F6;
+      --accent-dark: #1D4ED8;
+      --gold: #F59E0B;
+      --green: #10B981;
+      --bg: #FAFAFA;
+      --bg-dark: #0A0A0A;
+      --surface: #FFFFFF;
+      --surface-alt: #F3F4F6;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --text-light: #9CA3AF;
+      --border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,.12);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== UTILITIES ========== */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+    .text-center { text-align: center; }
+    .text-accent { color: var(--accent); }
+    .text-gold { color: var(--gold); }
+    .text-green { color: var(--green); }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(37,99,235,.08);
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all .2s ease;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,99,235,.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+    .btn-outline:hover { background: var(--accent); color: white; }
+    .btn-white { background: white; color: var(--accent); }
+    .btn-white:hover { background: rgba(255,255,255,.9); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .btn-lg { font-size: 17px; padding: 18px 40px; }
+
+    /* ========== HEADER ========== */
+    #header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all .3s ease;
+    }
+    #header.scrolled { box-shadow: var(--shadow-md); }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .nav { display: flex; align-items: center; gap: 32px; }
+    .nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav a:hover { color: var(--accent); }
+    .nav-cta { margin-left: 8px; }
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    #hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: all .3s ease;
+    }
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 99;
+      padding: 100px 24px 40px;
+      flex-direction: column;
+      gap: 24px;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    /* ========== HERO ========== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a2e 50%, #0A0A0A 100%);
+      position: relative;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,235,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,.18) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 32px;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .7; transform: scale(1.2); }
+    }
+    .hero-title {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: white;
+      margin-bottom: 24px;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, #3B82F6, #60A5FA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,.65);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -.02em;
+    }
+    .hero-stat-num span { color: var(--accent-light); }
+    .hero-stat-label { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 2px; }
+
+    /* ========== MARQUEE ========== */
+    .marquee-section {
+      background: var(--accent);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .marquee-item {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,.8);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .marquee-dot { color: rgba(255,255,255,.4); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ========== USP GRID ========== */
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .usp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .usp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .usp-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .usp-card:hover::before { opacity: 1; }
+    .usp-icon {
+      width: 48px; height: 48px;
+      background: rgba(37,99,235,.08);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .usp-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .usp-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+    /* ========== SERVICES ========== */
+    #services { background: var(--bg-dark); }
+    #services .section-title { color: white; }
+    #services .section-sub { color: rgba(255,255,255,.5); }
+    #services .badge { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      transition: all .3s ease;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(37,99,235,.4);
+      transform: translateY(-3px);
+    }
+    .service-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+    .service-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .service-target {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .service-list { list-style: none; }
+    .service-list li {
+      font-size: 14px;
+      color: rgba(255,255,255,.65);
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .service-list li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent-light);
+      font-size: 12px;
+    }
+    .service-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .service-price { font-size: 14px; font-weight: 700; color: var(--accent-light); }
+    .service-duration { font-size: 13px; color: rgba(255,255,255,.4); }
+
+    /* ========== PRICING ========== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      position: relative;
+      transition: all .3s ease;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.03);
+      box-shadow: 0 24px 64px rgba(37,99,235,.2);
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-lg); }
+    .pricing-popular {
+      position: absolute;
+      top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 20px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .pricing-name { font-size: 14px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .pricing-tagline { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .pricing-price { font-size: 36px; font-weight: 900; letter-spacing: -.03em; color: var(--text); margin-bottom: 4px; }
+    .pricing-note { font-size: 13px; color: var(--text-light); margin-bottom: 28px; }
+    .pricing-divider { height: 1px; background: var(--border); margin: 24px 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--text);
+      padding-left: 22px;
+      position: relative;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+    .pricing-recommended {
+      font-size: 13px;
+      color: var(--text-muted);
+      background: var(--surface-alt);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    /* ========== OPTIONS TABLE ========== */
+    .options-section { background: var(--surface-alt); }
+    .options-table { width: 100%; border-collapse: collapse; }
+    .options-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      border-bottom: 2px solid var(--border);
+      background: var(--surface);
+    }
+    .options-table td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .options-table tr:hover td { background: rgba(37,99,235,.03); }
+    .options-table .price-cell { font-weight: 700; color: var(--accent); white-space: nowrap; }
+
+    /* ========== PORTFOLIO ========== */
+    #portfolio { background: var(--bg-dark); }
+    #portfolio .section-title { color: white; }
+    #portfolio .section-sub { color: rgba(255,255,255,.5); }
+    #portfolio .badge { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .portfolio-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all .3s ease;
+    }
+    .portfolio-card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(37,99,235,.3);
+      transform: translateY(-3px);
+    }
+    .portfolio-industry {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-light);
+      background: rgba(37,99,235,.12);
+      padding: 3px 12px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+    }
+    .portfolio-type {
+      font-size: 13px;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 16px;
+    }
+    .portfolio-results {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .portfolio-result-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .portfolio-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent-light);
+      letter-spacing: -.02em;
+    }
+    .portfolio-result-label {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+    }
+    .portfolio-period {
+      font-size: 12px;
+      color: rgba(255,255,255,.3);
+      margin-top: 12px;
+    }
+    .portfolio-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.7;
+    }
+
+    /* ========== FLOW ========== */
+    .flow-container { max-width: 800px; margin: 0 auto; }
+    .flow-item {
+      display: flex;
+      gap: 32px;
+      padding: 32px 0;
+      position: relative;
+    }
+    .flow-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 80px;
+      width: 2px;
+      height: calc(100% - 48px);
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .flow-step-num {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: var(--accent);
+      color: white;
+      font-size: 16px;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .flow-content { flex: 1; }
+    .flow-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+    .flow-title { font-size: 19px; font-weight: 800; }
+    .flow-duration {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(37,99,235,.08);
+      padding: 3px 12px;
+      border-radius: 99px;
+    }
+    .flow-desc { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
+
+    /* ========== FAQ ========== */
+    #faq { background: var(--surface-alt); }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .faq-item:hover { box-shadow: var(--shadow-sm); }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .faq-q-text { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.5; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--surface-alt);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--accent);
+      transition: all .3s ease;
+    }
+    .faq-item.open .faq-icon { background: var(--accent); color: white; transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ========== CTA BAND ========== */
+    .cta-band {
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent), #60A5FA);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 16px;
+      letter-spacing: -.02em;
+    }
+    .cta-band p { font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: 40px; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========== CONTACT ========== */
+    #contact { background: var(--surface); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-info h3 { font-size: 22px; font-weight: 800; margin-bottom: 16px; }
+    .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; }
+    .contact-detail { display: flex; flex-direction: column; gap: 16px; }
+    .contact-detail-item { display: flex; gap: 14px; align-items: flex-start; }
+    .contact-detail-icon {
+      width: 40px; height: 40px;
+      background: rgba(37,99,235,.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-detail-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+    .contact-detail-value { font-size: 15px; font-weight: 600; color: var(--text); margin-top: 2px; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .form-label .required {
+      color: #EF4444;
+      margin-left: 4px;
+      font-size: 11px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+    }
+    .form-textarea { min-height: 120px; resize: vertical; }
+    .form-submit {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px;
+    }
+    .form-note { font-size: 13px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      background: rgba(16,185,129,.08);
+      border: 2px solid rgba(16,185,129,.2);
+      border-radius: var(--radius);
+    }
+    #form-success h3 { font-size: 20px; font-weight: 800; color: var(--green); margin-bottom: 8px; }
+    #form-success p { font-size: 15px; color: var(--text-muted); }
+
+    /* ========== COMPANY INFO ========== */
+    #company { background: var(--surface-alt); }
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .company-table { width: 100%; border-collapse: collapse; }
+    .company-table tr { border-bottom: 1px solid var(--border); }
+    .company-table td {
+      padding: 14px 0;
+      font-size: 15px;
+    }
+    .company-table td:first-child {
+      font-weight: 700;
+      color: var(--text-muted);
+      width: 130px;
+      font-size: 13px;
+    }
+    .industry-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .industry-pill {
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(37,99,235,.08);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg-dark);
+      color: rgba(255,255,255,.6);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      text-decoration: none;
+      letter-spacing: -.03em;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .footer-logo span { color: var(--accent-light); }
+    .footer-desc { font-size: 13px; line-height: 1.8; }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 13px; }
+    .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      #hamburger { display: flex; }
+      .usp-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: none; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .company-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 32px; flex-wrap: wrap; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .usp-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .section { padding: 64px 0; }
+      .hero-stats { gap: 24px; }
+    }
+
+    /* ========== SCROLL REVEAL ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#" class="logo">Test<span>Company</span></a>
+      <nav class="nav">
+        <a href="#features">強み</a>
+        <a href="#services">サービス</a>
+        <a href="#pricing">料金</a>
+        <a href="#portfolio">実績</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-primary nav-cta" style="padding:10px 22px;font-size:14px;">無料相談する</a>
+      </nav>
+      <button id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <a href="#features" onclick="closeMobileMenu()">強み</a>
+  <a href="#services" onclick="closeMobileMenu()">サービス</a>
+  <a href="#pricing" onclick="closeMobileMenu()">料金</a>
+  <a href="#portfolio" onclick="closeMobileMenu()">実績</a>
+  <a href="#flow" onclick="closeMobileMenu()">制作の流れ</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="#contact" onclick="closeMobileMenu()">お問い合わせ</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        累計 420件以上の制作実績 ／ 顧客満足度 4.8 / 5.0
+      </div>
+      <h1 class="hero-title">
+        戦略と技術が、<br>
+        <span class="highlight">ビジネスを前進</span>させる。
+      </h1>
+      <p class="hero-sub">
+        単なるホームページではなく、「売れる仕組み」を設計します。<br>
+        AIと人間の知見を融合した次世代のウェブ制作で、貴社の成長を加速します。
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary btn-lg">無料相談・お見積もり →</a>
+        <a href="#portfolio" class="btn btn-outline btn-lg" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2);">制作実績を見る</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">420<span>+</span></div>
+          <div class="hero-stat-label">累計制作件数</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">4.8<span>/5</span></div>
+          <div class="hero-stat-label">顧客満足度</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">72<span>%</span></div>
+          <div class="hero-stat-label">リピート・紹介率</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">20<span>+</span></div>
+          <div class="hero-stat-label">対応業種</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">コーポレートサイト制作</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">LP制作</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">ECサイト構築</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">サイトリニューアル</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">SEO対策</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">Core Web Vitals最適化</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">CMS導入（WordPress）</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">コンテンツマーケティング</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">UI/UXデザイン</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">Google Analytics設置</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">コーポレートサイト制作</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">LP制作</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">ECサイト構築</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">サイトリニューアル</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">SEO対策</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">Core Web Vitals最適化</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">CMS導入（WordPress）</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">コンテンツマーケティング</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">UI/UXデザイン</span>
+    <span class="marquee-dot">◆</span>
+    <span class="marquee-item">Google Analytics設置</span>
+    <span class="marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- FEATURES / USP -->
+<section id="features" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge">Why TestCompany</div>
+      <h2 class="section-title">選ばれる6つの理由</h2>
+      <p class="section-sub">他社との違いは、制作に「経営視点」と「再現性ある戦略」が加わっていること。制作完了後の成果まで責任を持ちます。</p>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card reveal">
+        <div class="usp-icon">🎯</div>
+        <h3>戦略先行の設計思想</h3>
+        <p>McKinsey・BCG流フレームワークをウェブ制作に適用。ペルソナ設計・競合分析・CVR最大化の論理を全ページに落とし込み、ビジネス目標に直結したサイトを納品します。</p>
+      </div>
+      <div class="usp-card reveal">
+        <div class="usp-icon">⚡</div>
+        <h3>AIと人間のハイブリッドチーム</h3>
+        <p>最新の生成AIと熟練クリエイターが協働する体制により、品質を落とさず納期を最大60%短縮。競合が数か月かける制作物を、数週間で提供します。</p>
+      </div>
+      <div class="usp-card reveal">
+        <div class="usp-icon">📈</div>
+        <h3>SEO・マーケティング内製化支援</h3>
+        <p>納品して終わりではありません。SEO設計・コンテンツ戦略・Google広告との連動設計まで、集客の仕組みをセットで提供。制作後も成果を出し続ける体制を整えます。</p>
+      </div>
+      <div class="usp-card reveal">
+        <div class="usp-icon">💬</div>
+        <h3>徹底したスピードと透明性</h3>
+        <p>専任担当制を採用し、問い合わせには原則1営業日以内に回答。進捗はSlack・専用管理画面でリアルタイム共有。忙しい経営者でもストレスなくプロジェクトを進められます。</p>
+      </div>
+      <div class="usp-card reveal">
+        <div class="usp-icon">🏭</div>
+        <h3>豊富な業種別実績と再現性</h3>
+        <p>医療・士業・製造・IT・飲食など20以上の業種での制作実績を保有。業種ごとのユーザー心理・法規制・競合環境を熟知した提案で、初期から高い成果を実現します。</p>
+      </div>
+      <div class="usp-card reveal">
+        <div class="usp-icon">🔧</div>
+        <h3>納品後の保守・改善まで一気通貫</h3>
+        <p>制作・公開後の月次レポート、A/Bテスト、コンテンツ更新代行まで対応。パートナーとして中長期でビジネス成果にコミットします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge">Services</div>
+      <h2 class="section-title">サービスメニュー</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.5)">貴社の事業フェーズと目標に合わせて、最適なソリューションを提供します。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">SERVICE 01</div>
+        <h3>コーポレートサイト制作</h3>
+        <p class="service-target">中小企業・スタートアップ・士業・クリニックなど、信頼性の確立と採用・問い合わせ増加を目指す企業</p>
+        <ul class="service-list">
+          <li>競合調査・ペルソナ設計・サイト構成提案</li>
+          <li>ブランドアイデンティティの整理または新規設計</li>
+          <li>PC・スマートフォン完全レスポンシブデザイン</li>
+          <li>SEOに最適化されたコーディング実装</li>
+          <li>CMS（WordPress）導入と操作マニュアル提供</li>
+          <li>Google Analytics 4・サーチコンソール初期設定</li>
+          <li>公開後30日間の無償修正対応</li>
+        </ul>
+        <div class="service-footer">
+          <span class="service-price">80万円〜300万円</span>
+          <span class="service-duration">納期：4〜8週間</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">SERVICE 02</div>
+        <h3>LP（ランディングページ）制作</h3>
+        <p class="service-target">新商品・サービスのリリース、Web広告との連動、リード獲得強化を目指す企業・マーケター</p>
+        <ul class="service-list">
+          <li>CVRを最大化するストーリーライン設計（AIDCA構造）</li>
+          <li>プロコピーライターによる日本語セールスコピー執筆</li>
+          <li>高品質ビジュアル・アニメーションデザイン実装</li>
+          <li>フォーム設置・サンクスページ・自動返信メール連携</li>
+          <li>ヒートマップ（Clarity）初期設置</li>
+          <li>公開後A/Bテスト設計サポート</li>
+        </ul>
+        <div class="service-footer">
+          <span class="service-price">30万円〜120万円</span>
+          <span class="service-duration">納期：2〜4週間</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">SERVICE 03</div>
+        <h3>ECサイト・予約サイト構築</h3>
+        <p class="service-target">オンライン販売の立ち上げ・リニューアルを検討しているD2Cブランド、飲食・サロン・クリニックなど</p>
+        <ul class="service-list">
+          <li>ビジネスモデルに合ったプラットフォーム選定（Shopify等）</li>
+          <li>商品ページテンプレート・カテゴリ設計</li>
+          <li>決済システム（クレジットカード・コンビニ払い・後払い）導入</li>
+          <li>予約カレンダー・スタッフ管理機能実装</li>
+          <li>カゴ落ち対策・リターゲティング連携設定</li>
+          <li>運用マニュアル・初期商品登録代行（最大50件）</li>
+        </ul>
+        <div class="service-footer">
+          <span class="service-price">150万円〜500万円</span>
+          <span class="service-duration">納期：6〜12週間</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">SERVICE 04</div>
+        <h3>サイトリニューアル＆グロースハック支援</h3>
+        <p class="service-target">既存サイトがあるが成果が出ていない、問い合わせ数・CVRを改善したい中小企業・成長期スタートアップ</p>
+        <ul class="service-list">
+          <li>現状サイト診断レポート（SEO・UX・表示速度・CVR分析）</li>
+          <li>競合10社ベンチマーク分析</li>
+          <li>改善優先順位マトリクスと実行ロードマップ作成</li>
+          <li>デザイン・コーディングリニューアル実装</li>
+          <li>コンテンツSEO戦略策定と記事ライティング（月4本〜）</li>
+          <li>月次KPIレポートと改善提案（継続支援プラン）</li>
+        </ul>
+        <div class="service-footer">
+          <span class="service-price">50万円〜200万円＋月次</span>
+          <span class="service-duration">初期：4〜8週間</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge">Pricing</div>
+      <h2 class="section-title">料金プラン</h2>
+      <p class="section-sub">事業規模・目標に合わせた3つのプランをご用意。すべて税込み表示です。</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-price">44万円〜</div>
+        <div class="pricing-note">（税込）最大8ページ</div>
+        <div class="pricing-tagline">まずはプロのサイトを持ちたい方へ</div>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">相談・見積もりを依頼</a>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>最大8ページのコーポレートサイト制作</li>
+          <li>レスポンシブデザイン（PC・スマホ対応）</li>
+          <li>WordPress CMS実装</li>
+          <li>基本SEO設定（メタタグ・構造化データ）</li>
+          <li>お問い合わせフォーム設置</li>
+          <li>Google Analytics 4初期設定</li>
+          <li>公開後14日間の無償修正対応</li>
+          <li>操作マニュアル提供</li>
+        </ul>
+        <div class="pricing-recommended">創業期・個人事業主・士業など、コストを抑えつつプロクオリティのWeb存在感を確立したい方。</div>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-popular">🔥 人気No.1</div>
+        <div class="pricing-name">Growth</div>
+        <div class="pricing-price">110万円〜</div>
+        <div class="pricing-note">（税込）最大20ページ</div>
+        <div class="pricing-tagline">採用・集客・問い合わせを本気で増やしたい方へ</div>
+        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">相談・見積もりを依頼</a>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>最大20ページのコーポレートサイト制作</li>
+          <li>戦略設計（ペルソナ・競合分析・サイトマップ）</li>
+          <li>プロコピーライターによる全ページ原稿作成</li>
+          <li>高品質ビジュアルデザイン・アニメーション実装</li>
+          <li>ブログ・採用ページ・事例ページ機能</li>
+          <li>SEO内部対策フル実装</li>
+          <li>ヒートマップ（Clarity）・GA4設置</li>
+          <li>公開後30日間の無償修正対応</li>
+          <li>月次レポート3か月分付き</li>
+        </ul>
+        <div class="pricing-recommended">事業拡大フェーズにあり、Webからの問い合わせ・採用応募を確実に増やしたい中小企業・成長スタートアップ。</div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-name">Enterprise</div>
+        <div class="pricing-price">275万円〜</div>
+        <div class="pricing-note">（税込）ページ数・機能数無制限</div>
+        <div class="pricing-tagline">業界をリードするブランドサイトを構築したい方へ</div>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">相談・見積もりを依頼</a>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>フルカスタム設計（ページ数・機能数無制限）</li>
+          <li>ブランド戦略・CI/VI設計から一貫対応</li>
+          <li>多言語対応（日英・日英中）</li>
+          <li>EC・予約・会員システム等の高機能実装</li>
+          <li>映像・3Dアニメーション・インタラクティブUI</li>
+          <li>SEO・コンテンツマーケティング戦略の年次策定</li>
+          <li>専任プロジェクトマネージャー常駐</li>
+          <li>公開後6か月間の月次KPI改善レポート＋実装</li>
+        </ul>
+        <div class="pricing-recommended">上場準備中・大型資金調達後・業界内でのブランドポジションを確立・強化したい企業。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIONS TABLE -->
+<section class="section-sm options-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <div class="badge">Options</div>
+      <h2 class="section-title" style="font-size:28px;">追加オプション料金</h2>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="options-table">
+        <thead>
+          <tr>
+            <th>オプション名</th>
+            <th>価格（税込）</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>追加ページ制作</td><td class="price-cell">33,000円/P</td><td>基本パッケージへのページ追加</td></tr>
+          <tr><td>多言語対応（英語版）</td><td class="price-cell">99,000円/言語</td><td>ネイティブライターによるローカライズ込み</td></tr>
+          <tr><td>ブログ・ニュース機能</td><td class="price-cell">49,500円</td><td>カテゴリ・タグ・検索機能付き</td></tr>
+          <tr><td>予約・申込フォーム（高機能版）</td><td class="price-cell">60,500円</td><td>ステップフォーム・スパム対策込み</td></tr>
+          <tr><td>動画背景・アニメーション実装</td><td class="price-cell">44,000円</td><td>パフォーマンス最適化済み</td></tr>
+          <tr><td>チャットボット導入</td><td class="price-cell">55,000円</td><td>問い合わせ前サポートの自動化</td></tr>
+          <tr><td>SEO内部対策 強化パック</td><td class="price-cell">77,000円</td><td>構造化データ・内部リンク最適化・サイトマップ精緻化</td></tr>
+          <tr><td>Google広告初期設定代行</td><td class="price-cell">88,000円</td><td>キーワード調査・広告文作成・コンバージョン設定</td></tr>
+          <tr><td>アクセシビリティ対応（WCAG 2.1 AA）</td><td class="price-cell">66,000円</td><td>スクリーンリーダー対応・色コントラスト調整</td></tr>
+          <tr><td>採用情報ページ（求人サイト連携）</td><td class="price-cell">71,500円</td><td>Wantedly/Indeed連携対応</td></tr>
+          <tr><td>EC機能（カート・決済）導入</td><td class="price-cell">220,000円</td><td>Stripe/GMO等の決済ゲートウェイ統合</td></tr>
+          <tr><td>サイト引っ越し・リダイレクト設定</td><td class="price-cell">38,500円</td><td>既存URLの301リダイレクト・SEJ価値の引き継ぎ</td></tr>
+          <tr><td>Figmaデザインデータ納品</td><td class="price-cell">27,500円</td><td>全デザインカンプのFigmaファイル提供</td></tr>
+          <tr><td>SNS連携・自動投稿機能</td><td class="price-cell">33,000円</td><td>記事公開時のSNS自動シェア設定</td></tr>
+          <tr><td>プライバシーポリシー・特商法ページ</td><td class="price-cell">22,000円</td><td>法務監修済みテンプレート使用</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:16px;text-align:center;">
+      ※ 急ぎ対応（特急料金）は通常費用の+20〜80%。まずはお気軽にご相談ください。
+    </p>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge">Case Studies</div>
+      <h2 class="section-title">制作実績・成功事例</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.5)">「なんとなくきれいなサイト」ではなく、数字で成果を出した事例をご紹介します。</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card reveal">
+        <div class="portfolio-industry">税理士法人</div>
+        <div class="portfolio-type">コーポレートサイトリニューアル</div>
+        <p>競合30社分析をもとにリポジショニング。「相続・事業承継に強い税理士」として明確に差別化したサイト設計を実施。</p>
+        <div class="portfolio-results">
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">10×</span>
+            <span class="portfolio-result-label">月間Web問い合わせ（2〜3件→28件）</span>
+          </div>
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">14×</span>
+            <span class="portfolio-result-label">オーガニック流入（300PV→4,200PV）</span>
+          </div>
+        </div>
+        <div class="portfolio-period">公開後6か月</div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-industry">歯科医院（都内3院）</div>
+        <div class="portfolio-type">LP制作＋Google広告連動</div>
+        <p>ヒートマップ分析で離脱ポイントを特定。ファーストビュー・ベネフィット訴求・フォームの3箇所を集中改善。</p>
+        <div class="portfolio-results">
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">74%</span>
+            <span class="portfolio-result-label">顧客獲得コスト削減（CPA）</span>
+          </div>
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">3.8×</span>
+            <span class="portfolio-result-label">月間新規来院者数（15名→57名）</span>
+          </div>
+        </div>
+        <div class="portfolio-period">改善着手から3か月</div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-industry">製造業（精密部品）</div>
+        <div class="portfolio-type">コーポレートサイト＋採用サイト</div>
+        <p>「精密加工の技術力」を前面に出した技術訴求型サイト。加工事例ギャラリーと採用強化ページを同時制作。</p>
+        <div class="portfolio-results">
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">11件</span>
+            <span class="portfolio-result-label">月間Web問い合わせ（0件→11件）</span>
+          </div>
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">120%</span>
+            <span class="portfolio-result-label">採用目標達成（2名→6名）</span>
+          </div>
+        </div>
+        <div class="portfolio-period">公開後12か月</div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-industry">SaaS企業（HR tech）</div>
+        <div class="portfolio-type">サービスサイトリニューアル＋英語対応</div>
+        <p>SaaS特有のメッセージ設計とネイティブライターによる英語ローカライズ。無料トライアル登録率を大幅改善。</p>
+        <div class="portfolio-results">
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">4×</span>
+            <span class="portfolio-result-label">無料トライアル登録率（1.2%→4.8%）</span>
+          </div>
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">3.9×</span>
+            <span class="portfolio-result-label">月間デモ申込（8件→31件）</span>
+          </div>
+        </div>
+        <div class="portfolio-period">公開後3か月</div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-industry">不動産仲介（3拠点）</div>
+        <div class="portfolio-type">地域特化型コーポレートサイト</div>
+        <p>200以上のロングテールキーワードを網羅するコンテンツ構造を実装。ポータルサイト依存からの脱却を実現。</p>
+        <div class="portfolio-results">
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">14.7×</span>
+            <span class="portfolio-result-label">自社サイト問い合わせ（3件→44件）</span>
+          </div>
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">62%</span>
+            <span class="portfolio-result-label">ポータル広告費削減</span>
+          </div>
+        </div>
+        <div class="portfolio-period">公開後8か月</div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-industry">研修・コーチング会社</div>
+        <div class="portfolio-type">個人ブランドサイト＋LP制作</div>
+        <p>SNS流入を最適なCTAで受け止めるストーリー型ブランドサイト。各講座専用LPでコンバージョンを最大化。</p>
+        <div class="portfolio-results">
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">5.5×</span>
+            <span class="portfolio-result-label">月間講座申込（4名→22名）</span>
+          </div>
+          <div class="portfolio-result-item">
+            <span class="portfolio-num">2.8×</span>
+            <span class="portfolio-result-label">月間収益</span>
+          </div>
+        </div>
+        <div class="portfolio-period">公開後4か月</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow" class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge">Process</div>
+      <h2 class="section-title">制作の流れ</h2>
+      <p class="section-sub">ご依頼から納品まで、一貫した品質管理と透明なコミュニケーションでプロジェクトを進行します。</p>
+    </div>
+    <div class="flow-container">
+      <div class="flow-item reveal">
+        <div class="flow-step-num">1</div>
+        <div class="flow-content">
+          <div class="flow-header">
+            <span class="flow-title">ヒアリング・戦略設計</span>
+            <span class="flow-duration">3〜5営業日</span>
+          </div>
+          <p class="flow-desc">専任担当が事業目標・ターゲット・競合・予算・スケジュールを徹底的にヒアリング。ペルソナ設計・競合10社分析・差別化ポイント整理を行い、「何をゴールに、誰に、何を伝えるか」を明文化した戦略ドキュメントを作成します。</p>
+        </div>
+      </div>
+      <div class="flow-item reveal">
+        <div class="flow-step-num">2</div>
+        <div class="flow-content">
+          <div class="flow-header">
+            <span class="flow-title">サイト構成・ワイヤーフレーム提案</span>
+            <span class="flow-duration">3〜5営業日</span>
+          </div>
+          <p class="flow-desc">戦略ドキュメントをもとに、サイトマップとページごとのワイヤーフレームを作成。情報設計・ユーザー導線・CTAの配置をこの段階でご確認いただき、方向性のズレを早期に解消します。</p>
+        </div>
+      </div>
+      <div class="flow-item reveal">
+        <div class="flow-step-num">3</div>
+        <div class="flow-content">
+          <div class="flow-header">
+            <span class="flow-title">デザイン制作</span>
+            <span class="flow-duration">5〜10営業日</span>
+          </div>
+          <p class="flow-desc">承認済みワイヤーフレームをもとに、PC・スマートフォン両面のビジュアルデザインを制作。ブランドガイドラインの確認または新規策定も並行して行います。修正は原則2回まで無償対応します。</p>
+        </div>
+      </div>
+      <div class="flow-item reveal">
+        <div class="flow-step-num">4</div>
+        <div class="flow-content">
+          <div class="flow-header">
+            <span class="flow-title">コーディング・CMS実装</span>
+            <span class="flow-duration">5〜15営業日</span>
+          </div>
+          <p class="flow-desc">承認デザインをもとにHTML/CSS/JavaScriptでコーディングし、CMSへの組み込みを行います。表示速度・SEO技術基準（Core Web Vitals）・アクセシビリティを遵守した実装を徹底します。</p>
+        </div>
+      </div>
+      <div class="flow-item reveal">
+        <div class="flow-step-num">5</div>
+        <div class="flow-content">
+          <div class="flow-header">
+            <span class="flow-title">テスト・品質検査（80項目）</span>
+            <span class="flow-duration">2〜3営業日</span>
+          </div>
+          <p class="flow-desc">社内品質管理部門が、表示崩れ・リンク切れ・フォーム動作・表示速度・セキュリティの5項目を独自チェックリスト（全80項目）で検査。合格基準を満たした段階でクライアントへ最終確認を依頼します。</p>
+        </div>
+      </div>
+      <div class="flow-item reveal">
+        <div class="flow-step-num">6</div>
+        <div class="flow-content">
+          <div class="flow-header">
+            <span class="flow-title">公開・納品・アフターサポート</span>
+            <span class="flow-duration">1〜2営業日（以降継続）</span>
+          </div>
+          <p class="flow-desc">ご承認後、サーバー・ドメイン設定のうえ本番公開します。GA4・サーチコンソールの設置、操作マニュアルの提供、CMS更新レクチャーを実施。公開後の保守・改善支援プランへの移行もスムーズに対応します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="container">
+    <h2>まずは無料相談から始めましょう</h2>
+    <p>ご予算・ご要件・スケジュールなど、どんな小さなことでもお気軽にご相談ください。<br>2営業日以内にご返答します。</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn btn-white btn-lg">無料相談・お見積もりを依頼する →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq" class="section options-section">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge">FAQ</div>
+      <h2 class="section-title">よくあるご質問</h2>
+      <p class="section-sub">ご不明な点はお気軽にお問い合わせください。</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">制作費の支払いタイミングはどうなりますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">標準的には「契約時に50%、公開時に残50%」の2回払いとなります。Enterpriseプランなど大型案件の場合は、「契約時30%・中間30%・公開時40%」の3回払いにも対応しています。クレジットカード・銀行振込どちらでも受け付け可能です。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">制作期間中、クライアント側で準備するものはありますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">主に以下をご用意いただきます。①会社ロゴデータ（なければ新規制作可）、②使用したい写真・画像素材（なければ無料〜有料素材で対応可）、③会社概要・サービス内容などのテキスト原稿（Growthプラン以上はライター代行対応）、④サーバー・ドメインのアクセス情報（必要に応じて取得代行も可）。詳細はご契約後にヒアリングシートでご案内します。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">公開後に自分でページを更新できますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">はい、WordPressをベースとした案件では、専門知識がなくてもテキスト・画像の更新が可能です。公開後に操作レクチャー（1〜2時間・無償）と操作マニュアルをご提供します。更新作業を委託したい場合は、月次保守プラン（月3万円〜）で対応いたします。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">デザインの修正は何回まで対応してもらえますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">デザイン工程での修正は、全プランとも2回まで無償対応しています。3回目以降は1修正ラウンドにつき3万円（税別）が発生します。ただし、ヒアリング・ワイヤーフレーム段階で十分に方向性をすり合わせるため、3回以上の修正が発生したケースは全案件の約5%以下です。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">SEO対策はどこまでやってもらえますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">全プランに内部SEO対策（メタタグ最適化・URL設計・構造化データ・ページ速度改善・モバイルフレンドリー対応）が含まれます。コンテンツSEO（ブログ記事・事例ページの継続制作）やキーワード戦略・外部リンク対策は、Growthプラン以上または別途コンテンツマーケティング支援プランでご対応します。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">競合他社のサイトを参考にしながら制作できますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">はい、参考サイトのご提示は大歓迎です。ただし、著作権保護デザインの模倣はお断りしています。「このサイトのこのUXが好き」「このトンマナに近づけたい」といった方向性の参考として活用し、貴社独自のデザインとして昇華させます。ヒアリング時に参考サイトリストをご提出いただく欄を設けています。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">急いでいます。最短何週間で納品できますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Starterプランの場合、素材・原稿が揃っていれば最短10営業日（約2週間）での納品実績があります。追加費用（特急料金：通常費の20%）で優先対応枠への組み込みが可能です。まずはご希望の公開日をお知らせください。スケジュールの実現可能性をご回答します。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">制作後、サイトを別の会社に移管・引き継ぎはできますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">はい、制作したすべてのデータ（デザインデータ・ソースコード）はご納品時にクライアント様に帰属します。他社への移管・引き継ぎに必要なデータ一式をお渡しします。ただし、プロプライエタリな有料テンプレートやプラグインを使用している場合は、別途ライセンス費用が発生することがあります。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:56px;">
+      <div class="badge">Contact</div>
+      <h2 class="section-title">無料相談・お見積もり依頼</h2>
+      <p class="section-sub">2営業日以内にご返答いたします。どんな小さなご相談でも歓迎です。</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>まずはお気軽にご連絡ください</h3>
+        <p>「まだ予算が決まっていない」「何から始めればいいかわからない」そんなご状況でも大丈夫です。現在のお悩みをお聞かせいただくだけで、最適なご提案が可能です。</p>
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">📞</div>
+            <div>
+              <div class="contact-detail-label">電話受付</div>
+              <div class="contact-detail-value">03-1234-5678</div>
+              <div style="font-size:13px;color:var(--text-muted);">平日 9:00〜18:00</div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">✉️</div>
+            <div>
+              <div class="contact-detail-label">メール</div>
+              <div class="contact-detail-value">info@testcompany.co.jp</div>
+              <div style="font-size:13px;color:var(--text-muted);">24時間受付・2営業日以内に返信</div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">📍</div>
+            <div>
+              <div class="contact-detail-label">所在地</div>
+              <div class="contact-detail-value">東京都渋谷区道玄坂1丁目2番3号</div>
+              <div style="font-size:13px;color:var(--text-muted);">渋谷フクラス8F（渋谷駅 徒歩3分）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">お名前<span class="required">*必須</span></label>
+              <input id="contact-name" type="text" class="form-input" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-company">会社名</label>
+              <input id="contact-company" type="text" class="form-input" placeholder="株式会社サンプル">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contact-email">メールアドレス<span class="required">*必須</span></label>
+              <input id="contact-email" type="email" class="form-input" placeholder="taro@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-tel">電話番号</label>
+              <input id="contact-tel" type="tel" class="form-input" placeholder="03-0000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-type">ご相談内容<span class="required">*必須</span></label>
+            <select id="contact-type" class="form-select" required>
+              <option value="">選択してください</option>
+              <option>コーポレートサイト制作</option>
+              <option>LP（ランディングページ）制作</option>
+              <option>ECサイト・予約サイト構築</option>
+              <option>サイトリニューアル</option>
+              <option>保守・運用プラン</option>
+              <option>その他・まずは相談したい</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-budget">ご予算感</label>
+            <select id="contact-budget" class="form-select">
+              <option value="">選択してください（任意）</option>
+              <option>50万円未満</option>
+              <option>50万円〜100万円</option>
+              <option>100万円〜300万円</option>
+              <option>300万円以上</option>
+              <option>未定・相談したい</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-message">メッセージ・詳細</label>
+            <textarea id="contact-message" class="form-textarea" placeholder="現在のお悩み、希望の公開時期、参考にしているサイトなど、どんな情報でもお聞かせください。"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">送信する（無料・2営業日以内に返信）</button>
+          <p class="form-note">送信いただいた情報は、お問い合わせへの回答のみに使用します。</p>
+        </form>
+        <div id="form-success">
+          <h3>✓ 送信が完了しました</h3>
+          <p>お問い合わせありがとうございます。<br>2営業日以内にご連絡いたします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY INFO -->
+<section id="company" class="section options-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:56px;">
+      <div class="badge">Company</div>
+      <h2 class="section-title">会社概要</h2>
+    </div>
+    <div class="company-grid">
+      <div>
+        <table class="company-table">
+          <tr><td>会社名</td><td>TestCompany株式会社（TestCompany Inc.）</td></tr>
+          <tr><td>設立</td><td>2019年4月1日</td></tr>
+          <tr><td>代表取締役</td><td>TestCompany CEO</td></tr>
+          <tr><td>資本金</td><td>3,000万円</td></tr>
+          <tr><td>従業員数</td><td>32名</td></tr>
+          <tr><td>所在地</td><td>〒150-0043<br>東京都渋谷区道玄坂1丁目2番3号<br>渋谷フクラス8F</td></tr>
+          <tr><td>電話</td><td>03-1234-5678</td></tr>
+          <tr><td>メール</td><td>info@testcompany.co.jp</td></tr>
+          <tr><td>事業内容</td><td>Webサイト企画・制作・運用<br>デジタルマーケティング支援<br>SEO・コンテンツマーケティング<br>Webシステム開発</td></tr>
+          <tr><td>主な取引先業種</td><td>
+            <div class="industry-pills">
+              <span class="industry-pill">製造業</span>
+              <span class="industry-pill">士業</span>
+              <span class="industry-pill">医療・クリニック</span>
+              <span class="industry-pill">不動産・建設</span>
+              <span class="industry-pill">飲食・ホテル</span>
+              <span class="industry-pill">IT・SaaS</span>
+              <span class="industry-pill">教育・研修</span>
+              <span class="industry-pill">小売・EC</span>
+            </div>
+          </td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="background:var(--surface);border-radius:var(--radius-lg);padding:32px;border:1px solid var(--border);">
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:16px;">数字で見るTestCompany</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+            <div style="text-align:center;padding:20px;background:var(--surface-alt);border-radius:12px;">
+              <div style="font-size:36px;font-weight:900;color:var(--accent);letter-spacing:-.03em;">420<span style="font-size:20px;">+</span></div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">累計制作件数</div>
+            </div>
+            <div style="text-align:center;padding:20px;background:var(--surface-alt);border-radius:12px;">
+              <div style="font-size:36px;font-weight:900;color:var(--accent);letter-spacing:-.03em;">4.8<span style="font-size:20px;">/5</span></div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">顧客満足度</div>
+            </div>
+            <div style="text-align:center;padding:20px;background:var(--surface-alt);border-radius:12px;">
+              <div style="font-size:36px;font-weight:900;color:var(--accent);letter-spacing:-.03em;">72<span style="font-size:20px;">%</span></div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">リピート・紹介率</div>
+            </div>
+            <div style="text-align:center;padding:20px;background:var(--surface-alt);border-radius:12px;">
+              <div style="font-size:36px;font-weight:900;color:var(--accent);letter-spacing:-.03em;">20<span style="font-size:20px;">+</span></div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">対応業種数</div>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding:20px;background:rgba(37,99,235,.06);border-radius:12px;border-left:4px solid var(--accent);">
+            <p style="font-size:14px;color:var(--text-muted);line-height:1.8;">
+              2019年の創業以来、「成果にコミットするWeb制作」をミッションに、累計420件以上の制作実績を積み上げてきました。単なる制作会社ではなく、お客様のビジネスパートナーとして中長期的な成長を支援します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="footer-logo">Test<span>Company</span></a>
+        <p class="footer-desc">
+          戦略と技術が、ビジネスを前進させる。<br>
+          AIと人間の知見を融合した次世代のウェブ制作で、貴社の成長を加速します。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="#services">コーポレートサイト制作</a></li>
+          <li><a href="#services">LP制作</a></li>
+          <li><a href="#services">ECサイト構築</a></li>
+          <li><a href="#services">サイトリニューアル</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>会社情報</h4>
+        <ul>
+          <li><a href="#features">選ばれる理由</a></li>
+          <li><a href="#portfolio">制作実績</a></li>
+          <li><a href="#flow">制作の流れ</a></li>
+          <li><a href="#company">会社概要</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="#contact">無料相談・見積もり</a></li>
+          <li><a href="#faq">よくあるご質問</a></li>
+          <li><a href="mailto:info@testcompany.co.jp">info@testcompany.co.jp</a></li>
+          <li><a href="tel:0312345678">03-1234-5678</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2019–2026 TestCompany Inc. All rights reserved.</p>
+      <div style="display:flex;gap:24px;">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth scroll offset for fixed header
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

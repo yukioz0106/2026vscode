@@ -1,0 +1,557 @@
+{
+  "_meta": {
+    "document_title": "testcompany ホームページ制作 料金体系マスター",
+    "version": "1.0.0",
+    "effective_date": "2026-06-01",
+    "prepared_by": "経理エージェント（Big4出身レベル）",
+    "approved_by": "社長エージェント",
+    "currency": "JPY",
+    "tax_rate": 0.10,
+    "note": "全価格は税込表示。税抜価格は各項目に別途記載。"
+  },
+
+  "base_packages": {
+    "description": "ホームページ制作の基本パッケージ（ページ数×単価方式）",
+    "unit_price_per_page": {
+      "tax_excluded": 30000,
+      "tax_included": 33000,
+      "note": "1ページあたりの制作単価。トップページ・下層ページ共通。LP（ランディングページ）は別単価。"
+    },
+    "lp_unit_price": {
+      "tax_excluded": 120000,
+      "tax_included": 132000,
+      "note": "LP（ランディングページ）1枚の制作単価。セールスコピー・CTA設計・CVR最適化込み。"
+    },
+    "packages": [
+      {
+        "id": "PKG-S",
+        "name": "スタータープラン",
+        "pages": 5,
+        "tax_excluded": 198000,
+        "tax_included": 217800,
+        "included_features": [
+          "トップページ1P + 下層ページ4P",
+          "レスポンシブデザイン",
+          "お問い合わせフォーム",
+          "SSL設定",
+          "基本SEO設定（メタタグ・OGP）",
+          "Google Analytics設置",
+          "PageSpeed Score 85点以上保証",
+          "納品後30日間の修正対応（軽微な修正2回まで）"
+        ],
+        "target": "個人事業主・スタートアップ・小規模店舗",
+        "delivery_days": 21
+      },
+      {
+        "id": "PKG-M",
+        "name": "スタンダードプラン",
+        "pages": 10,
+        "tax_excluded": 330000,
+        "tax_included": 363000,
+        "included_features": [
+          "トップページ1P + 下層ページ9P",
+          "レスポンシブデザイン",
+          "お問い合わせフォーム（自動返信メール付き）",
+          "SSL設定",
+          "標準SEO設定（構造化データ・サイトマップ・robots.txt）",
+          "Google Analytics + Search Console設置",
+          "CMS導入（WordPress）",
+          "PageSpeed Score 90点以上保証",
+          "納品後60日間の修正対応（軽微な修正3回まで）"
+        ],
+        "target": "中小企業・士業事務所・クリニック・飲食店",
+        "delivery_days": 35
+      },
+      {
+        "id": "PKG-L",
+        "name": "プレミアムプラン",
+        "pages": 20,
+        "tax_excluded": 550000,
+        "tax_included": 605000,
+        "included_features": [
+          "トップページ1P + 下層ページ19P",
+          "オリジナルUIデザイン（Figmaカンプ提供）",
+          "レスポンシブデザイン",
+          "高機能お問い合わせフォーム（ステップフォーム対応）",
+          "SSL設定",
+          "上級SEO設定（内部リンク最適化・ページ速度改善）",
+          "Google Analytics4（GA4）+ Looker Studio ダッシュボード",
+          "CMS導入（WordPress）+ 管理者研修1時間",
+          "PageSpeed Score 90点以上保証",
+          "採用・ブログ・事例掲載機能",
+          "納品後90日間の修正対応（軽微な修正5回まで）"
+        ],
+        "target": "成長企業・採用強化企業・EC前段階の中堅企業",
+        "delivery_days": 50
+      },
+      {
+        "id": "PKG-ENT",
+        "name": "エンタープライズプラン",
+        "pages": "要件定義による",
+        "tax_excluded": "1,500,000〜",
+        "tax_included": "1,650,000〜",
+        "included_features": [
+          "完全オーダーメイド設計",
+          "要件定義書・IA設計・ワイヤーフレーム提供",
+          "カスタムCMS or ヘッドレスCMS構築",
+          "API連携・外部システム統合",
+          "Core Web Vitals 全指標グリーン保証",
+          "セキュリティ診断レポート",
+          "専任PM体制",
+          "月1回の定例ミーティング（3ヶ月間）",
+          "納品後6ヶ月間の保守込み"
+        ],
+        "target": "上場企業・大手企業・複雑な要件を持つ中堅企業",
+        "delivery_days": "要件定義後に確定"
+      }
+    ]
+  },
+
+  "options": {
+    "description": "基本パッケージに追加可能なオプション料金リスト（税込）",
+    "items": [
+      {
+        "id": "OPT-001",
+        "name": "追加ページ制作",
+        "tax_excluded": 30000,
+        "tax_included": 33000,
+        "unit": "1ページあたり",
+        "description": "基本パッケージのページ数を超えて追加制作する場合の単価。デザインテンプレートはパッケージと統一。"
+      },
+      {
+        "id": "OPT-002",
+        "name": "多言語対応（英語版）",
+        "tax_excluded": 90000,
+        "tax_included": 99000,
+        "unit": "1言語あたり",
+        "description": "既存サイトの英語版ページ制作。翻訳は別途（プロ翻訳者手配可）。hreflangタグ・言語切替UIも含む。"
+      },
+      {
+        "id": "OPT-003",
+        "name": "ブログ・ニュース機能実装",
+        "tax_excluded": 45000,
+        "tax_included": 49500,
+        "unit": "一式",
+        "description": "記事投稿・カテゴリ分類・タグ機能・SNSシェアボタン付きのブログシステムを実装。CMSと連携。"
+      },
+      {
+        "id": "OPT-004",
+        "name": "予約・申込フォーム（高機能版）",
+        "tax_excluded": 55000,
+        "tax_included": 60500,
+        "unit": "一式",
+        "description": "日時選択カレンダー・自動返信・管理者通知・スパム対策を備えた高機能フォーム。Google Calendar連携オプションあり。"
+      },
+      {
+        "id": "OPT-005",
+        "name": "SNS連携・自動投稿機能",
+        "tax_excluded": 30000,
+        "tax_included": 33000,
+        "unit": "一式",
+        "description": "Instagram・X（旧Twitter）・Facebook のフィード埋め込みおよびOGP最適化。自動投稿連携は別途設定費。"
+      },
+      {
+        "id": "OPT-006",
+        "name": "動画背景・アニメーション実装",
+        "tax_excluded": 40000,
+        "tax_included": 44000,
+        "unit": "一式",
+        "description": "ヒーローエリアへの動画背景設置、スクロールアニメーション（GSAP・CSS Animations）の実装。素材は別途。"
+      },
+      {
+        "id": "OPT-007",
+        "name": "チャットボット導入",
+        "tax_excluded": 50000,
+        "tax_included": 55000,
+        "unit": "一式（初期設定費）",
+        "description": "FAQ対応チャットボットの設置・初期シナリオ設計（最大20問）。ツール費用（月額）は別途クライアント負担。"
+      },
+      {
+        "id": "OPT-008",
+        "name": "SEO内部対策 強化パック",
+        "tax_excluded": 70000,
+        "tax_included": 77000,
+        "unit": "一式",
+        "description": "キーワード調査（20KW）・タイトル/ディスクリプション最適化・内部リンク設計・構造化データ拡張・表示速度改善レポートを含む包括的な内部SEO対策。"
+      },
+      {
+        "id": "OPT-009",
+        "name": "Google広告（リスティング）初期設定代行",
+        "tax_excluded": 80000,
+        "tax_included": 88000,
+        "unit": "一式",
+        "description": "Google広告アカウント開設・キャンペーン設計・広告文作成（3パターン）・コンバージョン計測設定。広告費は別途クライアント負担。"
+      },
+      {
+        "id": "OPT-010",
+        "name": "アクセシビリティ対応（WCAG 2.1 AA）",
+        "tax_excluded": 60000,
+        "tax_included": 66000,
+        "unit": "一式",
+        "description": "色覚・視覚障害者への配慮、スクリーンリーダー対応、キーボードナビゲーション、altテキスト最適化をWCAG 2.1 AA基準に準拠して実施。"
+      },
+      {
+        "id": "OPT-011",
+        "name": "プライバシーポリシー・特商法ページ作成",
+        "tax_excluded": 20000,
+        "tax_included": 22000,
+        "unit": "セット（2ページ）",
+        "description": "弁護士監修テンプレートを基にした、業種・事業内容に合わせたプライバシーポリシーおよび特定商取引法に基づく表記ページの作成。※法的効力の保証は別途法律家への確認を推奨。"
+      },
+      {
+        "id": "OPT-012",
+        "name": "採用情報ページ（Wantedly/Indeed連携込み）",
+        "tax_excluded": 65000,
+        "tax_included": 71500,
+        "unit": "一式",
+        "description": "求人情報掲載ページの設計・実装。Wantedly/Indeedとの構造化データ連携、応募フォーム付き。更新をCMSで自己管理可能な仕様。"
+      },
+      {
+        "id": "OPT-013",
+        "name": "EC機能（カート・決済）導入",
+        "tax_excluded": 200000,
+        "tax_included": 220000,
+        "unit": "一式（商品数10点まで）",
+        "description": "Stripe/Square等の決済API連携、商品管理・注文管理・配送設定を含む基本ECサイト機能の実装。商品数追加は別途見積。"
+      },
+      {
+        "id": "OPT-014",
+        "name": "サイト引っ越し・旧サイトリダイレクト設定",
+        "tax_excluded": 35000,
+        "tax_included": 38500,
+        "unit": "一式",
+        "description": "既存サイトから新サイトへのコンテンツ移行、301リダイレクト設定、Search ConsoleでのURL変更通知。SEO評価の継承を最大化。"
+      },
+      {
+        "id": "OPT-015",
+        "name": "Figmaデザインデータ納品",
+        "tax_excluded": 25000,
+        "tax_included": 27500,
+        "unit": "一式",
+        "description": "制作したページのFigmaデザインカンプ（コンポーネント整理・スタイルガイド付き）をクライアントへ納品。将来の自社修正・外注対応に活用可能。"
+      }
+    ]
+  },
+
+  "pricing_calculation": {
+    "description": "見積もり計算の基準と方式",
+
+    "base_formula": {
+      "formula": "見積金額（税抜）= 基本パッケージ単価 + Σ（オプション単価）+ 特急料金（該当時）",
+      "note": "消費税10%を加算した金額が請求金額。"
+    },
+
+    "per_page_method": {
+      "standard_unit_price_excl": 30000,
+      "standard_unit_price_incl": 33000,
+      "lp_unit_price_excl": 120000,
+      "lp_unit_price_incl": 132000,
+      "minimum_charge_excl": 198000,
+      "minimum_charge_incl": 217800,
+      "note": "5ページ未満の案件もスタータープラン料金（5P相当）を最低料金として適用。1〜4ページのみの依頼はスタータープラン単価を下回らない。"
+    },
+
+    "express_surcharge": {
+      "description": "通常納期（下記標準日数）より短縮する場合の特急料金",
+      "standard_delivery_days": {
+        "PKG-S": 21,
+        "PKG-M": 35,
+        "PKG-L": 50
+      },
+      "tiers": [
+        {
+          "shortening": "標準納期の25%短縮（例：PKG-Mなら35日→27日以内）",
+          "surcharge_rate": 0.20,
+          "surcharge_label": "基本制作費の20%増",
+          "note": "軽度の特急対応"
+        },
+        {
+          "shortening": "標準納期の50%短縮（例：PKG-Mなら35日→18日以内）",
+          "surcharge_rate": 0.40,
+          "surcharge_label": "基本制作費の40%増",
+          "note": "中度の特急対応。週末・祝日稼働を含む"
+        },
+        {
+          "shortening": "標準納期の50%超の短縮 / 10日以内の超特急",
+          "surcharge_rate": 0.80,
+          "surcharge_label": "基本制作費の80%増",
+          "note": "重度の特急対応。専任体制。内容によっては受注不可の場合あり。要事前相談。"
+        }
+      ]
+    },
+
+    "maintenance_monthly": {
+      "description": "保守・運用料金（月額・税込）",
+      "plans": [
+        {
+          "id": "MNT-LIGHT",
+          "name": "ライト保守プラン",
+          "tax_excluded": 9800,
+          "tax_included": 10780,
+          "included_services": [
+            "WordPressコア・プラグインのアップデート（月1回）",
+            "バックアップ（週1回・4世代保存）",
+            "死活監視・障害時の一次対応（営業時間内）",
+            "軽微なテキスト修正1回/月（30分以内）",
+            "月次レポート（アクセス数・エラーログ）"
+          ],
+          "contract_unit": "月額（最低契約期間3ヶ月）"
+        },
+        {
+          "id": "MNT-STD",
+          "name": "スタンダード保守プラン",
+          "tax_excluded": 19800,
+          "tax_included": 21780,
+          "included_services": [
+            "WordPressコア・プラグインのアップデート（随時）",
+            "バックアップ（日次・7世代保存）",
+            "死活監視・障害時の一次対応（24時間365日アラート、営業時間内対応）",
+            "コンテンツ更新代行（月2時間分）",
+            "SSL証明書更新管理",
+            "セキュリティスキャン（月1回）",
+            "月次レポート（GA4データ・コンバージョン推移）"
+          ],
+          "contract_unit": "月額（最低契約期間3ヶ月）"
+        },
+        {
+          "id": "MNT-PRO",
+          "name": "プロ保守プラン",
+          "tax_excluded": 39800,
+          "tax_included": 43780,
+          "included_services": [
+            "スタンダードプランの全サービス",
+            "コンテンツ更新代行（月5時間分）",
+            "SEO月次改善提案（検索順位レポート・改善アクション提案）",
+            "障害時の緊急対応（2時間以内応答保証・営業時間外含む）",
+            "年2回の大規模リニューアル相談（各1時間）",
+            "Google広告パフォーマンスレポート（オプションで広告運用中の場合）"
+          ],
+          "contract_unit": "月額（最低契約期間6ヶ月）"
+        }
+      ],
+      "additional_work_rate": {
+        "description": "保守プランの付帯時間を超えた追加作業の単価",
+        "tax_excluded_per_hour": 8000,
+        "tax_included_per_hour": 8800,
+        "minimum_unit": "30分単位（4,400円〜）"
+      }
+    }
+  },
+
+  "payment_terms": {
+    "description": "支払い条件テンプレート",
+
+    "milestone_split": {
+      "description": "着手金・中間金・完了金の分割比率",
+      "standard": {
+        "deposit": {
+          "timing": "契約締結時・着手前",
+          "ratio": 0.40,
+          "label": "着手金（40%）",
+          "note": "入金確認後に制作着手。未入金の場合は着手しない（経理ルール）。"
+        },
+        "interim": {
+          "timing": "デザインカンプ確認・承認時（制作工程の折り返し時点）",
+          "ratio": 0.30,
+          "label": "中間金（30%）",
+          "note": "中間金入金後にコーディング工程へ移行。"
+        },
+        "final": {
+          "timing": "納品・検収完了後14日以内",
+          "ratio": 0.30,
+          "label": "完了金（30%）",
+          "note": "検収書受領後に請求書発行。支払い期限を明記。"
+        }
+      },
+      "small_projects": {
+        "condition": "契約金額（税込）330,000円以下の小規模案件",
+        "deposit": {
+          "timing": "契約締結時・着手前",
+          "ratio": 0.50,
+          "label": "着手金（50%）"
+        },
+        "final": {
+          "timing": "納品・検収完了後14日以内",
+          "ratio": 0.50,
+          "label": "完了金（50%）"
+        },
+        "note": "小規模案件は着手金・完了金の2分割を標準とする。キャッシュフロー安定化のため。"
+      },
+      "enterprise_projects": {
+        "condition": "契約金額（税込）1,650,000円超の大規模案件",
+        "deposit": {
+          "timing": "契約締結時",
+          "ratio": 0.30,
+          "label": "着手金（30%）"
+        },
+        "interim_1": {
+          "timing": "要件定義・設計完了時",
+          "ratio": 0.25,
+          "label": "第1中間金（25%）"
+        },
+        "interim_2": {
+          "timing": "デザインカンプ承認時",
+          "ratio": 0.25,
+          "label": "第2中間金（25%）"
+        },
+        "final": {
+          "timing": "検収完了後30日以内",
+          "ratio": 0.20,
+          "label": "完了金（20%）"
+        }
+      }
+    },
+
+    "payment_methods": [
+      {
+        "method": "銀行振込",
+        "details": "三菱UFJ銀行 / 三井住友銀行（口座情報は請求書に記載）",
+        "fee": "振込手数料はクライアント負担",
+        "processing_days": "着金確認まで1〜3営業日",
+        "preferred": true
+      },
+      {
+        "method": "クレジットカード決済",
+        "details": "Stripe経由。VISA / Mastercard / JCB / American Express",
+        "fee": "決済手数料 3.6%（税込）をクライアント負担またはtestcompany負担（案件により要相談）",
+        "processing_days": "即時確認",
+        "preferred": false,
+        "note": "330,000円（税込）以下の案件のみ対応。大型案件は銀行振込を原則とする。"
+      },
+      {
+        "method": "請求書払い（掛け払い）",
+        "details": "与信審査通過後、月締め翌月末払いに対応",
+        "fee": "手数料なし",
+        "conditions": "法人クライアント限定。継続取引2案件以上の実績が必要。",
+        "preferred": false
+      }
+    ],
+
+    "invoice_terms": {
+      "payment_due": "請求書発行日より30日以内（月末締め翌月末払いも応相談）",
+      "late_payment_penalty": "支払期日を超過した場合、超過日数×年率14.6%の遅延損害金を請求",
+      "currency": "日本円（JPY）のみ"
+    },
+
+    "cancellation_policy": {
+      "description": "キャンセル・解約ポリシー",
+      "before_start": {
+        "condition": "着手前（着手金入金後・制作開始前）のキャンセル",
+        "cancellation_fee": "着手金の50%を違約金として申し受ける",
+        "refund": "着手金の残り50%を返金",
+        "note": "契約書調印日から7日以内かつ着手前であればクーリングオフ相当として全額返金を検討（消費者保護の観点）。"
+      },
+      "in_progress_under_50pct": {
+        "condition": "制作進捗50%未満でのキャンセル",
+        "cancellation_fee": "契約金額（税込）の30%を違約金として申し受ける",
+        "refund": "着手金から違約金を差し引いた残額を返金（中間金支払済の場合は差額計算）",
+        "deliverables": "完成済みの成果物（デザインカンプ等）は引き渡し可。"
+      },
+      "in_progress_over_50pct": {
+        "condition": "制作進捗50%以上でのキャンセル",
+        "cancellation_fee": "契約金額（税込）の50%を違約金として申し受ける",
+        "refund": "既払い金額が違約金を超える場合は差額を返金。下回る場合は追加請求。",
+        "deliverables": "完成済みの成果物は引き渡し可。"
+      },
+      "after_delivery": {
+        "condition": "納品・検収完了後のキャンセル",
+        "cancellation_fee": "契約金額（税込）の100%（返金不可）",
+        "note": "検収完了＝納品物の受領確認をもって契約履行完了とみなす。"
+      },
+      "force_majeure": {
+        "condition": "天災・感染症拡大等の不可抗力によるキャンセル",
+        "policy": "双方協議の上、違約金なしまたは実費精算を検討する。"
+      }
+    }
+  },
+
+  "competitive_positioning": {
+    "description": "競合比較ポジショニングと価格戦略",
+
+    "market_benchmark": {
+      "freelancer": {
+        "price_range_5p": "50,000〜150,000円（税込）",
+        "strengths": ["低コスト", "フレキシブルな対応"],
+        "weaknesses": ["品質のばらつき大", "納期遅延リスク", "事業継続性リスク", "契約・保守が脆弱"],
+        "positioning": "価格競争層（コモディティ）"
+      },
+      "small_agency": {
+        "price_range_5p": "150,000〜400,000円（税込）",
+        "strengths": ["フリーランスより安定", "チーム対応"],
+        "weaknesses": ["品質・価格差大", "担当者スキルのばらつき", "アフターサポートが薄い"],
+        "positioning": "中間層（激戦区）"
+      },
+      "testcompany": {
+        "price_range_5p": "217,800〜363,000円（税込）",
+        "strengths": [
+          "AIエージェント活用による高速納品（標準納期を業界比30%短縮）",
+          "Big4レベルの経理管理による透明性の高い見積もり・請求",
+          "Google/Apple/Meta出身レベルの制作品質",
+          "PageSpeed・Core Web Vitals保証付き",
+          "McKinseyレベルの戦略的SEO・マーケ視点を含む提案",
+          "品質管理部門による独立した検品プロセス"
+        ],
+        "weaknesses": ["フリーランスより高価格", "超大規模案件は応相談"],
+        "positioning": "高品質×適正価格のスイートスポット（バリュー訴求）"
+      },
+      "large_agency": {
+        "price_range_5p": "500,000〜2,000,000円以上（税込）",
+        "strengths": ["ブランド力", "大規模案件対応"],
+        "weaknesses": ["過剰品質・過剰価格", "担当者が下請け丸投げのケースあり", "意思決定が遅い"],
+        "positioning": "プレミアム層（大企業向け）"
+      }
+    },
+
+    "differentiation_strategy": {
+      "price_strategy": "大手制作会社の30〜60%の価格帯で大手同等品質を提供。フリーランス比では1.5〜3倍だが、品質・保証・透明性で正当化。",
+      "value_proposition": [
+        {
+          "point": "納期の優位性",
+          "detail": "AIエージェント体制により、スタンダードプラン（10P）を業界標準60日→35日で納品可能。特急料金を払えばさらに短縮対応。"
+        },
+        {
+          "point": "品質保証の明確化",
+          "detail": "PageSpeed Score・Core Web Vitals・WCAG準拠をSLA（サービス水準契約）として明文化。大手でも行っていない透明性。"
+        },
+        {
+          "point": "財務・契約の透明性",
+          "detail": "Big4レベルの経理管理による明瞭な見積もり。隠れコストなし。マイルストーン払いでクライアントのキャッシュフローリスクを低減。"
+        },
+        {
+          "point": "戦略×制作の一体提案",
+          "detail": "McKinseyレベルの経営企画エージェントが競合分析・SEO戦略を制作と同時に提案。単なる制作会社ではなくビジネスパートナー。"
+        }
+      ],
+      "target_sweet_spot": {
+        "revenue_range": "年商1,000万〜10億円の中小企業・成長ベンチャー",
+        "pain_points": [
+          "フリーランスに発注して失敗した経験がある",
+          "大手に頼むと高すぎる",
+          "SEO・マーケティングまで含めてワンストップで相談したい",
+          "明確な納期・価格・品質保証がほしい"
+        ]
+      }
+    },
+
+    "revenue_model_simulation": {
+      "description": "月次売上モデル試算（参考）",
+      "scenario_conservative": {
+        "monthly_new_projects": 3,
+        "avg_project_value_incl": 363000,
+        "maintenance_contracts": 5,
+        "avg_maintenance_incl": 21780,
+        "monthly_revenue_incl": 1197900,
+        "annual_revenue_incl": 14374800
+      },
+      "scenario_growth": {
+        "monthly_new_projects": 6,
+        "avg_project_value_incl": 450000,
+        "maintenance_contracts": 15,
+        "avg_maintenance_incl": 25000,
+        "monthly_revenue_incl": 3075000,
+        "annual_revenue_incl": 36900000
+      },
+      "note": "保守契約のストック収益が積み上がることで、案件受注の変動リスクをヘッジできる。保守契約比率の最大化が財務安定の鍵。"
+    }
+  }
+}
