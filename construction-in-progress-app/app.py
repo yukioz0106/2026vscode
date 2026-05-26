@@ -11,7 +11,8 @@ import anthropic
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'construction-in-progress-secret')
-DATABASE = 'construction.db'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE = os.path.join(BASE_DIR, 'construction.db')
 
 # ---------------------------------------------------------------------------
 # Chat: system prompt & conversation store
@@ -398,6 +399,9 @@ def reset_chat():
     return jsonify({'success': True})
 
 
+init_db()
+
 if __name__ == '__main__':
-    init_db()
-    app.run(debug=True, host='0.0.0.0', port=5002)
+    debug = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
+    port = int(os.environ.get('PORT', 5002))
+    app.run(debug=debug, host='0.0.0.0', port=port)
