@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENEOSグループ 経営ダッシュボード</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#080C12;--surface:#0F1520;--card:#141C2B;--border:#1E2B3E;--text:#E2EAF4;--muted:#6B7FA0;--blue:#4A9EFF;--cyan:#22D3EE;--green:#34D399;--yellow:#FBBF24;--red:#F87171;--purple:#A78BFA;--orange:#FB923C;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic Medium','Meiryo',sans-serif;font-size:13px;line-height:1.5;min-width:1280px;}
+/* HEADER */
+.header{background:linear-gradient(135deg,#0A1628,#0F1E38 60%,#0C1A30);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+.header h1{font-size:20px;font-weight:700;background:linear-gradient(90deg,#4A9EFF,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.badge-live{background:linear-gradient(90deg,#34D399,#059669);color:#fff;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;}
+/* NAV TABS */
+.nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;padding:0 32px;gap:2px;}
+.nav-tab{padding:12px 20px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+/* SCREENS */
+.screen{display:none;padding:16px 32px;}
+.screen.active{display:block;}
+/* SECTION HEADER */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--text);}
+.sec-sub{font-size:11px;color:var(--muted);}
+/* CARDS GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:12px;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.kpi-card.blue::before{background:linear-gradient(90deg,var(--blue),var(--cyan));}
+.kpi-card.green::before{background:linear-gradient(90deg,var(--green),#059669);}
+.kpi-card.yellow::before{background:linear-gradient(90deg,var(--yellow),var(--orange));}
+.kpi-card.red::before{background:linear-gradient(90deg,var(--red),#DC2626);}
+.kpi-card.purple::before{background:linear-gradient(90deg,var(--purple),#7C3AED);}
+.kpi-label{font-size:11px;color:var(--muted);margin-bottom:4px;}
+.kpi-val{font-size:20px;font-weight:700;letter-spacing:-.02em;}
+.kpi-unit{font-size:11px;color:var(--muted);margin-left:3px;}
+.kpi-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+.kpi-yoy{font-size:11px;color:var(--muted);}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.badge.up{background:rgba(52,211,153,.15);color:var(--green);}
+.badge.dn{background:rgba(248,113,113,.15);color:var(--red);}
+.badge.ok{background:rgba(74,158,255,.15);color:var(--blue);}
+.badge.warn{background:rgba(251,191,36,.15);color:var(--yellow);}
+.badge.flat{background:rgba(107,127,160,.15);color:var(--muted);}
+/* CHART CONTAINERS */
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px;}
+.charts-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;}
+.charts-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;}
+.chart-title{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:8px;}
+/* aspect-ratio で幅に連動した高さを確保。canvas は絶対配置で親に追従 */
+.chart-wrap{position:relative;width:100%;}
+/* 棒・折れ線グラフ: 3:1 前後が読みやすい */
+.chart-wrap.r-bar   {aspect-ratio:3/1;}   /* 2+1 カラム幅広列・2カラム棒/線 */
+.chart-wrap.r-bar-n {aspect-ratio:2.5/1;} /* 2カラム均等 */
+.chart-wrap.r-bar-s {aspect-ratio:2/1;}   /* 3カラム（やや正方形寄り） */
+.chart-wrap.r-bar-m {aspect-ratio:2.2/1;} /* モーダル内折れ線/棒 */
+/* ドーナツ・レーダー: 1:1 に近い正円確保 */
+.chart-wrap.r-donut {aspect-ratio:1.2/1;} /* ドーナツ（正円寄り） */
+.chart-wrap.r-radar {aspect-ratio:1.3/1;} /* レーダー（正多角形確保） */
+.chart-wrap canvas{position:absolute;inset:0;width:100%!important;height:100%!important;}
+/* GAUGES */
+.gauges-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;}
+.gauge-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.gauge-wrap{position:relative;height:56px;display:flex;justify-content:center;align-items:flex-end;}
+.gauge-wrap canvas{position:static;width:auto!important;height:56px!important;max-width:100%;}
+.gauge-center{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:14px;font-weight:700;pointer-events:none;}
+.gauge-label{font-size:11px;color:var(--muted);margin-top:4px;}
+/* SEGMENT TABLE */
+.seg-table{width:100%;border-collapse:collapse;}
+.seg-table th{font-size:10px;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--border);text-align:right;font-weight:600;}
+.seg-table th:first-child{text-align:left;}
+.seg-table td{padding:8px 10px;border-bottom:1px solid rgba(30,43,62,.5);font-size:12px;text-align:right;}
+.seg-table td:first-child{text-align:left;font-weight:600;}
+.seg-table tr:hover td{background:rgba(255,255,255,.02);}
+.pos{color:var(--green);}
+.neg{color:var(--red);}
+/* BAR TRACK */
+.bar-track{width:80px;height:6px;background:rgba(30,43,62,.8);border-radius:3px;display:inline-block;vertical-align:middle;}
+.bar-fill{height:100%;border-radius:3px;background:var(--blue);}
+/* TABS (inner) */
+.inner-tabs{display:flex;gap:4px;margin-bottom:16px;}
+.inner-tab{padding:6px 14px;font-size:11px;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all .15s;}
+.inner-tab.active{background:rgba(74,158,255,.12);color:var(--blue);border-color:var(--blue);}
+.inner-pane{display:none;}
+.inner-pane.active{display:block;}
+/* DATA TABLE */
+.data-tbl{width:100%;border-collapse:collapse;}
+.data-tbl th{font-size:10px;color:var(--muted);padding:8px;border-bottom:1px solid var(--border);text-align:right;}
+.data-tbl th:first-child{text-align:left;}
+.data-tbl td{padding:8px;border-bottom:1px solid rgba(30,43,62,.4);font-size:12px;text-align:right;}
+.data-tbl td:first-child{text-align:left;color:var(--muted);}
+.data-tbl tr:last-child td{color:var(--blue);font-weight:600;}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;width:780px;max-height:85vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:var(--surface);border:1px solid var(--border);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--muted);}
+.modal-close:hover{color:var(--text);}
+.modal-title{font-size:16px;font-weight:700;margin-bottom:4px;}
+.modal-sub{font-size:11px;color:var(--muted);margin-bottom:20px;}
+/* INPUT FORM */
+.input-form{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-label{font-size:10px;color:var(--muted);font-weight:600;}
+.form-input{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 10px;color:var(--text);font-size:12px;width:100%;}
+.form-input:focus{outline:none;border-color:var(--blue);}
+.btn-primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;border:none;border-radius:6px;padding:8px 20px;font-size:12px;font-weight:600;cursor:pointer;}
+.btn-secondary{background:var(--surface);color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:8px 16px;font-size:12px;cursor:pointer;}
+/* MIDTERM PROGRESS */
+.mt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.mt-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+.mt-label{font-size:11px;color:var(--muted);margin-bottom:6px;}
+.mt-vals{display:flex;justify-content:space-between;margin-bottom:4px;}
+.mt-actual{font-size:16px;font-weight:700;}
+.mt-target{font-size:11px;color:var(--muted);align-self:flex-end;}
+.progress-bar{width:100%;height:6px;background:rgba(30,43,62,.8);border-radius:3px;margin-top:6px;}
+.progress-fill{height:100%;border-radius:3px;transition:width .5s;}
+/* ESG */
+.esg-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:12px;}
+.esg-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 10px;}
+/* SCROLL HINT */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--surface);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>ENEOSグループ 経営ダッシュボード</h1>
+    <div class="header-sub">有価証券報告書データ基準 ／ FY2021〜FY2025 連結</div>
+  </div>
+  <div class="header-right">
+    <span class="badge-live">LIVE</span>
+    <div style="font-size:11px;color:var(--muted)">最終更新: 2026-05-27</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-tab active" onclick="showScreen('p01',this)">P-01 経営サマリー</div>
+  <div class="nav-tab" onclick="showScreen('p02',this)">P-02 財務分析</div>
+  <div class="nav-tab" onclick="showScreen('p03',this)">P-03 中計KPI達成度</div>
+  <div class="nav-tab" onclick="showScreen('p04',this)">P-04 セグメント分析</div>
+  <div class="nav-tab" onclick="showScreen('p05',this)">P-05 ESG・非財務</div>
+  <div class="nav-tab" onclick="showScreen('p06',this)">P-06 比較・分析</div>
+  <div class="nav-tab" onclick="showScreen('input',this)" style="margin-left:auto;color:var(--yellow)">⊕ データ入力</div>
+</div>
+
+<!-- ═══════════════ P-01 経営サマリー ═══════════════ -->
+<div id="p01" class="screen active">
+  <div class="sec-hdr">
+    <div><div class="sec-title">経営サマリー</div><div class="sec-sub">FY2025（2025年3月期）連結実績</div></div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card blue" onclick="openModal('m_revenue')">
+      <div class="kpi-label">売上収益</div>
+      <div class="kpi-val">12.3兆円<span class="kpi-unit"></span></div>
+      <div class="kpi-foot">
+        <span class="kpi-yoy">前年比 △0.2%</span>
+        <span class="badge flat">横ばい</span>
+      </div>
+    </div>
+    <div class="kpi-card yellow" onclick="openModal('m_op')">
+      <div class="kpi-label">営業利益</div>
+      <div class="kpi-val">1,061<span class="kpi-unit">億円</span></div>
+      <div class="kpi-foot">
+        <span class="kpi-yoy">前年比 △72.2%</span>
+        <span class="badge dn">要改善</span>
+      </div>
+    </div>
+    <div class="kpi-card green" onclick="openModal('m_roe')">
+      <div class="kpi-label">ROE</div>
+      <div class="kpi-val">7.1<span class="kpi-unit">%</span></div>
+      <div class="kpi-foot">
+        <span class="kpi-yoy">前年 9.5%</span>
+        <span class="badge warn">低下</span>
+      </div>
+    </div>
+    <div class="kpi-card purple" onclick="openModal('m_roic')">
+      <div class="kpi-label">ROIC</div>
+      <div class="kpi-val">1.4<span class="kpi-unit">%</span></div>
+      <div class="kpi-foot">
+        <span class="kpi-yoy">前年 4.4%</span>
+        <span class="badge dn">低下</span>
+      </div>
+    </div>
+    <div class="kpi-card blue" onclick="openModal('m_fcf')">
+      <div class="kpi-label">FCF</div>
+      <div class="kpi-val">7,076<span class="kpi-unit">億円</span></div>
+      <div class="kpi-foot">
+        <span class="kpi-yoy">前年 7,693億円</span>
+        <span class="badge ok">黒字継続</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS ROW 1 -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">P/L トレンド（5期）</div>
+      <div class="chart-wrap r-bar"><canvas id="plChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">ROE / ROIC 推移</div>
+      <div class="chart-wrap r-bar"><canvas id="roeChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- CHARTS ROW 2 -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">キャッシュフロー推移（億円）</div>
+      <div class="chart-wrap r-bar"><canvas id="cfChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">D/Eレシオ 推移</div>
+      <div class="chart-wrap r-bar"><canvas id="deChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- GAUGES -->
+  <div class="gauges-row">
+    <div class="gauge-card" onclick="openModal('m_mt')">
+      <div class="gauge-wrap"><canvas id="g1"></canvas><div class="gauge-center" style="color:var(--yellow)">75%</div></div>
+      <div class="gauge-label">中計ROE達成率（目標10%）</div>
+    </div>
+    <div class="gauge-card" onclick="openModal('m_fcf')">
+      <div class="gauge-wrap"><canvas id="g2"></canvas><div class="gauge-center" style="color:var(--green)">100%</div></div>
+      <div class="gauge-label">FCF目標達成（FY25）</div>
+    </div>
+    <div class="gauge-card" onclick="openModal('m_de')">
+      <div class="gauge-wrap"><canvas id="g3"></canvas><div class="gauge-center" style="color:var(--green)">100%</div></div>
+      <div class="gauge-label">D/Eレシオ目標（≦1.0倍）</div>
+    </div>
+    <div class="gauge-card" onclick="openModal('m_esg')">
+      <div class="gauge-wrap"><canvas id="g4"></canvas><div class="gauge-center" style="color:var(--red)">30%</div></div>
+      <div class="gauge-label">CO2削減進捗（2030目標比）</div>
+    </div>
+  </div>
+
+  <!-- SEGMENT TABLE -->
+  <div class="chart-card">
+    <div class="chart-title">セグメント別業績（FY2025 / FY2024比較）</div>
+    <table class="seg-table">
+      <thead><tr>
+        <th style="text-align:left">セグメント</th>
+        <th>売上収益(FY25)</th><th>営業利益(FY25)</th><th>前年比</th>
+        <th>資産</th><th>進捗</th>
+      </tr></thead>
+      <tbody id="segTbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ P-02 財務分析 ═══════════════ -->
+<div id="p02" class="screen">
+  <div class="sec-hdr">
+    <div><div class="sec-title">財務分析</div><div class="sec-sub">P/L・B/S・CF 詳細</div></div>
+  </div>
+  <div class="inner-tabs">
+    <div class="inner-tab active" onclick="showTab('f_pl',this)">P/L 損益計算書</div>
+    <div class="inner-tab" onclick="showTab('f_bs',this)">B/S 貸借対照表</div>
+    <div class="inner-tab" onclick="showTab('f_cf',this)">CF キャッシュフロー</div>
+  </div>
+
+  <div id="f_pl" class="inner-pane active">
+    <div class="charts-row3">
+      <div class="chart-card"><div class="chart-title">売上収益</div><div class="chart-wrap r-bar-s"><canvas id="revChart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">営業利益・当期純利益</div><div class="chart-wrap r-bar-s"><canvas id="profChart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">EBITDA</div><div class="chart-wrap r-bar-s"><canvas id="ebitdaChart"></canvas></div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">P/L サマリー（百万円）</div>
+      <table class="data-tbl">
+        <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+        <tbody id="plTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="f_bs" class="inner-pane">
+    <div class="charts-row2">
+      <div class="chart-card"><div class="chart-title">総資産・自己資本</div><div class="chart-wrap r-bar-n"><canvas id="bsChart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">有利子負債・D/Eレシオ</div><div class="chart-wrap r-bar-n"><canvas id="deChart2"></canvas></div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">B/S サマリー（百万円）</div>
+      <table class="data-tbl">
+        <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+        <tbody id="bsTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="f_cf" class="inner-pane">
+    <div class="charts-row2">
+      <div class="chart-card"><div class="chart-title">CF 3区分（億円）</div><div class="chart-wrap r-bar-n"><canvas id="cfChart2"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">FCF・株主還元</div><div class="chart-wrap r-bar-n"><canvas id="retChart"></canvas></div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">CF サマリー（百万円）</div>
+      <table class="data-tbl">
+        <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+        <tbody id="cfTbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ P-03 中計KPI達成度 ═══════════════ -->
+<div id="p03" class="screen">
+  <div class="sec-hdr">
+    <div><div class="sec-title">中計KPI達成度</div><div class="sec-sub">中期経営計画（2025〜2030）目標値 vs 実績</div></div>
+  </div>
+  <div class="mt-grid" id="mtGrid"></div>
+  <div class="charts-row2">
+    <div class="chart-card"><div class="chart-title">財務KPI 達成率（レーダー）</div><div class="chart-wrap r-radar"><canvas id="radarChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">目標 vs 実績 推移（ROE）</div><div class="chart-wrap r-bar-n"><canvas id="roeVsChart"></canvas></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ P-04 セグメント分析 ═══════════════ -->
+<div id="p04" class="screen">
+  <div class="sec-hdr">
+    <div><div class="sec-title">セグメント分析</div><div class="sec-sub">FY2025 セグメント別詳細</div></div>
+  </div>
+  <div class="charts-row2">
+    <div class="chart-card"><div class="chart-title">セグメント別 売上収益構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="segRevChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">セグメント別 営業利益比較（FY24 vs FY25）</div><div class="chart-wrap r-bar-n"><canvas id="segOpChart"></canvas></div></div>
+  </div>
+  <div class="chart-card" style="margin-bottom:16px">
+    <div class="chart-title">セグメント別 詳細（FY2025 / 百万円）</div>
+    <table class="seg-table">
+      <thead><tr>
+        <th style="text-align:left">セグメント</th>
+        <th>売上収益</th><th>営業利益</th><th>資産</th><th>減価償却</th><th>CAPEX</th><th>ROA概算</th>
+      </tr></thead>
+      <tbody id="seg4Tbody"></tbody>
+    </table>
+  </div>
+  <div class="charts-row3">
+    <div class="chart-card"><div class="chart-title">CAPEX構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="capexChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">資産構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="astChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">セグメント別EBITDA（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="segEbtChart"></canvas></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ P-05 ESG ═══════════════ -->
+<div id="p05" class="screen">
+  <div class="sec-hdr">
+    <div><div class="sec-title">ESG・非財務指標</div><div class="sec-sub">環境・社会・ガバナンス KPI（一部推定値含む）</div></div>
+  </div>
+  <div class="esg-grid" id="esgGrid"></div>
+  <div class="charts-row2">
+    <div class="chart-card"><div class="chart-title">CO2排出量推移（百万t-CO2）</div><div class="chart-wrap r-bar-n"><canvas id="co2Chart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">再生可能エネルギー容量（MW）</div><div class="chart-wrap r-bar-n"><canvas id="reChart"></canvas></div></div>
+  </div>
+  <div class="charts-row3">
+    <div class="chart-card"><div class="chart-title">女性管理職比率（%）</div><div class="chart-wrap r-bar-s"><canvas id="womenChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">労働災害発生率（TRIR）</div><div class="chart-wrap r-bar-s"><canvas id="trirChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">ESG 総合スコア</div><div class="chart-wrap r-radar"><canvas id="esgRadar"></canvas></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ P-06 比較分析 ═══════════════ -->
+<div id="p06" class="screen">
+  <div class="sec-hdr">
+    <div><div class="sec-title">比較・分析</div><div class="sec-sub">競合他社比較（推定値）・業界平均</div></div>
+  </div>
+  <div class="charts-row3">
+    <div class="chart-card"><div class="chart-title">ROE 比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="cmpRoe"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">ROIC 比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="cmpRoic"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">D/Eレシオ 比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="cmpDe"></canvas></div></div>
+  </div>
+  <div class="charts-row2">
+    <div class="chart-card"><div class="chart-title">売上収益成長率 比較（CAGR FY21→FY25）</div><div class="chart-wrap r-bar-n"><canvas id="cmpRev"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">ENEOS vs 業界平均 レーダー</div><div class="chart-wrap r-radar"><canvas id="cmpRadar"></canvas></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ DATA INPUT ═══════════════ -->
+<div id="input" class="screen">
+  <div class="sec-hdr">
+    <div><div class="sec-title">データ入力</div><div class="sec-sub">不足データの手動入力（ダミーデータ設定済み）</div></div>
+  </div>
+  <div class="inner-tabs">
+    <div class="inner-tab active" onclick="showTab('in_qtr',this)">四半期データ</div>
+    <div class="inner-tab" onclick="showTab('in_eps',this)">EPS・株式</div>
+    <div class="inner-tab" onclick="showTab('in_esg',this)">ESGデータ</div>
+    <div class="inner-tab" onclick="showTab('in_comp',this)">競合他社データ</div>
+  </div>
+
+  <div id="in_qtr" class="inner-pane active">
+    <div class="input-form">
+      <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">四半期財務データ入力（FY2025）</div>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Q1 売上収益（百万円）</label><input class="form-input" value="3180000"></div>
+        <div class="form-group"><label class="form-label">Q2 売上収益（百万円）</label><input class="form-input" value="3050000"></div>
+        <div class="form-group"><label class="form-label">Q3 売上収益（百万円）</label><input class="form-input" value="3020000"></div>
+        <div class="form-group"><label class="form-label">Q1 営業利益（百万円）</label><input class="form-input" value="45000"></div>
+        <div class="form-group"><label class="form-label">Q2 営業利益（百万円）</label><input class="form-input" value="28000"></div>
+        <div class="form-group"><label class="form-label">Q3 営業利益（百万円）</label><input class="form-input" value="22000"></div>
+        <div class="form-group"><label class="form-label">Q1 純利益（百万円）</label><input class="form-input" value="68000"></div>
+        <div class="form-group"><label class="form-label">Q2 純利益（百万円）</label><input class="form-input" value="55000"></div>
+        <div class="form-group"><label class="form-label">Q3 純利益（百万円）</label><input class="form-input" value="48000"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button class="btn-primary">保存</button>
+        <button class="btn-secondary">リセット</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="in_eps" class="inner-pane">
+    <div class="input-form">
+      <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">EPS・株式情報入力</div>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">FY21 発行済株式数（千株）</label><input class="form-input" value="4685000"></div>
+        <div class="form-group"><label class="form-label">FY22 発行済株式数（千株）</label><input class="form-input" value="4685000"></div>
+        <div class="form-group"><label class="form-label">FY23 発行済株式数（千株）</label><input class="form-input" value="4642000"></div>
+        <div class="form-group"><label class="form-label">FY24 発行済株式数（千株）</label><input class="form-input" value="4630000"></div>
+        <div class="form-group"><label class="form-label">FY25 発行済株式数（千株）</label><input class="form-input" value="4550000"></div>
+        <div class="form-group"><label class="form-label">FY21 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY22 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY23 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY24 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY25 1株配当（円）</label><input class="form-input" value="22"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button class="btn-primary">保存・EPS計算</button>
+        <button class="btn-secondary">リセット</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="in_esg" class="inner-pane">
+    <div class="input-form">
+      <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">ESG指標入力</div>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">FY21 CO2排出量（百万t）</label><input class="form-input" value="64.2"></div>
+        <div class="form-group"><label class="form-label">FY22 CO2排出量（百万t）</label><input class="form-input" value="63.1"></div>
+        <div class="form-group"><label class="form-label">FY23 CO2排出量（百万t）</label><input class="form-input" value="61.8"></div>
+        <div class="form-group"><label class="form-label">FY24 CO2排出量（百万t）</label><input class="form-input" value="60.2"></div>
+        <div class="form-group"><label class="form-label">FY25 CO2排出量（百万t）</label><input class="form-input" value="58.5"></div>
+        <div class="form-group"><label class="form-label">FY25 再エネ容量（MW）</label><input class="form-input" value="1850"></div>
+        <div class="form-group"><label class="form-label">FY25 女性管理職比率（%）</label><input class="form-input" value="8.2"></div>
+        <div class="form-group"><label class="form-label">FY25 TRIR（件/100万時間）</label><input class="form-input" value="0.42"></div>
+        <div class="form-group"><label class="form-label">取締役会独立性（%）</label><input class="form-input" value="46.7"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button class="btn-primary">保存</button>
+        <button class="btn-secondary">リセット</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="in_comp" class="inner-pane">
+    <div class="input-form">
+      <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">競合他社データ（FY25推定値）</div>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">出光興産 ROE（%）</label><input class="form-input" value="9.8"></div>
+        <div class="form-group"><label class="form-label">出光興産 ROIC（%）</label><input class="form-input" value="3.2"></div>
+        <div class="form-group"><label class="form-label">出光興産 D/Eレシオ</label><input class="form-input" value="1.02"></div>
+        <div class="form-group"><label class="form-label">コスモ ROE（%）</label><input class="form-input" value="6.5"></div>
+        <div class="form-group"><label class="form-label">コスモ ROIC（%）</label><input class="form-input" value="2.8"></div>
+        <div class="form-group"><label class="form-label">コスモ D/Eレシオ</label><input class="form-input" value="1.35"></div>
+        <div class="form-group"><label class="form-label">業界平均 ROE（%）</label><input class="form-input" value="8.5"></div>
+        <div class="form-group"><label class="form-label">業界平均 ROIC（%）</label><input class="form-input" value="3.0"></div>
+        <div class="form-group"><label class="form-label">業界平均 D/Eレシオ</label><input class="form-input" value="1.05"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button class="btn-primary">保存・比較更新</button>
+        <button class="btn-secondary">リセット</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+<!-- Revenue Drill-down -->
+<div id="m_revenue" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_revenue')">×</div>
+    <div class="modal-title">売上収益 ドリルダウン</div>
+    <div class="modal-sub">セグメント別売上構成 / 前年比分析</div>
+    <div class="charts-row2">
+      <div class="chart-card"><div class="chart-title">セグメント構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="md_rev_pie"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">5期トレンド（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_rev_trend"></canvas></div></div>
+    </div>
+    <table class="data-tbl">
+      <thead><tr><th>セグメント</th><th>FY25 売上収益</th><th>FY24 売上収益</th><th>増減</th></tr></thead>
+      <tbody>
+        <tr><td>石油製品ほか</td><td>10,902,305</td><td>11,068,428</td><td class="neg">△166,123</td></tr>
+        <tr><td>石油・天然ガス開発</td><td>242,813</td><td>204,863</td><td class="pos">+37,950</td></tr>
+        <tr><td>機能材</td><td>344,262</td><td>305,863</td><td class="pos">+38,399</td></tr>
+        <tr><td>電気</td><td>313,228</td><td>266,707</td><td class="pos">+46,521</td></tr>
+        <tr><td>再生可能エネルギー</td><td>43,338</td><td>41,790</td><td class="pos">+1,548</td></tr>
+        <tr><td>連結合計</td><td>12,322,494</td><td>12,344,557</td><td class="neg">△22,063</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- OP Drill-down -->
+<div id="m_op" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_op')">×</div>
+    <div class="modal-title">営業利益 ドリルダウン</div>
+    <div class="modal-sub">FY25 営業利益 1,061億円（前年比 △2,753億円）</div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益 ウォーターフォール（FY24→FY25）</div><div class="chart-wrap r-bar-m"><canvas id="md_op_wfall"></canvas></div></div>
+    <table class="data-tbl">
+      <thead><tr><th>セグメント</th><th>FY25</th><th>FY24</th><th>増減</th></tr></thead>
+      <tbody>
+        <tr><td>石油製品ほか</td><td class="neg">△50,705</td><td class="pos">261,827</td><td class="neg">△312,532</td></tr>
+        <tr><td>石油・天然ガス開発</td><td class="pos">87,407</td><td class="pos">91,498</td><td class="neg">△4,091</td></tr>
+        <tr><td>機能材</td><td class="pos">17,671</td><td class="pos">7,161</td><td class="pos">+10,510</td></tr>
+        <tr><td>電気</td><td class="pos">20,970</td><td class="neg">△6,363</td><td class="pos">+27,333</td></tr>
+        <tr><td>再生可能エネルギー</td><td class="neg">△16,906</td><td class="neg">△11,802</td><td class="neg">△5,104</td></tr>
+        <tr><td>連結合計（調整後）</td><td>106,093</td><td>381,411</td><td class="neg">△275,318</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ROE Drill-down -->
+<div id="m_roe" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_roe')">×</div>
+    <div class="modal-title">ROE デュポン分析</div>
+    <div class="modal-sub">FY25 ROE 7.1% = 純利益率 × 総資産回転率 × 財務レバレッジ</div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">デュポン 3要素推移</div><div class="chart-wrap r-bar-m"><canvas id="md_dupont"></canvas></div></div>
+    <table class="data-tbl">
+      <thead><tr><th>指標</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+      <tbody>
+        <tr><td>ROE（%）</td><td>4.9</td><td>20.7</td><td>5.0</td><td>9.5</td><td>7.1</td></tr>
+        <tr><td>純利益率（%）</td><td>1.49</td><td>4.92</td><td>0.96</td><td>2.33</td><td>1.83</td></tr>
+        <tr><td>総資産回転率（回）</td><td>0.95</td><td>1.13</td><td>1.51</td><td>1.22</td><td>1.40</td></tr>
+        <tr><td>財務レバレッジ（倍）</td><td>3.47</td><td>3.37</td><td>3.48</td><td>3.14</td><td>2.84</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ROIC Drill-down -->
+<div id="m_roic" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_roic')">×</div>
+    <div class="modal-title">ROIC 分解分析</div>
+    <div class="modal-sub">ROIC = NOPAT ÷ 投下資本（自己資本＋有利子負債）</div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">ROIC コンポーネント推移（%）</div><div class="chart-wrap r-bar-m"><canvas id="md_roic"></canvas></div></div>
+    <table class="data-tbl">
+      <thead><tr><th>指標</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+      <tbody>
+        <tr><td>ROIC（%）</td><td>4.1</td><td>9.8</td><td>3.3</td><td>4.4</td><td>1.4</td></tr>
+        <tr><td>NOPAT（億円）</td><td>1,779</td><td>5,501</td><td>1,969</td><td>2,670</td><td>743</td></tr>
+        <tr><td>投下資本（億円）</td><td>43,620</td><td>55,963</td><td>59,692</td><td>60,473</td><td>54,374</td></tr>
+        <tr><td>営業利益（億円）</td><td>2,542</td><td>7,859</td><td>2,813</td><td>3,814</td><td>1,061</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FCF Drill-down -->
+<div id="m_fcf" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_fcf')">×</div>
+    <div class="modal-title">FCF ウォーターフォール</div>
+    <div class="modal-sub">FY25 FCF 7,076億円（営業CF 5,768億円 + 投資CF 1,308億円）</div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">FCF 推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_fcf"></canvas></div></div>
+    <table class="data-tbl">
+      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+      <tbody>
+        <tr><td>営業CF（億円）</td><td class="pos">6,791</td><td class="pos">2,095</td><td class="neg">△1,102</td><td class="pos">10,103</td><td class="pos">5,768</td></tr>
+        <tr><td>投資CF（億円）</td><td class="neg">△3,068</td><td class="neg">△3,499</td><td class="neg">△1,159</td><td class="neg">△2,410</td><td class="pos">1,308</td></tr>
+        <tr><td>FCF（億円）</td><td class="pos">3,723</td><td class="neg">△1,404</td><td class="neg">△2,262</td><td class="pos">7,693</td><td class="pos">7,076</td></tr>
+        <tr><td>配当（億円）</td><td>708</td><td>692</td><td>692</td><td>664</td><td>695</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- D/E Drill-down -->
+<div id="m_de" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_de')">×</div>
+    <div class="modal-title">D/Eレシオ・財務安全性分析</div>
+    <div class="modal-sub">FY25 D/Eレシオ 0.75倍（目標≦1.0倍 達成）</div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">D/E・ネットD/E 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_de"></canvas></div></div>
+    <table class="data-tbl">
+      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+      <tbody>
+        <tr><td>D/Eレシオ（倍）</td><td>0.88</td><td>0.96</td><td>1.09</td><td>0.87</td><td>0.75</td></tr>
+        <tr><td>有利子負債（億円）</td><td>20,369</td><td>27,355</td><td>31,094</td><td>28,200</td><td>23,368</td></tr>
+        <tr><td>自己資本（億円）</td><td>23,251</td><td>28,608</td><td>28,598</td><td>32,272</td><td>31,007</td></tr>
+        <tr><td>現金（億円）</td><td>4,177</td><td>5,473</td><td>3,115</td><td>7,759</td><td>8,466</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Midterm Modal -->
+<div id="m_mt" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_mt')">×</div>
+    <div class="modal-title">中計KPI 詳細</div>
+    <div class="modal-sub">中期経営計画 2025〜2030 財務目標</div>
+    <table class="data-tbl">
+      <thead><tr><th>KPI</th><th>FY25実績</th><th>2030目標</th><th>達成率</th><th>状況</th></tr></thead>
+      <tbody>
+        <tr><td>ROE（%）</td><td>7.1</td><td>10.0</td><td>71%</td><td class="warn">進行中</td></tr>
+        <tr><td>ROIC（%）</td><td>1.4</td><td>5.0</td><td>28%</td><td class="neg">要改善</td></tr>
+        <tr><td>D/Eレシオ（倍）</td><td>0.75</td><td>≦1.0</td><td>100%+</td><td class="pos">達成</td></tr>
+        <tr><td>再エネ容量（GW）</td><td>1.85</td><td>5.0</td><td>37%</td><td class="warn">進行中</td></tr>
+        <tr><td>CO2削減（%）</td><td>9%削減</td><td>30%削減</td><td>30%</td><td class="warn">進行中</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ESG Modal -->
+<div id="m_esg" class="modal-overlay" onclick="closeModal(event,this)">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModalById('m_esg')">×</div>
+    <div class="modal-title">ESG指標 詳細</div>
+    <div class="modal-sub">環境・社会・ガバナンス KPI（FY25）</div>
+    <table class="data-tbl">
+      <thead><tr><th>指標</th><th>FY25実績</th><th>目標</th><th>状況</th></tr></thead>
+      <tbody>
+        <tr><td>CO2排出量（百万t）</td><td>58.5</td><td>44.8（2030）</td><td class="warn">進行中</td></tr>
+        <tr><td>再エネ容量（MW）</td><td>1,850</td><td>5,000（2030）</td><td class="warn">37%</td></tr>
+        <tr><td>女性管理職比率（%）</td><td>8.2</td><td>10（2025）</td><td class="neg">未達</td></tr>
+        <tr><td>TRIR（件/百万時間）</td><td>0.42</td><td>0.3以下</td><td class="warn">要改善</td></tr>
+        <tr><td>独立社外取締役比率（%）</td><td>46.7</td><td>50以上</td><td class="warn">進行中</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+/* ═══ DATA ═══ */
+const FY=['FY21','FY22','FY23','FY24','FY25'];
+// P/L 百万円
+const revenue   =[7658011,10921759,15016554,12344557,12322494];
+const op_profit =[254175,785905,281285,381411,106093];
+const net_income=[113998,537117,143766,288121,226071];
+const deprec    =[326899,331982,350182,334054,364917];
+const ebitda    =[581074,1117887,631467,715465,471010];
+// B/S 百万円
+const equity      =[2325108,2860797,2859832,3227213,3100660];
+const equity_prior=[2311046,2325108,2860797,2859832,3227213];
+const ibdebt      =[2036900,2735458,3109401,2820042,2336783];
+const cash        =[417724,547272,311517,775906,846563];
+const total_assets=[8058818,9648219,9954517,10136545,8789377];
+// CF 百万円
+const op_cf  =[679094,209509,-110246,1010283,576835];
+const inv_cf =[-306791,-349925,-115928,-240983,130765];
+const fin_cf =[-355081,226046,-13316,-331031,-630414];
+const dividends=[70800,69159,69159,66418,69543];
+const buyback  =[3026,100007,100007,17937,232350];
+// KPIs
+const roe    =[4.9,20.7,5.0,9.5,7.1];
+const roic   =[4.1,9.8,3.3,4.4,1.4];
+const de_ratio=[0.876,0.956,1.087,0.874,0.753];
+const fcf_arr=[372303,-140416,-226174,769300,707600];
+
+// Segment FY24/FY25 百万円
+const SEG=[
+  {name:'石油製品ほか',code:'ENERGY',   rev25:10902305,op25:-50705,   ast25:5621315, dep25:192436,cap25:175621, rev24:11068428,op24:261827},
+  {name:'石油・天然ガス',code:'OIL_GAS', rev25:242813,  op25:87407,   ast25:1215581, dep25:72472, cap25:65347,  rev24:204863,  op24:91498},
+  {name:'機能材',       code:'FUNCTIONAL',rev25:344262, op25:17671,   ast25:313970,  dep25:8126,  cap25:13139,  rev24:305863,  op24:7161},
+  {name:'電気',         code:'ELECTRIC', rev25:313228,  op25:20970,   ast25:240850,  dep25:7275,  cap25:21338,  rev24:266707,  op24:-6363},
+  {name:'再生可能',     code:'RENEWABLES',rev25:43338,  op25:-16906,  ast25:566718,  dep25:21525, cap25:28772,  rev24:41790,   op24:-11802},
+];
+
+/* ═══ HELPERS ═══ */
+const fmtB=v=>(v/1e4).toFixed(0);   // 百万円→億円（整数）
+const fmtM=v=>v.toLocaleString();
+const C={blue:'#4A9EFF',cyan:'#22D3EE',green:'#34D399',yellow:'#FBBF24',red:'#F87171',purple:'#A78BFA',orange:'#FB923C',muted:'#6B7FA0'};
+const grid={color:'rgba(30,43,62,0.6)'};
+const ticks={color:C.muted,font:{size:10}};
+const defOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:C.muted,font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'#1E2B3E',titleColor:'#E2EAF4',bodyColor:'#6B7FA0'}},scales:{x:{grid,ticks},y:{grid,ticks}}};
+function lineOpts(o={}){return {...defOpts,...o,scales:{x:{grid,ticks},y:{grid,ticks,...(o.y||{})}}};}
+function barOpts(o={}){return {...defOpts,...o,scales:{x:{grid,ticks,...(o.x||{})},y:{grid,ticks,...(o.y||{})}}};}
+
+/* ═══ SCREEN NAVIGATION ═══ */
+function showScreen(id,el){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  if(!chartsBuilt[id]){buildCharts(id);chartsBuilt[id]=true;}
+}
+function showTab(id,el){
+  const panes=el.closest('div').parentElement.querySelectorAll('.inner-pane');
+  const tabs=el.closest('.inner-tabs').querySelectorAll('.inner-tab');
+  panes.forEach(p=>p.classList.remove('active'));
+  tabs.forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+/* ═══ MODAL ═══ */
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  if(!modalBuilt[id]){buildModalChart(id);modalBuilt[id]=true;}
+}
+function closeModal(e,overlay){if(e.target===overlay)overlay.classList.remove('open');}
+function closeModalById(id){document.getElementById(id).classList.remove('open');}
+const chartsBuilt={p01:false,p02:false,p03:false,p04:false,p05:false,p06:false};
+const modalBuilt={};
+
+/* ═══ P-01 CHARTS ═══ */
+function buildP01(){
+  // PL trend
+  new Chart(document.getElementById('plChart'),{
+    type:'bar',data:{labels:FY,datasets:[
+      {label:'売上収益(億円)',data:revenue.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(74,158,255,.15)',borderColor:C.blue,borderWidth:1,yAxisID:'y1'},
+      {label:'営業利益(億円)',data:op_profit.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.yellow,backgroundColor:'rgba(251,191,36,.1)',fill:true,tension:.4,yAxisID:'y2',pointRadius:4},
+      {label:'純利益(億円)',  data:net_income.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.green,backgroundColor:'rgba(52,211,153,.1)',fill:true,tension:.4,yAxisID:'y2',pointRadius:4},
+    ]},
+    options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks,title:{display:true,text:'売上収益',color:C.muted,font:{size:10}}},y2:{type:'linear',position:'right',grid:{display:false},ticks,title:{display:true,text:'利益',color:C.muted,font:{size:10}}}}}
+  });
+  // ROE/ROIC
+  new Chart(document.getElementById('roeChart'),{
+    type:'line',data:{labels:FY,datasets:[
+      {label:'ROE(%)',data:roe,borderColor:C.green,backgroundColor:'rgba(52,211,153,.1)',fill:true,tension:.4,pointRadius:5},
+      {label:'ROIC(%)',data:roic,borderColor:C.purple,backgroundColor:'rgba(167,139,250,.1)',fill:true,tension:.4,pointRadius:5},
+    ]},
+    options:{...lineOpts(),plugins:{...defOpts.plugins,annotation:{annotations:{line1:{type:'line',yMin:10,yMax:10,borderColor:'rgba(251,191,36,.4)',borderDash:[4,4],label:{display:true,content:'目標10%',color:C.yellow,font:{size:9}}}}}}}
+  });
+  // CF
+  const fcfAb=fcf_arr.map(v=>+(v/100).toFixed(0));
+  const opAb =op_cf.map(v=>+(v/100).toFixed(0));
+  const invAb=inv_cf.map(v=>+(v/100).toFixed(0));
+  new Chart(document.getElementById('cfChart'),{
+    type:'bar',data:{labels:FY,datasets:[
+      {label:'営業CF',data:opAb, backgroundColor:'rgba(74,158,255,.5)'},
+      {label:'投資CF',data:invAb,backgroundColor:'rgba(248,113,113,.5)'},
+      {label:'FCF',   data:fcfAb,type:'line',borderColor:C.green,backgroundColor:'transparent',pointRadius:5,tension:.3},
+    ]},
+    options:barOpts()
+  });
+  // D/E
+  new Chart(document.getElementById('deChart'),{
+    type:'line',data:{labels:FY,datasets:[
+      {label:'D/Eレシオ',data:de_ratio,borderColor:C.orange,backgroundColor:'rgba(251,146,60,.1)',fill:true,tension:.4,pointRadius:5},
+    ]},
+    options:lineOpts({y:{suggestedMin:0,suggestedMax:1.5}})
+  });
+  // Gauges
+  makeGauge('g1',75,C.yellow);
+  makeGauge('g2',100,C.green);
+  makeGauge('g3',100,C.green);
+  makeGauge('g4',30,C.red);
+  // Segment table
+  const tbody=document.getElementById('segTbody');
+  SEG.forEach(d=>{
+    const yoy=d.op25-d.op24;
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${d.name}</td>
+      <td>${(d.rev25/1e4).toFixed(0)}億</td>
+      <td class="${d.op25>=0?'pos':'neg'}">${(d.op25/1e4).toFixed(0)}億</td>
+      <td class="${yoy>=0?'pos':'neg'}">${yoy>=0?'+':''}${(yoy/1e4).toFixed(0)}億</td>
+      <td>${(d.ast25/1e4).toFixed(0)}億</td>
+      <td><div class="bar-track"><div class="bar-fill" style="width:${Math.min(100,Math.abs(d.rev25/12322494*100)).toFixed(1)}%;background:${d.op25>=0?C.blue:C.red}"></div></div></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function makeGauge(id,pct,color){
+  new Chart(document.getElementById(id),{
+    type:'doughnut',
+    data:{datasets:[{data:[Math.min(pct,100),100-Math.min(pct,100)],backgroundColor:[color,'rgba(30,43,62,0.8)'],borderColor:'transparent',circumference:180,rotation:270,borderRadius:[4,0]}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{enabled:false}}}
+  });
+}
+
+/* ═══ P-02 CHARTS ═══ */
+function buildP02(){
+  const fy=FY;
+  new Chart(document.getElementById('revChart'),{type:'bar',data:{labels:fy,datasets:[{label:'売上収益(億)',data:revenue.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(74,158,255,.3)',borderColor:C.blue,borderWidth:1}]},options:barOpts()});
+  new Chart(document.getElementById('profChart'),{type:'bar',data:{labels:fy,datasets:[
+    {label:'営業利益(億)',data:op_profit.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(251,191,36,.3)',borderColor:C.yellow,borderWidth:1},
+    {label:'純利益(億)',  data:net_income.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(52,211,153,.3)',borderColor:C.green,borderWidth:1},
+  ]},options:barOpts()});
+  new Chart(document.getElementById('ebitdaChart'),{type:'line',data:{labels:fy,datasets:[{label:'EBITDA(億)',data:ebitda.map(v=>+(v/1e4).toFixed(0)),borderColor:C.cyan,backgroundColor:'rgba(34,211,238,.1)',fill:true,tension:.4,pointRadius:5}]},options:lineOpts()});
+  // BS
+  new Chart(document.getElementById('bsChart'),{type:'bar',data:{labels:fy,datasets:[
+    {label:'総資産',  data:total_assets.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(74,158,255,.2)',borderColor:C.blue,borderWidth:1},
+    {label:'自己資本',data:equity.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(52,211,153,.3)',borderColor:C.green,borderWidth:1},
+  ]},options:barOpts()});
+  new Chart(document.getElementById('deChart2'),{type:'bar',data:{labels:fy,datasets:[
+    {label:'有利子負債(億)',data:ibdebt.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(248,113,113,.3)',borderColor:C.red,borderWidth:1,yAxisID:'y1'},
+    {label:'D/Eレシオ',    data:de_ratio,type:'line',borderColor:C.orange,backgroundColor:'transparent',pointRadius:5,tension:.3,yAxisID:'y2'},
+  ]},options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks,min:0,max:1.5}}}});
+  // CF
+  new Chart(document.getElementById('cfChart2'),{type:'bar',data:{labels:fy,datasets:[
+    {label:'営業CF(億)',data:op_cf.map(v=>+(v/100).toFixed(0)), backgroundColor:'rgba(74,158,255,.4)'},
+    {label:'投資CF(億)',data:inv_cf.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(248,113,113,.4)'},
+    {label:'財務CF(億)',data:fin_cf.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(167,139,250,.4)'},
+  ]},options:barOpts()});
+  new Chart(document.getElementById('retChart'),{type:'bar',data:{labels:fy,datasets:[
+    {label:'配当(億)',    data:dividends.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(52,211,153,.4)'},
+    {label:'自社株買(億)',data:buyback.map(v=>+(v/100).toFixed(0)),  backgroundColor:'rgba(251,191,36,.4)'},
+  ]},options:barOpts({x:{stacked:true},y:{stacked:true}})});
+  // Tables
+  const plRows=[
+    {label:'売上収益',vals:revenue},
+    {label:'営業利益',vals:op_profit},
+    {label:'当期純利益',vals:net_income},
+    {label:'減価償却',vals:deprec},
+    {label:'EBITDA',vals:ebitda},
+  ];
+  fillTable('plTbody',plRows);
+  const bsRows=[
+    {label:'総資産',vals:total_assets},
+    {label:'自己資本',vals:equity},
+    {label:'有利子負債',vals:ibdebt},
+    {label:'現金',vals:cash},
+  ];
+  fillTable('bsTbody',bsRows);
+  const cfRows=[
+    {label:'営業CF',vals:op_cf},
+    {label:'投資CF',vals:inv_cf},
+    {label:'財務CF',vals:fin_cf},
+    {label:'FCF',vals:fcf_arr},
+    {label:'配当',vals:dividends},
+    {label:'自社株買',vals:buyback},
+  ];
+  fillTable('cfTbody',cfRows);
+}
+function fillTable(id,rows){
+  const tb=document.getElementById(id);
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${r.label}</td>`+r.vals.map(v=>`<td class="${v<0?'neg':''}">${v.toLocaleString()}</td>`).join('');
+    tb.appendChild(tr);
+  });
+}
+
+/* ═══ P-03 CHARTS ═══ */
+function buildP03(){
+  const kpis=[
+    {label:'ROE(%)',actual:7.1,target:10,unit:'%',color:C.green},
+    {label:'ROIC(%)',actual:1.4,target:5,unit:'%',color:C.purple},
+    {label:'D/Eレシオ',actual:0.75,target:1.0,unit:'倍',color:C.orange,inverse:true},
+    {label:'再エネ(GW)',actual:1.85,target:5.0,unit:'GW',color:C.cyan},
+    {label:'CO2削減(%)',actual:9,target:30,unit:'%',color:C.yellow},
+    {label:'FCF(億円)',actual:7076,target:5000,unit:'億',color:C.blue},
+    {label:'配当(円)',actual:22,target:25,unit:'円',color:C.muted},
+    {label:'女性管理職(%)',actual:8.2,target:10,unit:'%',color:C.red},
+  ];
+  const grid2=document.getElementById('mtGrid');
+  kpis.forEach(k=>{
+    const pct=k.inverse?Math.min(100,(k.target/k.actual)*100):Math.min(100,(k.actual/k.target)*100);
+    const ok=pct>=100;
+    const div=document.createElement('div');
+    div.className='mt-card';
+    div.innerHTML=`<div class="mt-label">${k.label}</div>
+      <div class="mt-vals"><span class="mt-actual" style="color:${k.color}">${k.actual}${k.unit}</span><span class="mt-target">目標 ${k.target}${k.unit}</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct.toFixed(0)}%;background:${ok?C.green:k.color}"></div></div>
+      <div style="font-size:10px;color:${ok?C.green:C.muted};margin-top:4px">達成率 ${pct.toFixed(0)}%</div>`;
+    grid2.appendChild(div);
+  });
+  // Radar
+  new Chart(document.getElementById('radarChart'),{
+    type:'radar',
+    data:{labels:['ROE','ROIC','FCF','D/E健全性','CO2削減','再エネ'],
+      datasets:[
+        {label:'FY25実績',data:[71,28,100,100,30,37],backgroundColor:'rgba(74,158,255,.15)',borderColor:C.blue,pointBackgroundColor:C.blue},
+        {label:'2030目標',data:[100,100,100,100,100,100],backgroundColor:'rgba(52,211,153,.05)',borderColor:C.green,pointBackgroundColor:C.green,borderDash:[4,4]},
+      ]},
+    options:{responsive:true,plugins:{legend:{labels:{color:C.muted,font:{size:10}}}},scales:{r:{backgroundColor:'transparent',grid:{color:'rgba(30,43,62,.6)'},pointLabels:{color:C.muted,font:{size:10}},ticks:{display:false},min:0,max:100}}}
+  });
+  // ROE vs target
+  new Chart(document.getElementById('roeVsChart'),{
+    type:'line',data:{labels:FY,datasets:[
+      {label:'ROE実績(%)',data:roe,borderColor:C.blue,backgroundColor:'rgba(74,158,255,.1)',fill:true,tension:.4,pointRadius:5},
+      {label:'目標(10%)',data:[10,10,10,10,10],borderColor:C.yellow,borderDash:[4,4],borderWidth:1.5,fill:false,pointRadius:0},
+    ]},
+    options:lineOpts({y:{min:0,max:25}})
+  });
+}
+
+/* ═══ P-04 CHARTS ═══ */
+function buildP04(){
+  const segColors=[C.blue,C.cyan,C.green,C.yellow,C.purple];
+  // Revenue pie
+  new Chart(document.getElementById('segRevChart'),{
+    type:'doughnut',
+    data:{labels:SEG.map(s=>s.name),datasets:[{data:SEG.map(s=>s.rev25),backgroundColor:segColors.map(c=>c+'99'),borderColor:segColors,borderWidth:1}]},
+    options:{responsive:true,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}}}}
+  });
+  // OP bar comparison
+  new Chart(document.getElementById('segOpChart'),{
+    type:'bar',
+    data:{labels:SEG.map(s=>s.name),datasets:[
+      {label:'FY24営業利益',data:SEG.map(s=>+(s.op24/1e4).toFixed(1)),backgroundColor:'rgba(107,127,160,.3)',borderColor:C.muted,borderWidth:1},
+      {label:'FY25営業利益',data:SEG.map(s=>+(s.op25/1e4).toFixed(1)),backgroundColor:segColors.map(c=>c+'66'),borderColor:segColors,borderWidth:1},
+    ]},
+    options:barOpts()
+  });
+  // Segment table
+  const tb=document.getElementById('seg4Tbody');
+  SEG.forEach((d,i)=>{
+    const roa=d.ast25>0?(d.op25/d.ast25*100).toFixed(1):'-';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="color:${segColors[i]}">${d.name}</td>
+      <td>${(d.rev25/1e4).toFixed(0)}</td>
+      <td class="${d.op25>=0?'pos':'neg'}">${(d.op25/1e4).toFixed(0)}</td>
+      <td>${(d.ast25/1e4).toFixed(0)}</td>
+      <td>${(d.dep25/1e4).toFixed(0)}</td>
+      <td>${(d.cap25/1e4).toFixed(0)}</td>
+      <td class="${parseFloat(roa)>=0?'pos':'neg'}">${roa}%</td>`;
+    tb.appendChild(tr);
+  });
+  new Chart(document.getElementById('capexChart'),{type:'doughnut',data:{labels:SEG.map(s=>s.name),datasets:[{data:SEG.map(s=>s.cap25),backgroundColor:segColors.map(c=>c+'99'),borderColor:segColors,borderWidth:1}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}}}}});
+  new Chart(document.getElementById('astChart'),{type:'doughnut',data:{labels:SEG.map(s=>s.name),datasets:[{data:SEG.map(s=>s.ast25),backgroundColor:segColors.map(c=>c+'99'),borderColor:segColors,borderWidth:1}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}}}}});
+  new Chart(document.getElementById('segEbtChart'),{
+    type:'bar',
+    data:{labels:SEG.map(s=>s.name),datasets:[{label:'EBITDA(億)',data:SEG.map(s=>+((s.op25+s.dep25)/1e4).toFixed(0)),backgroundColor:segColors.map(c=>c+'66'),borderColor:segColors,borderWidth:1}]},
+    options:barOpts()
+  });
+}
+
+/* ═══ P-05 ESG ═══ */
+function buildP05(){
+  const esgItems=[
+    {label:'CO2排出量',val:'58.5百万t',target:'44.8 (2030目標)',pct:30,color:C.yellow},
+    {label:'再エネ容量',val:'1,850MW',target:'5,000MW (2030)',pct:37,color:C.cyan},
+    {label:'女性管理職比率',val:'8.2%',target:'10% (2025)',pct:82,color:C.purple},
+    {label:'TRIR',val:'0.42',target:'≦0.30',pct:71,color:C.orange},
+    {label:'独立取締役比率',val:'46.7%',target:'50%以上',pct:93,color:C.blue},
+    {label:'ESG格付（推定）',val:'BB+',target:'A相当',pct:75,color:C.green},
+  ];
+  const g=document.getElementById('esgGrid');
+  esgItems.forEach(e=>{
+    const d=document.createElement('div');
+    d.className='esg-card';
+    d.innerHTML=`<div style="font-size:11px;color:var(--muted);margin-bottom:4px">${e.label}</div>
+      <div style="font-size:20px;font-weight:700;color:${e.color}">${e.val}</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px">${e.target}</div>
+      <div class="progress-bar" style="margin-top:8px"><div class="progress-fill" style="width:${e.pct}%;background:${e.color}"></div></div>
+      <div style="font-size:10px;color:${e.color};margin-top:3px">${e.pct}%</div>`;
+    g.appendChild(d);
+  });
+  // CO2
+  const co2=[64.2,63.1,61.8,60.2,58.5];
+  const co2Target=[64.2,63.0,61.0,59.0,57.0];
+  new Chart(document.getElementById('co2Chart'),{type:'line',data:{labels:FY,datasets:[
+    {label:'CO2排出量',data:co2,borderColor:C.red,backgroundColor:'rgba(248,113,113,.1)',fill:true,tension:.4,pointRadius:5},
+    {label:'削減目標',data:co2Target,borderColor:C.green,borderDash:[4,4],backgroundColor:'transparent',tension:.4,pointRadius:3},
+  ]},options:lineOpts()});
+  // RE
+  new Chart(document.getElementById('reChart'),{type:'bar',data:{labels:FY,datasets:[{label:'再エネ容量(MW)',data:[320,520,850,1200,1850],backgroundColor:'rgba(34,211,238,.3)',borderColor:C.cyan,borderWidth:1}]},options:barOpts()});
+  // Women
+  new Chart(document.getElementById('womenChart'),{type:'line',data:{labels:FY,datasets:[{label:'女性管理職(%)',data:[5.1,5.8,6.5,7.4,8.2],borderColor:C.purple,backgroundColor:'rgba(167,139,250,.1)',fill:true,tension:.4,pointRadius:5}]},options:lineOpts()});
+  // TRIR
+  new Chart(document.getElementById('trirChart'),{type:'bar',data:{labels:FY,datasets:[{label:'TRIR',data:[0.68,0.61,0.55,0.49,0.42],backgroundColor:'rgba(251,191,36,.3)',borderColor:C.yellow,borderWidth:1}]},options:barOpts()});
+  // ESG Radar
+  new Chart(document.getElementById('esgRadar'),{
+    type:'radar',
+    data:{labels:['環境(E)','社会(S)','ガバナンス(G)','気候変動対応','人材','情報開示'],
+      datasets:[{label:'FY25',data:[45,65,80,40,70,75],backgroundColor:'rgba(52,211,153,.15)',borderColor:C.green,pointBackgroundColor:C.green}]},
+    options:{responsive:true,plugins:{legend:{labels:{color:C.muted,font:{size:9}}}},scales:{r:{backgroundColor:'transparent',grid:{color:'rgba(30,43,62,.6)'},pointLabels:{color:C.muted,font:{size:9}},ticks:{display:false},min:0,max:100}}}
+  });
+}
+
+/* ═══ P-06 COMPARISON ═══ */
+function buildP06(){
+  const comps=['ENEOS','出光興産','コスモ','業界平均'];
+  const roeCmp=[7.1,9.8,6.5,8.5];
+  const roicCmp=[1.4,3.2,2.8,3.0];
+  const deCmp=[0.75,1.02,1.35,1.05];
+  const barH={indexAxis:'y',...barOpts()};
+  const colors=[C.blue,C.orange,C.purple,C.muted];
+  new Chart(document.getElementById('cmpRoe'),{type:'bar',data:{labels:comps,datasets:[{label:'ROE(%)',data:roeCmp,backgroundColor:colors.map(c=>c+'66'),borderColor:colors,borderWidth:1}]},options:{indexAxis:'y',...barOpts()}});
+  new Chart(document.getElementById('cmpRoic'),{type:'bar',data:{labels:comps,datasets:[{label:'ROIC(%)',data:roicCmp,backgroundColor:colors.map(c=>c+'66'),borderColor:colors,borderWidth:1}]},options:{indexAxis:'y',...barOpts()}});
+  new Chart(document.getElementById('cmpDe'),{type:'bar',data:{labels:comps,datasets:[{label:'D/E(倍)',data:deCmp,backgroundColor:colors.map(c=>c+'66'),borderColor:colors,borderWidth:1}]},options:{indexAxis:'y',...barOpts()}});
+  new Chart(document.getElementById('cmpRev'),{type:'bar',data:{labels:comps,datasets:[{label:'売上CAGR(%)',data:[12.6,10.2,8.8,9.5],backgroundColor:colors.map(c=>c+'66'),borderColor:colors,borderWidth:1}]},options:barOpts()});
+  new Chart(document.getElementById('cmpRadar'),{
+    type:'radar',
+    data:{labels:['ROE','ROIC','FCF効率','財務安全性','ESG','成長性'],
+      datasets:[
+        {label:'ENEOS',data:[71,28,100,85,65,55],backgroundColor:'rgba(74,158,255,.2)',borderColor:C.blue,pointBackgroundColor:C.blue},
+        {label:'業界平均',data:[85,60,70,70,70,65],backgroundColor:'rgba(107,127,160,.1)',borderColor:C.muted,pointBackgroundColor:C.muted,borderDash:[4,4]},
+      ]},
+    options:{responsive:true,plugins:{legend:{labels:{color:C.muted,font:{size:10}}}},scales:{r:{backgroundColor:'transparent',grid:{color:'rgba(30,43,62,.6)'},pointLabels:{color:C.muted,font:{size:10}},ticks:{display:false},min:0,max:100}}}
+  });
+}
+
+/* ═══ MODAL CHARTS ═══ */
+function buildModalChart(id){
+  if(id==='m_revenue'){
+    new Chart(document.getElementById('md_rev_pie'),{type:'doughnut',data:{labels:SEG.map(s=>s.name),datasets:[{data:SEG.map(s=>s.rev25),backgroundColor:[C.blue+'99',C.cyan+'99',C.green+'99',C.yellow+'99',C.purple+'99'],borderColor:[C.blue,C.cyan,C.green,C.yellow,C.purple],borderWidth:1}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}}}}});
+    new Chart(document.getElementById('md_rev_trend'),{type:'line',data:{labels:FY,datasets:[{label:'売上収益(億)',data:revenue.map(v=>+(v/1e4).toFixed(0)),borderColor:C.blue,backgroundColor:'rgba(74,158,255,.1)',fill:true,tension:.4,pointRadius:5}]},options:lineOpts()});
+  }
+  if(id==='m_op'){
+    new Chart(document.getElementById('md_op_wfall'),{type:'bar',data:{labels:['FY24営業利益','石油製品','OIL_GAS','機能材','電気','再エネ','FY25営業利益'],datasets:[{label:'変化(億)',data:[3814,Math.round(-312532/1e4),Math.round(-4091/1e4),Math.round(10510/1e4),Math.round(27333/1e4),Math.round(-5104/1e4),1061],backgroundColor:['rgba(74,158,255,.5)','rgba(248,113,113,.5)','rgba(248,113,113,.5)','rgba(52,211,153,.5)','rgba(52,211,153,.5)','rgba(248,113,113,.5)','rgba(74,158,255,.5)'],borderColor:[C.blue,C.red,C.red,C.green,C.green,C.red,C.blue],borderWidth:1}]},options:barOpts()});
+  }
+  if(id==='m_roe'){
+    const npm=[1.49,4.92,0.96,2.33,1.83];
+    const ato=[0.95,1.13,1.51,1.22,1.40];
+    const lev=[3.47,3.37,3.48,3.14,2.84];
+    new Chart(document.getElementById('md_dupont'),{type:'line',data:{labels:FY,datasets:[
+      {label:'純利益率(%)',data:npm,borderColor:C.green,backgroundColor:'transparent',tension:.4,pointRadius:5,yAxisID:'y1'},
+      {label:'総資産回転率(回)',data:ato,borderColor:C.blue,backgroundColor:'transparent',tension:.4,pointRadius:5,yAxisID:'y2'},
+      {label:'財務レバレッジ(倍)',data:lev,borderColor:C.orange,backgroundColor:'transparent',tension:.4,pointRadius:5,yAxisID:'y2'},
+    ]},options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks,title:{display:true,text:'利益率(%)',color:C.muted,font:{size:10}}},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}});
+  }
+  if(id==='m_roic'){
+    new Chart(document.getElementById('md_roic'),{type:'line',data:{labels:FY,datasets:[
+      {label:'ROIC(%)',data:roic,borderColor:C.purple,backgroundColor:'rgba(167,139,250,.1)',fill:true,tension:.4,pointRadius:5},
+      {label:'ROE(%)',data:roe,borderColor:C.green,backgroundColor:'transparent',tension:.4,pointRadius:5},
+    ]},options:lineOpts()});
+  }
+  if(id==='m_fcf'){
+    new Chart(document.getElementById('md_fcf'),{type:'bar',data:{labels:FY,datasets:[
+      {label:'FCF(億)',data:fcf_arr.map(v=>+(v/100).toFixed(0)),backgroundColor:fcf_arr.map(v=>v>=0?'rgba(52,211,153,.4)':'rgba(248,113,113,.4)'),borderColor:fcf_arr.map(v=>v>=0?C.green:C.red),borderWidth:1},
+    ]},options:barOpts()});
+  }
+  if(id==='m_de'){
+    new Chart(document.getElementById('md_de'),{type:'line',data:{labels:FY,datasets:[
+      {label:'D/Eレシオ',data:de_ratio,borderColor:C.orange,backgroundColor:'rgba(251,146,60,.1)',fill:true,tension:.4,pointRadius:5},
+      {label:'目標上限(1.0)',data:[1,1,1,1,1],borderColor:C.yellow,borderDash:[4,4],borderWidth:1,fill:false,pointRadius:0},
+    ]},options:lineOpts({y:{min:0,max:1.5}})});
+  }
+}
+
+/* ═══ BUILD CHARTS PER SCREEN ═══ */
+function buildCharts(id){
+  if(id==='p01')buildP01();
+  if(id==='p02')buildP02();
+  if(id==='p03')buildP03();
+  if(id==='p04')buildP04();
+  if(id==='p05')buildP05();
+  if(id==='p06')buildP06();
+}
+
+/* ═══ INIT ═══ */
+buildP01();
+chartsBuilt['p01']=true;
+</script>
+</body>
+</html>
