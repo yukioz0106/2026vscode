@@ -37,6 +37,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 .kpi-card.yellow::before{background:linear-gradient(90deg,var(--yellow),var(--orange));}
 .kpi-card.red::before{background:linear-gradient(90deg,var(--red),#DC2626);}
 .kpi-card.purple::before{background:linear-gradient(90deg,var(--purple),#7C3AED);}
+.kpi-card.cyan::before{background:linear-gradient(90deg,var(--cyan),#0891B2);}
 .kpi-label{font-size:11px;color:var(--muted);margin-bottom:4px;}
 .kpi-val{font-size:20px;font-weight:700;letter-spacing:-.02em;}
 .kpi-unit{font-size:11px;color:var(--muted);margin-left:3px;}
@@ -188,7 +189,6 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="header-right">
     <span class="badge-live">LIVE</span>
     <div style="font-size:11px;color:var(--muted)">最終更新: 2026-05-27</div>
-    <a href="company_dashboard.html" style="font-size:11px;color:var(--cyan);text-decoration:none;padding:4px 10px;border:1px solid var(--cyan);border-radius:6px;">事業会社別 →</a>
   </div>
 </div>
 
@@ -442,7 +442,6 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 <div id="p07" class="screen">
   <div class="sec-hdr">
     <div><div class="sec-title">事業会社別KPI ドリルダウン</div><div class="sec-sub">事業会社を選択してKPIを詳細分析</div></div>
-    <a href="company_dashboard.html" style="font-size:11px;color:var(--cyan);text-decoration:none;padding:4px 10px;border:1px solid var(--cyan);border-radius:6px;">詳細ダッシュボード →</a>
   </div>
 
   <!-- Company selector -->
@@ -458,7 +457,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="comp-btn" onclick="selectComp('p07_jx',this)">
       <div class="comp-icon" style="background:#FBBF24">JX</div>
-      <div><div class="comp-btn-name">JX石油開発</div><div class="comp-btn-seg">石油・天然ガス</div></div>
+      <div><div class="comp-btn-name">ENEOS Xplora</div><div class="comp-btn-seg">石油・天然ガス</div></div>
     </div>
     <div class="comp-btn" onclick="selectComp('p07_jm',this)">
       <div class="comp-icon" style="background:#34D399">JM</div>
@@ -466,11 +465,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="comp-btn" onclick="selectComp('p07_ep',this)">
       <div class="comp-icon" style="background:#22D3EE">EP</div>
-      <div><div class="comp-btn-name">ENEOSパワー</div><div class="comp-btn-seg">電気</div></div>
+      <div><div class="comp-btn-name">ENEOS Power</div><div class="comp-btn-seg">電気</div></div>
     </div>
     <div class="comp-btn" onclick="selectComp('p07_er',this)">
       <div class="comp-icon" style="background:#A78BFA">ER</div>
-      <div><div class="comp-btn-name">ENEOSリニューアブルズ</div><div class="comp-btn-seg">再生可能エネルギー</div></div>
+      <div><div class="comp-btn-name">ENEOSリニューアブル・エナジー</div><div class="comp-btn-seg">再生可能エネルギー</div></div>
     </div>
   </div>
 
@@ -509,35 +508,106 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo">EN</div>
       <div><div class="co-title">ENEOS株式会社</div><div class="co-sub">石油製品・エネルギー供給 ／ ENEOSグループ中核事業会社</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">109,023<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">109,797<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">営業利益（FY25）</div><div class="co-kpi-val" style="color:#F87171">△508<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">総資産</div><div class="co-kpi-val">5.6<span class="co-kpi-unit">兆円</span></div></div>
       </div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card blue" onclick="openModal('m_p07_en_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">109,023<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 △1.5%</span><span class="badge dn">減収</span></div></div>
+      <div class="kpi-card blue" onclick="openModal('m_p07_en_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">109,797<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 △0.8%</span><span class="badge dn">減収</span></div></div>
       <div class="kpi-card red" onclick="openModal('m_p07_en_op')"><div class="kpi-label">営業利益</div><div class="kpi-val" style="color:var(--red)">△508<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 2,618億円</span><span class="badge dn">赤字転落</span></div></div>
       <div class="kpi-card yellow" onclick="openModal('m_p07_en_ebitda')"><div class="kpi-label">EBITDA</div><div class="kpi-val">1,417<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 4,543億円</span><span class="badge dn">大幅減</span></div></div>
       <div class="kpi-card purple"><div class="kpi-label">CAPEX</div><div class="kpi-val">1,756<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +2.3%</span><span class="badge ok">維持</span></div></div>
       <div class="kpi-card blue"><div class="kpi-label">総資産</div><div class="kpi-val">5.6<span class="kpi-unit">兆円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 5.8兆円</span><span class="badge flat">微減</span></div></div>
     </div>
-    <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_en_pl"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">FY25 営業利益悪化要因（ウォーターフォール）</div><div class="chart-wrap r-bar"><canvas id="p07_en_wf"></canvas></div></div>
+    <div class="inner-tabs">
+      <div class="inner-tab active" onclick="showTab('p07_en_pltab',this)">P/L分析</div>
+      <div class="inner-tab" onclick="showTab('p07_en_opstab',this)">事業詳細</div>
+      <div class="inner-tab" onclick="showTab('p07_en_outlooktab',this)">課題・展望</div>
     </div>
-    <div class="charts-row2">
-      <div class="chart-card"><div class="chart-title">EBITDA推移（億円）</div><div class="chart-wrap r-bar-n"><canvas id="p07_en_ebitda"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">主要業況指標（中計目標対比）</div>
-        <div style="padding:14px 0" id="p07_en_prog"></div>
+    <div id="p07_en_pltab" class="inner-pane active">
+      <div class="charts-row">
+        <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_en_pl"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">FY25 営業利益悪化要因（ウォーターフォール）</div><div class="chart-wrap r-bar"><canvas id="p07_en_wf"></canvas></div></div>
+      </div>
+      <div class="charts-row2">
+        <div class="chart-card"><div class="chart-title">EBITDA推移（億円）</div><div class="chart-wrap r-bar-n"><canvas id="p07_en_ebitda"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">CAPEX・減価償却 推移（億円）</div><div class="chart-wrap r-bar-n"><canvas id="p07_en_capex"></canvas></div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">P/L サマリー（百万円）</div>
+        <table class="data-tbl">
+          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+          <tbody>
+            <tr><td>売上高</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,979,700</td></tr>
+            <tr><td>営業利益</td><td class="pos">103,421</td><td class="pos">625,318</td><td class="pos">218,732</td><td class="pos">261,827</td><td class="neg">△50,700</td></tr>
+            <tr><td>減価償却</td><td>181,204</td><td>184,512</td><td>188,932</td><td>192,436</td><td>192,436</td></tr>
+            <tr><td>EBITDA</td><td class="pos">284,625</td><td class="pos">809,830</td><td class="pos">407,664</td><td class="pos">454,263</td><td class="pos">141,736</td></tr>
+            <tr><td>CAPEX</td><td>156,832</td><td>162,450</td><td>168,321</td><td>171,685</td><td>175,621</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="p07_en_opstab" class="inner-pane">
+      <div class="charts-row2">
+        <div class="chart-card">
+          <div class="chart-title">FY25 営業利益悪化要因分析（億円）</div>
+          <div class="chart-wrap r-bar-n"><canvas id="p07_en_wf2"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">精製コスト・マージン推移（参考）</div>
+          <div class="chart-wrap r-bar-n"><canvas id="p07_en_margin2"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">主要業況指標</div>
+        <div style="padding:16px 0">
+          <div class="prog-row"><span class="prog-label">国内製油所稼働率</span><div class="prog-track"><div class="prog-fill" style="width:78%;background:var(--blue)"></div></div><span class="prog-val" style="color:var(--blue)">78%</span></div>
+          <div class="prog-row"><span class="prog-label">ガソリン販売量維持率</span><div class="prog-track"><div class="prog-fill" style="width:95%;background:var(--green)"></div></div><span class="prog-val" style="color:var(--green)">95%</span></div>
+          <div class="prog-row"><span class="prog-label">EV充電インフラ整備(対目標)</span><div class="prog-track"><div class="prog-fill" style="width:62%;background:var(--yellow)"></div></div><span class="prog-val" style="color:var(--yellow)">62%</span></div>
+          <div class="prog-row"><span class="prog-label">バイオ燃料混合比率</span><div class="prog-track"><div class="prog-fill" style="width:35%;background:var(--cyan)"></div></div><span class="prog-val" style="color:var(--cyan)">35%</span></div>
+          <div class="prog-row"><span class="prog-label">水素ステーション展開(対目標)</span><div class="prog-track"><div class="prog-fill" style="width:48%;background:var(--purple)"></div></div><span class="prog-val" style="color:var(--purple)">48%</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="p07_en_outlooktab" class="inner-pane">
+      <div class="charts-row2">
+        <div class="chart-card">
+          <div class="chart-title">課題・リスク</div>
+          <div style="padding:8px 0;display:flex;flex-direction:column;gap:10px">
+            <div style="padding:10px 12px;background:rgba(248,113,113,.08);border-left:3px solid var(--red);border-radius:4px">
+              <div style="font-size:12px;font-weight:600;color:var(--red);margin-bottom:4px">在庫評価損影響（FY25主因）</div>
+              <div style="font-size:11px;color:var(--muted)">原油価格下落による在庫評価損が約3,200億円発生。営業利益を直撃。FY26の原油価格回復が鍵。</div>
+            </div>
+            <div style="padding:10px 12px;background:rgba(251,191,36,.08);border-left:3px solid var(--yellow);border-radius:4px">
+              <div style="font-size:12px;font-weight:600;color:var(--yellow);margin-bottom:4px">需要構造変化への対応</div>
+              <div style="font-size:11px;color:var(--muted)">EV普及・省エネ進展でガソリン需要は年間1〜2%減少傾向。製油所再編・高度化が急務。</div>
+            </div>
+            <div style="padding:10px 12px;background:rgba(74,158,255,.08);border-left:3px solid var(--blue);border-radius:4px">
+              <div style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:4px">次世代エネルギー事業転換</div>
+              <div style="font-size:11px;color:var(--muted)">水素・アンモニア・SAF（持続可能な航空燃料）への投資加速。2030年に向けた事業ポートフォリオ変革。</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">中計目標 達成状況</div>
+          <div style="padding:8px 0;display:flex;flex-direction:column;gap:8px">
+            <div class="prog-row"><span class="prog-label">営業利益回復（目標2,000億）</span><div class="prog-track"><div class="prog-fill" style="width:0%;background:var(--red)"></div></div><span class="prog-val" style="color:var(--red)">赤字</span></div>
+            <div class="prog-row"><span class="prog-label">EV充電器設置（目標5,000基）</span><div class="prog-track"><div class="prog-fill" style="width:62%;background:var(--blue)"></div></div><span class="prog-val" style="color:var(--blue)">3,100基</span></div>
+            <div class="prog-row"><span class="prog-label">水素ステーション（目標320箇所）</span><div class="prog-track"><div class="prog-fill" style="width:48%;background:var(--purple)"></div></div><span class="prog-val" style="color:var(--purple)">154箇所</span></div>
+            <div class="prog-row"><span class="prog-label">CO2排出削減（目標30%）</span><div class="prog-track"><div class="prog-fill" style="width:27%;background:var(--yellow)"></div></div><span class="prog-val" style="color:var(--yellow)">8%削減</span></div>
+            <div class="prog-row"><span class="prog-label">デジタル化投資（目標1,000億）</span><div class="prog-track"><div class="prog-fill" style="width:74%;background:var(--cyan)"></div></div><span class="prog-val" style="color:var(--cyan)">74%</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ── JX石油開発 ── -->
+  <!-- ── ENEOS Xplora ── -->
   <div id="p07_jx" class="comp-screen">
     <div class="co-banner" style="background:linear-gradient(135deg,#1a1500,#2d2408,#1f1a05)">
       <div class="co-logo" style="background:rgba(251,191,36,.3)">JX</div>
-      <div><div class="co-title">JX石油開発株式会社</div><div class="co-sub">石油・天然ガス探鉱・開発・生産 ／ 海外上流事業</div></div>
+      <div><div class="co-title">ENEOS Xplora株式会社</div><div class="co-sub">石油・天然ガス探鉱・開発・生産 ／ 海外上流事業</div></div>
       <div class="co-kpis">
         <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">2,428<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">営業利益（FY25）</div><div class="co-kpi-val" style="color:#FBBF24">874<span class="co-kpi-unit">億円</span></div></div>
@@ -551,14 +621,35 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="kpi-card yellow"><div class="kpi-label">生産量</div><div class="kpi-val">19.8<span class="kpi-unit">万BOE/日</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 18.9万</span><span class="badge up">増産</span></div></div>
       <div class="kpi-card blue"><div class="kpi-label">確認埋蔵量</div><div class="kpi-val">5.1<span class="kpi-unit">億BOE</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 5.2億BOE</span><span class="badge flat">微減</span></div></div>
     </div>
-    <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">売上高・営業利益・EBITDA 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_jx_pl"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">生産量・探鉱費 推移</div><div class="chart-wrap r-bar"><canvas id="p07_jx_prod"></canvas></div></div>
+    <div class="inner-tabs">
+      <div class="inner-tab active" onclick="showTab('p07_jx_pltab',this)">P/L分析</div>
+      <div class="inner-tab" onclick="showTab('p07_jx_opstab',this)">操業データ</div>
     </div>
-    <div class="charts-row3">
-      <div class="chart-card"><div class="chart-title">地域別生産構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_jx_region"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">F&Dコスト・採掘コスト推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jx_cost"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">確認埋蔵量推移（億BOE）</div><div class="chart-wrap r-bar-s"><canvas id="p07_jx_reserve"></canvas></div></div>
+    <div id="p07_jx_pltab" class="inner-pane active">
+      <div class="charts-row">
+        <div class="chart-card"><div class="chart-title">売上高・営業利益・EBITDA 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_jx_pl"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">生産量・探鉱費 推移</div><div class="chart-wrap r-bar"><canvas id="p07_jx_prod"></canvas></div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">主要操業指標（FY2025）</div>
+        <table class="data-tbl">
+          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+          <tbody>
+            <tr><td>売上高（百万円）</td><td>164,218</td><td>228,453</td><td>271,891</td><td>204,863</td><td>242,813</td></tr>
+            <tr><td>営業利益（百万円）</td><td class="pos">78,342</td><td class="pos">112,651</td><td class="pos">95,214</td><td class="pos">91,498</td><td class="pos">87,407</td></tr>
+            <tr><td>EBITDA（百万円）</td><td class="pos">150,342</td><td class="pos">184,751</td><td class="pos">167,414</td><td class="pos">163,970</td><td class="pos">159,879</td></tr>
+            <tr><td>生産量（千BOE/日）</td><td>175</td><td>183</td><td>191</td><td>189</td><td>198</td></tr>
+            <tr><td>CAPEX（百万円）</td><td>58,421</td><td>61,832</td><td>64,215</td><td>61,247</td><td>65,347</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="p07_jx_opstab" class="inner-pane">
+      <div class="charts-row3">
+        <div class="chart-card"><div class="chart-title">地域別生産構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_jx_region"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">F&Dコスト・採掘コスト推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jx_cost"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">確認埋蔵量推移（億BOE）</div><div class="chart-wrap r-bar-s"><canvas id="p07_jx_reserve"></canvas></div></div>
+      </div>
     </div>
   </div>
 
@@ -568,92 +659,178 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo" style="background:rgba(52,211,153,.3)">JM</div>
       <div><div class="co-title">JX金属株式会社</div><div class="co-sub">非鉄金属・機能材・電子材料 ／ 2024年東証プライム上場</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">3,443<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">3,470<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">営業利益（FY25）</div><div class="co-kpi-val" style="color:#34D399">177<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">時価総額</div><div class="co-kpi-val">1.8<span class="co-kpi-unit">兆円</span></div></div>
       </div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card green" onclick="openModal('m_p07_jm_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">3,443<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +12.5%</span><span class="badge up">増収</span></div></div>
+      <div class="kpi-card green" onclick="openModal('m_p07_jm_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">3,470<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +13.4%</span><span class="badge up">増収</span></div></div>
       <div class="kpi-card green" onclick="openModal('m_p07_jm_op')"><div class="kpi-label">営業利益</div><div class="kpi-val">177<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +146.8%</span><span class="badge up">大幅増</span></div></div>
       <div class="kpi-card cyan"><div class="kpi-label">EBITDA</div><div class="kpi-val">258<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 153億円</span><span class="badge up">好転</span></div></div>
       <div class="kpi-card blue"><div class="kpi-label">CAPEX</div><div class="kpi-val">131<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +23.4%</span><span class="badge ok">積極投資</span></div></div>
       <div class="kpi-card purple"><div class="kpi-label">ROA</div><div class="kpi-val">5.6<span class="kpi-unit">%</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 2.3%</span><span class="badge up">改善</span></div></div>
     </div>
-    <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_jm_pl"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">ROA・営業利益率 推移</div><div class="chart-wrap r-bar"><canvas id="p07_jm_margin"></canvas></div></div>
+    <div class="inner-tabs">
+      <div class="inner-tab active" onclick="showTab('p07_jm_pltab',this)">P/L分析</div>
+      <div class="inner-tab" onclick="showTab('p07_jm_prodtab',this)">製品別構成</div>
     </div>
-    <div class="charts-row3">
-      <div class="chart-card"><div class="chart-title">製品別売上構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_jm_pie"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">主力製品別 収益推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_prod"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">半導体材料 成長トレンド</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_semi"></canvas></div></div>
+    <div id="p07_jm_pltab" class="inner-pane active">
+      <div class="charts-row">
+        <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_jm_pl"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">ROA・営業利益率 推移</div><div class="chart-wrap r-bar"><canvas id="p07_jm_margin"></canvas></div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">P/L サマリー（百万円）</div>
+        <table class="data-tbl">
+          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+          <tbody>
+            <tr><td>売上高</td><td>241,518</td><td>278,632</td><td>318,412</td><td>305,863</td><td>347,000</td></tr>
+            <tr><td>営業利益</td><td class="pos">5,218</td><td class="pos">8,432</td><td class="pos">6,812</td><td class="pos">7,161</td><td class="pos">17,700</td></tr>
+            <tr><td>EBITDA</td><td class="pos">13,344</td><td class="pos">16,558</td><td class="pos">14,938</td><td class="pos">15,287</td><td class="pos">25,826</td></tr>
+            <tr><td>CAPEX</td><td>8,521</td><td>9,832</td><td>10,614</td><td>10,632</td><td>13,139</td></tr>
+            <tr><td>総資産</td><td>268,412</td><td>289,631</td><td>301,852</td><td>294,218</td><td>313,970</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="p07_jm_prodtab" class="inner-pane">
+      <div class="charts-row3">
+        <div class="chart-card"><div class="chart-title">製品別売上構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_jm_pie"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">主力製品別 収益推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_prod"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">半導体材料 成長トレンド</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_semi"></canvas></div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">製品別 業況（FY25）</div>
+        <table class="data-tbl">
+          <thead><tr><th>製品区分</th><th>売上比率</th><th>成長率(YoY)</th><th>利益貢献</th><th>市場動向</th></tr></thead>
+          <tbody>
+            <tr><td>電解銅箔</td><td>28%</td><td class="pos">+18.2%</td><td class="pos">高</td><td>EV向け急拡大</td></tr>
+            <tr><td>スパッタリングターゲット</td><td>22%</td><td class="pos">+24.5%</td><td class="pos">最高</td><td>半導体需要旺盛</td></tr>
+            <tr><td>銅製錬</td><td>31%</td><td class="pos">+8.1%</td><td class="pos">中</td><td>銅価格高水準</td></tr>
+            <tr><td>チタン製品</td><td>12%</td><td class="pos">+5.3%</td><td class="pos">中</td><td>航空・医療向け</td></tr>
+            <tr><td>その他材料</td><td>7%</td><td class="pos">+3.2%</td><td>低</td><td>横ばい</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <!-- ── ENEOSパワー ── -->
+  <!-- ── ENEOS Power ── -->
   <div id="p07_ep" class="comp-screen">
     <div class="co-banner" style="background:linear-gradient(135deg,#001a1f,#022830,#011d25)">
       <div class="co-logo" style="background:rgba(34,211,238,.3)">EP</div>
-      <div><div class="co-title">ENEOSパワー株式会社</div><div class="co-sub">電力小売・発電 ／ 新電力事業（低圧・高圧・特別高圧）</div></div>
+      <div><div class="co-title">ENEOS Power株式会社</div><div class="co-sub">電力小売・発電 ／ 新電力事業（低圧・高圧・特別高圧）</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">3,132<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">3,199<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">営業利益（FY25）</div><div class="co-kpi-val" style="color:#22D3EE">210<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">販売電力量</div><div class="co-kpi-val">28.4<span class="co-kpi-unit">TWh</span></div></div>
       </div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card cyan" onclick="openModal('m_p07_ep_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">3,132<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +17.4%</span><span class="badge up">増収</span></div></div>
+      <div class="kpi-card cyan" onclick="openModal('m_p07_ep_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">3,199<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +20.0%</span><span class="badge up">増収</span></div></div>
       <div class="kpi-card cyan" onclick="openModal('m_p07_ep_op')"><div class="kpi-label">営業利益</div><div class="kpi-val">210<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 △64億円</span><span class="badge up">黒字回復</span></div></div>
       <div class="kpi-card blue"><div class="kpi-label">販売電力量</div><div class="kpi-val">28.4<span class="kpi-unit">TWh</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 25.1TWh</span><span class="badge up">+13%</span></div></div>
       <div class="kpi-card green"><div class="kpi-label">EBITDA</div><div class="kpi-val">282<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 9億円</span><span class="badge up">好転</span></div></div>
       <div class="kpi-card yellow"><div class="kpi-label">CAPEX</div><div class="kpi-val">213<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +12.1%</span><span class="badge ok">拡大</span></div></div>
     </div>
-    <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_ep_pl"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">販売電力量・顧客数 推移</div><div class="chart-wrap r-bar"><canvas id="p07_ep_vol"></canvas></div></div>
+    <div class="inner-tabs">
+      <div class="inner-tab active" onclick="showTab('p07_ep_pltab',this)">P/L・電力分析</div>
     </div>
-    <div class="charts-row3">
-      <div class="chart-card"><div class="chart-title">電源調達構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_ep_src"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">顧客区分別 売上構成</div><div class="chart-wrap r-donut"><canvas id="p07_ep_cust"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">電力マージン推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_ep_margin"></canvas></div></div>
+    <div id="p07_ep_pltab" class="inner-pane active">
+      <div class="charts-row">
+        <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_ep_pl"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">販売電力量・顧客数 推移</div><div class="chart-wrap r-bar"><canvas id="p07_ep_vol"></canvas></div></div>
+      </div>
+      <div class="charts-row3">
+        <div class="chart-card"><div class="chart-title">電源調達構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_ep_src"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">顧客区分別 売上構成</div><div class="chart-wrap r-donut"><canvas id="p07_ep_cust"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">電力マージン推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_ep_margin"></canvas></div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">電気事業 P/L サマリー（百万円）</div>
+        <table class="data-tbl">
+          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+          <tbody>
+            <tr><td>売上高</td><td>142,318</td><td>198,432</td><td>252,814</td><td>266,707</td><td>319,900</td></tr>
+            <tr><td>営業利益</td><td class="neg">△3,218</td><td class="neg">△18,432</td><td class="pos">8,214</td><td class="neg">△6,363</td><td class="pos">21,000</td></tr>
+            <tr><td>EBITDA</td><td class="pos">4,057</td><td class="neg">△11,157</td><td class="pos">15,489</td><td class="pos">912</td><td class="pos">28,275</td></tr>
+            <tr><td>CAPEX</td><td>12,418</td><td>15,632</td><td>17,821</td><td>19,024</td><td>21,338</td></tr>
+            <tr><td>販売量（TWh）</td><td>18.2</td><td>21.4</td><td>23.8</td><td>25.1</td><td>28.4</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <!-- ── ENEOSリニューアブルズ ── -->
+  <!-- ── ENEOSリニューアブル・エナジー ── -->
   <div id="p07_er" class="comp-screen">
     <div class="co-banner" style="background:linear-gradient(135deg,#0e0a1a,#18102d,#120d20)">
       <div class="co-logo" style="background:rgba(167,139,250,.3)">ER</div>
-      <div><div class="co-title">ENEOSリニューアブルズ株式会社</div><div class="co-sub">再生可能エネルギー開発・運営 ／ 太陽光・風力・地熱</div></div>
+      <div><div class="co-title">ENEOSリニューアブル・エナジー株式会社</div><div class="co-sub">再生可能エネルギー開発・運営 ／ 太陽光・風力・地熱</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">433<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY25）</div><div class="co-kpi-val">440<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">営業利益（FY25）</div><div class="co-kpi-val" style="color:#F87171">△169<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">発電容量</div><div class="co-kpi-val">1,850<span class="co-kpi-unit">MW</span></div></div>
       </div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card purple" onclick="openModal('m_p07_er_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">433<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +3.7%</span><span class="badge ok">増収</span></div></div>
+      <div class="kpi-card purple" onclick="openModal('m_p07_er_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">440<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +5.3%</span><span class="badge ok">増収</span></div></div>
       <div class="kpi-card red" onclick="openModal('m_p07_er_op')"><div class="kpi-label">営業利益</div><div class="kpi-val" style="color:var(--red)">△169<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 △118億円</span><span class="badge dn">赤字拡大</span></div></div>
       <div class="kpi-card purple"><div class="kpi-label">発電容量</div><div class="kpi-val">1,850<span class="kpi-unit">MW</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 1,200MW</span><span class="badge up">+54%</span></div></div>
       <div class="kpi-card blue"><div class="kpi-label">CAPEX</div><div class="kpi-val">288<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +38.4%</span><span class="badge ok">積極投資</span></div></div>
       <div class="kpi-card cyan"><div class="kpi-label">2030年目標</div><div class="kpi-val">5,000<span class="kpi-unit">MW</span></div><div class="kpi-foot"><span class="kpi-yoy">達成率 37%</span><span class="badge warn">進行中</span></div></div>
     </div>
-    <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">発電容量・売上高・営業利益 推移</div><div class="chart-wrap r-bar"><canvas id="p07_er_pl"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">電源種別容量構成 推移（MW）</div><div class="chart-wrap r-bar"><canvas id="p07_er_src"></canvas></div></div>
+    <div class="inner-tabs">
+      <div class="inner-tab active" onclick="showTab('p07_er_pltab',this)">事業分析</div>
+      <div class="inner-tab" onclick="showTab('p07_er_outlooktab',this)">展望・課題</div>
     </div>
-    <div class="charts-row2">
-      <div class="chart-card"><div class="chart-title">容量拡大ロードマップ（MW）</div><div class="chart-wrap r-bar-n"><canvas id="p07_er_road"></canvas></div></div>
-      <div class="chart-card">
-        <div class="chart-title">赤字継続の背景と黒字化シナリオ</div>
-        <div style="padding:10px 0;display:flex;flex-direction:column;gap:8px">
-          <div style="padding:10px 12px;background:rgba(248,113,113,.07);border-left:3px solid var(--red);border-radius:4px">
-            <div style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:4px">赤字要因</div>
-            <div style="font-size:11px;color:var(--muted);line-height:1.6">・洋上風力開発費の先行計上<br>・FIT単価低下・建設コスト上昇<br>・系統接続コスト増加</div>
+    <div id="p07_er_pltab" class="inner-pane active">
+      <div class="charts-row">
+        <div class="chart-card"><div class="chart-title">発電容量・売上高・営業利益 推移</div><div class="chart-wrap r-bar"><canvas id="p07_er_pl"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">電源種別容量構成 推移（MW）</div><div class="chart-wrap r-bar"><canvas id="p07_er_src"></canvas></div></div>
+      </div>
+      <div class="charts-row2">
+        <div class="chart-card"><div class="chart-title">容量拡大ロードマップ（MW）</div><div class="chart-wrap r-bar-n"><canvas id="p07_er_road"></canvas></div></div>
+        <div class="chart-card">
+          <div class="chart-title">赤字継続の背景と黒字化シナリオ</div>
+          <div style="padding:10px 0;display:flex;flex-direction:column;gap:8px">
+            <div style="padding:10px 12px;background:rgba(248,113,113,.07);border-left:3px solid var(--red);border-radius:4px">
+              <div style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:4px">赤字要因</div>
+              <div style="font-size:11px;color:var(--muted);line-height:1.6">・洋上風力開発費の先行計上<br>・FIT単価低下・建設コスト上昇<br>・系統接続コスト増加</div>
+            </div>
+            <div style="padding:10px 12px;background:rgba(167,139,250,.07);border-left:3px solid var(--purple);border-radius:4px">
+              <div style="font-size:11px;font-weight:600;color:var(--purple);margin-bottom:4px">FY27以降黒字化シナリオ</div>
+              <div style="font-size:11px;color:var(--muted);line-height:1.6">・秋田・千葉沖洋上風力600MW FY27稼働<br>・3,000MW到達で固定費回収完了<br>・電力卸売価格上昇でスポット収益増</div>
+            </div>
           </div>
-          <div style="padding:10px 12px;background:rgba(167,139,250,.07);border-left:3px solid var(--purple);border-radius:4px">
-            <div style="font-size:11px;font-weight:600;color:var(--purple);margin-bottom:4px">FY27以降黒字化シナリオ</div>
-            <div style="font-size:11px;color:var(--muted);line-height:1.6">・秋田・千葉沖洋上風力600MW FY27稼働<br>・3,000MW到達で固定費回収完了<br>・電力卸売価格上昇でスポット収益増</div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">再エネ事業 指標サマリー</div>
+        <table class="data-tbl">
+          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
+          <tbody>
+            <tr><td>売上高（百万円）</td><td>24,512</td><td>31,842</td><td>38,521</td><td>41,790</td><td>44,000</td></tr>
+            <tr><td>営業利益（百万円）</td><td class="neg">△5,218</td><td class="neg">△8,432</td><td class="neg">△9,814</td><td class="neg">△11,802</td><td class="neg">△16,900</td></tr>
+            <tr><td>発電容量（MW）</td><td>320</td><td>520</td><td>850</td><td>1,200</td><td>1,850</td></tr>
+            <tr><td>CAPEX（百万円）</td><td>12,418</td><td>15,632</td><td>18,921</td><td>20,798</td><td>28,772</td></tr>
+            <tr><td>設備利用率（%）</td><td>18.2</td><td>19.4</td><td>20.1</td><td>21.3</td><td>22.8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="p07_er_outlooktab" class="inner-pane">
+      <div class="chart-card" style="margin-top:12px">
+        <div class="chart-title">赤字継続の背景と今後の見通し</div>
+        <div style="padding:12px 0;display:flex;gap:12px">
+          <div style="flex:1;padding:12px;background:rgba(248,113,113,.07);border-left:3px solid var(--red);border-radius:4px">
+            <div style="font-size:12px;font-weight:600;color:var(--red);margin-bottom:6px">赤字要因</div>
+            <div style="font-size:11px;color:var(--muted);line-height:1.7">・大規模洋上風力プロジェクトの開発費先行計上<br>・FIT単価の段階的低下による既存案件収益圧迫<br>・建設コスト上昇（資材・工賃）<br>・系統接続コスト増加</div>
+          </div>
+          <div style="flex:1;padding:12px;background:rgba(167,139,250,.07);border-left:3px solid var(--purple);border-radius:4px">
+            <div style="font-size:12px;font-weight:600;color:var(--purple);margin-bottom:6px">FY27以降の黒字化シナリオ</div>
+            <div style="font-size:11px;color:var(--muted);line-height:1.7">・秋田・千葉沖洋上風力（計600MW）FY27稼働予定<br>・3,000MW到達時点での固定費回収完了想定<br>・電力卸売価格上昇局面でのスポット収益増<br>・日本・ASEAN市場での案件パイプライン構築</div>
           </div>
         </div>
       </div>
@@ -667,9 +844,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_en_rev')">×</div>
     <div class="modal-title">ENEOS㈱ 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY25 売上高 109,023億円（前年比 △1.5%）</div>
+    <div class="modal-sub">FY25 売上高 109,797億円（前年比 △0.8%）</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--blue)">109,023億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--blue)">109,797億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">前年差</div><div class="modal-kpi-val" style="color:var(--red)">△166億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">グループ売上比</div><div class="modal-kpi-val" style="color:var(--cyan)">88.5%</div></div>
     </div>
@@ -677,8 +854,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <table class="data-tbl">
       <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
       <tbody>
-        <tr><td>売上高（百万円）</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,902,305</td></tr>
-        <tr><td>前年比</td><td>−</td><td class="pos">+43.6%</td><td class="pos">+40.2%</td><td class="neg">△10.1%</td><td class="neg">△1.5%</td></tr>
+        <tr><td>売上高（百万円）</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,979,700</td></tr>
+        <tr><td>前年比</td><td>−</td><td class="pos">+43.6%</td><td class="pos">+40.2%</td><td class="neg">△10.1%</td><td class="neg">△0.8%</td></tr>
       </tbody>
     </table>
   </div>
@@ -725,11 +902,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- JX石油開発 売上高 -->
+<!-- ENEOS Xplora 売上高 -->
 <div id="m_p07_jx_rev" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jx_rev')">×</div>
-    <div class="modal-title">JX石油開発 売上高 ドリルダウン</div>
+    <div class="modal-title">ENEOS Xplora 売上高 ドリルダウン</div>
     <div class="modal-sub">FY25 売上高 2,428億円（+18.5%）― 生産量増・油価回復が寄与</div>
     <div class="modal-kpi-grid">
       <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--yellow)">2,428億円</div></div>
@@ -747,11 +924,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- JX石油開発 営業利益 -->
+<!-- ENEOS Xplora 営業利益 -->
 <div id="m_p07_jx_op" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jx_op')">×</div>
-    <div class="modal-title">JX石油開発 営業利益 ドリルダウン</div>
+    <div class="modal-title">ENEOS Xplora 営業利益 ドリルダウン</div>
     <div class="modal-sub">FY25 874億円（前年 915億円 / 営業利益率 36%）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・EBITDA 推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_jx_op"></canvas></div></div>
     <table class="data-tbl">
@@ -769,11 +946,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jm_rev')">×</div>
     <div class="modal-title">JX金属 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY25 3,443億円（+12.5%）― 電解銅箔・スパッタリング材が牽引</div>
+    <div class="modal-sub">FY25 3,470億円（+13.4%）― 電解銅箔・スパッタリング材が牽引</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--green)">3,443億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--green)">3,470億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">半導体材料売上</div><div class="modal-kpi-val" style="color:var(--cyan)">68億円</div></div>
-      <div class="modal-kpi-item"><div class="modal-kpi-label">YoY成長率</div><div class="modal-kpi-val" style="color:var(--green)">+12.5%</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">YoY成長率</div><div class="modal-kpi-val" style="color:var(--green)">+13.4%</div></div>
     </div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">製品区分別 売上推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_jm_rev"></canvas></div></div>
     <table class="data-tbl">
@@ -805,14 +982,14 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- ENEOSパワー 売上高 -->
+<!-- ENEOS Power 売上高 -->
 <div id="m_p07_ep_rev" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_ep_rev')">×</div>
-    <div class="modal-title">ENEOSパワー 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY25 3,132億円（+17.4%）― 販売量拡大・顧客数増加が寄与</div>
+    <div class="modal-title">ENEOS Power 売上高 ドリルダウン</div>
+    <div class="modal-sub">FY25 3,199億円（+20.0%）― 販売量拡大・顧客数増加が寄与</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--cyan)">3,132億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--cyan)">3,199億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">販売電力量</div><div class="modal-kpi-val" style="color:var(--blue)">28.4TWh</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">顧客数</div><div class="modal-kpi-val" style="color:var(--purple)">106万件</div></div>
     </div>
@@ -827,11 +1004,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- ENEOSパワー 営業利益 -->
+<!-- ENEOS Power 営業利益 -->
 <div id="m_p07_ep_op" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_ep_op')">×</div>
-    <div class="modal-title">ENEOSパワー 営業利益 ドリルダウン</div>
+    <div class="modal-title">ENEOS Power 営業利益 ドリルダウン</div>
     <div class="modal-sub">FY25 210億円（前年 △64億円 → 黒字転換）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・電力マージン 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_ep_op"></canvas></div></div>
     <table class="data-tbl">
@@ -844,14 +1021,14 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- ENEOSリニューアブルズ 売上高 -->
+<!-- ENEOSリニューアブル・エナジー 売上高 -->
 <div id="m_p07_er_rev" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_er_rev')">×</div>
-    <div class="modal-title">ENEOSリニューアブルズ 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY25 433億円（+3.7%）― 発電容量 1,850MW・設備利用率改善</div>
+    <div class="modal-title">ENEOSリニューアブル・エナジー 売上高 ドリルダウン</div>
+    <div class="modal-sub">FY25 440億円（+5.3%）― 発電容量 1,850MW・設備利用率改善</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--purple)">433億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY25 売上高</div><div class="modal-kpi-val" style="color:var(--purple)">440億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">発電容量</div><div class="modal-kpi-val" style="color:var(--cyan)">1,850MW</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">設備利用率</div><div class="modal-kpi-val" style="color:var(--yellow)">22.8%</div></div>
     </div>
@@ -866,11 +1043,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- ENEOSリニューアブルズ 営業利益 -->
+<!-- ENEOSリニューアブル・エナジー 営業利益 -->
 <div id="m_p07_er_op" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_er_op')">×</div>
-    <div class="modal-title">ENEOSリニューアブルズ 営業利益 ドリルダウン</div>
+    <div class="modal-title">ENEOSリニューアブル・エナジー 営業利益 ドリルダウン</div>
     <div class="modal-sub">FY25 △169億円（赤字拡大）― 投資先行フェーズ。FY27黒字化目標。</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・CAPEX 推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_er_op"></canvas></div></div>
     <table class="data-tbl">
@@ -899,16 +1076,20 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div id="in_qtr" class="inner-pane active">
     <div class="input-form">
       <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">四半期財務データ入力（FY2025）</div>
-      <div class="form-grid">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:12px">年計：売上高 12,322,500百万円 ／ 営業利益 106,100百万円 ／ 純利益 226,100百万円</div>
+      <div class="form-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="form-group"><label class="form-label">Q1 売上高（百万円）</label><input class="form-input" value="3180000"></div>
         <div class="form-group"><label class="form-label">Q2 売上高（百万円）</label><input class="form-input" value="3050000"></div>
         <div class="form-group"><label class="form-label">Q3 売上高（百万円）</label><input class="form-input" value="3020000"></div>
+        <div class="form-group"><label class="form-label">Q4 売上高（百万円）</label><input class="form-input" value="3072500"></div>
         <div class="form-group"><label class="form-label">Q1 営業利益（百万円）</label><input class="form-input" value="45000"></div>
         <div class="form-group"><label class="form-label">Q2 営業利益（百万円）</label><input class="form-input" value="28000"></div>
         <div class="form-group"><label class="form-label">Q3 営業利益（百万円）</label><input class="form-input" value="22000"></div>
+        <div class="form-group"><label class="form-label">Q4 営業利益（百万円）</label><input class="form-input" value="11100"></div>
         <div class="form-group"><label class="form-label">Q1 純利益（百万円）</label><input class="form-input" value="68000"></div>
         <div class="form-group"><label class="form-label">Q2 純利益（百万円）</label><input class="form-input" value="55000"></div>
         <div class="form-group"><label class="form-label">Q3 純利益（百万円）</label><input class="form-input" value="48000"></div>
+        <div class="form-group"><label class="form-label">Q4 純利益（百万円）</label><input class="form-input" value="55100"></div>
       </div>
       <div style="margin-top:16px;display:flex;gap:8px">
         <button class="btn-primary">保存</button>
@@ -1542,7 +1723,7 @@ const CO_SEG=[
    dep:[181204,184512,188932,192436,192436],
    cap:[156832,162450,168321,171685,175621],
    ast:[5200000,5650000,5820000,5800000,5621315]},
-  {id:'jx', name:'JX石油開発', abbr:'JX', color:'#FBBF24', seg:'石油・ガス開発',
+  {id:'jx', name:'ENEOS Xplora', abbr:'JX', color:'#FBBF24', seg:'石油・ガス開発',
    rev:[164218,228453,271891,204863,242800],
    op:[78342,112651,95214,91498,87400],
    dep:[72000,72100,72200,72472,72472],
@@ -1554,13 +1735,13 @@ const CO_SEG=[
    dep:[8126,8126,8126,8126,8126],
    cap:[8521,9832,10614,10632,13139],
    ast:[268412,289631,301852,294218,313970]},
-  {id:'ep', name:'ENEOSパワー',abbr:'EP', color:'#22D3EE', seg:'電気',
+  {id:'ep', name:'ENEOS Power',abbr:'EP', color:'#22D3EE', seg:'電気',
    rev:[142318,198432,252814,266707,319900],
    op:[-3218,-18432,8214,-6363,21000],
    dep:[7275,7275,7275,7275,7275],
    cap:[12418,15632,17821,19024,21338],
    ast:[210000,225000,235000,242000,240850]},
-  {id:'er', name:'ENEOSリニュ',abbr:'ER', color:'#A78BFA', seg:'再エネ',
+  {id:'er', name:'ENEOSリニューアブル・エナジー',abbr:'ER', color:'#A78BFA', seg:'再エネ',
    rev:[24512,31842,38521,41790,44000],
    op:[-5218,-8432,-9814,-11802,-16900],
    dep:[21525,21525,21525,21525,21525],
@@ -1609,7 +1790,7 @@ function buildP07Overview(){
     <div class="ov-metric"><span class="ov-metric-label">売上高</span><span>${(d.rev[4]/100).toFixed(0)}億円</span></div>
     <div class="ov-metric"><span class="ov-metric-label">営業利益</span><span class="${d.op[4]>=0?'pos':'neg'}">${d.op[4]>=0?'':'△'}${Math.abs(d.op[4]/100).toFixed(0)}億円</span></div>
     <div class="ov-metric"><span class="ov-metric-label">前年比</span><span class="${yoy>=0?'pos':'neg'}">${yoy>=0?'+':''}${(yoy/100).toFixed(0)}億円</span></div>
-    <div class="ov-bar-track"><div class="ov-bar-fill" style="width:${Math.min(100,d.rev[4]/10902305*100).toFixed(1)}%;background:${d.color}"></div></div>`;
+    <div class="ov-bar-track"><div class="ov-bar-fill" style="width:${Math.min(100,d.rev[4]/10979700*100).toFixed(1)}%;background:${d.color}"></div></div>`;
     cont.appendChild(div);
   });
 
@@ -1655,15 +1836,13 @@ function buildP07Overview(){
   new Chart(document.getElementById('p07_ov_radar'),{
     type:'radar',
     data:{labels:['売上規模','収益性','成長性','資産効率','投資積極度'],
-      datasets:CO_SEG.map(d=>({label:d.name,
-        data:[
-          Math.min(100,d.rev[4]/10902305*100),
-          Math.max(0,Math.min(100,(d.op[4]/d.rev[4]*100+10)*5)),
-          Math.min(100,Math.max(0,(d.rev[4]-d.rev[0])/d.rev[0]*100/2)),
-          Math.max(0,Math.min(100,(d.op[4]/d.ast[4]*100+5)*10)),
-          Math.min(100,d.cap[4]/d.rev[4]*100*3),
-        ],
-        backgroundColor:d.color+'1a',borderColor:d.color,pointBackgroundColor:d.color}))},
+      datasets:[
+        {label:'ENEOS㈱',    data:[100,20,35,18,42],backgroundColor:'rgba(248,113,113,.12)',borderColor:C.red,pointBackgroundColor:C.red},
+        {label:'ENEOS Xplora', data:[12,90,55,72,60],backgroundColor:'rgba(251,191,36,.12)',borderColor:C.yellow,pointBackgroundColor:C.yellow},
+        {label:'JX金属',     data:[18,75,80,56,65],backgroundColor:'rgba(52,211,153,.12)',borderColor:C.green,pointBackgroundColor:C.green},
+        {label:'ENEOS Power',data:[16,65,85,87,70],backgroundColor:'rgba(34,211,238,.12)',borderColor:C.cyan,pointBackgroundColor:C.cyan},
+        {label:'ENEOSリニューアブル・エナジー',data:[4,10,95,30,100],backgroundColor:'rgba(167,139,250,.12)',borderColor:C.purple,pointBackgroundColor:C.purple},
+      ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:C.muted,font:{size:9},boxWidth:8}}},scales:{r:{backgroundColor:'transparent',grid:{color:'rgba(30,43,62,.6)'},pointLabels:{color:C.muted,font:{size:9}},ticks:{display:false},min:0,max:100}}}
   });
 
@@ -1716,14 +1895,34 @@ function buildP07Co(coId){
       type:'bar',data:{labels:FY,datasets:[{label:'EBITDA(億)',data:ebitdaEN,backgroundColor:ebitdaEN.map(v=>v>=0?d.color+'55':'rgba(107,127,160,.4)'),borderColor:ebitdaEN.map(v=>v>=0?d.color:C.muted),borderWidth:1}]},
       options:barOpts()
     });
-    const progCont=document.getElementById('p07_en_prog');
-    [['営業利益回復（目標2,000億）','0%',C.red,'赤字'],['EV充電器設置（目標5,000基）','62%',C.blue,'3,100基'],
-     ['水素ステーション（目標320箇所）','48%',C.purple,'154箇所'],['CO2排出削減（目標30%）','27%',C.yellow,'8%削減'],
-     ['デジタル化投資（目標1,000億）','74%',C.cyan,'74%']].forEach(([label,pct,color,val])=>{
-      const row=document.createElement('div');
-      row.className='prog-row';
-      row.innerHTML=`<span class="prog-label">${label}</span><div class="prog-track"><div class="prog-fill" style="width:${pct};background:${color}"></div></div><span class="prog-val" style="color:${color}">${val}</span>`;
-      progCont.appendChild(row);
+  }
+  if(coId==='en' && document.getElementById('p07_en_capex')){
+    const capexEN=[156832,162450,168321,171685,175621];
+    const depEN=d.dep;
+    new Chart(document.getElementById('p07_en_capex'),{
+      type:'bar',data:{labels:FY,datasets:[
+        {label:'CAPEX(億)',data:capexEN.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(74,158,255,.3)',borderColor:C.blue,borderWidth:1},
+        {label:'減価償却(億)',data:depEN.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(167,139,250,.3)',borderColor:C.purple,borderWidth:1},
+      ]},
+      options:barOpts()
+    });
+  }
+  if(coId==='en' && document.getElementById('p07_en_wf2')){
+    new Chart(document.getElementById('p07_en_wf2'),{
+      type:'bar',data:{labels:['FY24利益','在庫評価損','数量変動','価格影響','コスト変動','FY25利益'],datasets:[{
+        label:'変化(億)',data:[2618,-3200,248,183,-357,-508],
+        backgroundColor:['rgba(74,158,255,.5)','rgba(248,113,113,.5)','rgba(52,211,153,.5)','rgba(52,211,153,.5)','rgba(248,113,113,.5)','rgba(248,113,113,.5)'],
+        borderColor:[C.blue,C.red,C.green,C.green,C.red,C.red],borderWidth:1}]},
+      options:barOpts()
+    });
+  }
+  if(coId==='en' && document.getElementById('p07_en_margin2')){
+    new Chart(document.getElementById('p07_en_margin2'),{
+      type:'line',data:{labels:FY,datasets:[
+        {label:'GRM（$/bbl）',data:[2.1,8.4,4.2,5.1,1.8],borderColor:C.yellow,tension:.4,pointRadius:4},
+        {label:'精製コスト(億)',data:[4821,5012,5214,5118,5312],borderColor:C.muted,tension:.4,pointRadius:4,yAxisID:'y2'},
+      ]},
+      options:{...defOpts,scales:{x:{grid,ticks},y:{grid,ticks,title:{display:true,text:'GRM($/bbl)',color:C.muted,font:{size:9}}},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}
     });
   }
 
