@@ -180,7 +180,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 
   <!-- Charts -->
   <div class="charts-row2">
-    <div class="chart-card"><div class="chart-title">売上収益構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="ov_rev_pie"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">売上高構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="ov_rev_pie"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">営業利益比較 FY24 vs FY25（億円）</div><div class="chart-wrap r-bar-n"><canvas id="ov_op_bar"></canvas></div></div>
   </div>
   <div class="charts-row3">
@@ -193,14 +193,14 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <table class="data-tbl">
       <thead><tr>
         <th style="text-align:left">事業会社</th>
-        <th>売上収益(億円)</th><th>営業利益(億円)</th><th>前年比</th>
+        <th>売上高(億円)</th><th>営業利益(億円)</th><th>前年比</th>
         <th>総資産(億円)</th><th>ROA(%)</th><th>EBITDA(億円)</th><th>CAPEX(億円)</th>
       </tr></thead>
       <tbody id="ovTbody"></tbody>
     </table>
   </div>
   <div class="charts-row2">
-    <div class="chart-card"><div class="chart-title">売上収益 5期推移（億円）</div><div class="chart-wrap r-bar-n"><canvas id="ov_rev_trend"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">売上高 5期推移（億円）</div><div class="chart-wrap r-bar-n"><canvas id="ov_rev_trend"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">各社 KPI レーダー比較</div><div class="chart-wrap r-radar"><canvas id="ov_radar"></canvas></div></div>
   </div>
 </div>
@@ -215,8 +215,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="co-banner-kpis">
       <div class="co-banner-kpi">
-        <div class="co-banner-kpi-label">売上収益（FY25）</div>
-        <div class="co-banner-kpi-val">10,902<span class="co-banner-kpi-unit">億円</span></div>
+        <div class="co-banner-kpi-label">売上高（FY25）</div>
+        <div class="co-banner-kpi-val">109,797<span class="co-banner-kpi-unit">億円</span></div>
       </div>
       <div class="co-banner-kpi">
         <div class="co-banner-kpi-label">営業利益（FY25）</div>
@@ -230,9 +230,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi-card blue"><div class="kpi-label">売上収益</div><div class="kpi-val">10,902<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 △1.5%</span><span class="badge dn">減収</span></div></div>
+    <div class="kpi-card blue"><div class="kpi-label">売上高</div><div class="kpi-val">109,023<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 △1.5%</span><span class="badge dn">減収</span></div></div>
     <div class="kpi-card red"><div class="kpi-label">営業利益</div><div class="kpi-val" style="color:var(--red)">△508<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 2,618億円</span><span class="badge dn">赤字転落</span></div></div>
-    <div class="kpi-card yellow"><div class="kpi-label">EBITDA</div><div class="kpi-val">1,416<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 4,543億円</span><span class="badge dn">大幅減</span></div></div>
+    <div class="kpi-card yellow"><div class="kpi-label">EBITDA</div><div class="kpi-val">1,417<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 4,543億円</span><span class="badge dn">大幅減</span></div></div>
     <div class="kpi-card purple"><div class="kpi-label">CAPEX</div><div class="kpi-val">1,756<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +2.3%</span><span class="badge ok">維持</span></div></div>
     <div class="kpi-card blue"><div class="kpi-label">総資産</div><div class="kpi-val">5.6<span class="kpi-unit">兆円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 5.8兆円</span><span class="badge flat">微減</span></div></div>
   </div>
@@ -245,7 +245,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 
   <div id="en_pl" class="inner-pane active">
     <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">売上収益・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="en_pl_chart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="en_pl_chart"></canvas></div></div>
       <div class="chart-card"><div class="chart-title">収益性指標推移</div><div class="chart-wrap r-bar"><canvas id="en_margin_chart"></canvas></div></div>
     </div>
     <div class="charts-row2">
@@ -257,10 +257,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <table class="data-tbl">
         <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
         <tbody>
-          <tr><td>売上収益</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,902,305</td></tr>
-          <tr><td>営業利益</td><td class="pos">103,421</td><td class="pos">625,318</td><td class="pos">218,732</td><td class="pos">261,827</td><td class="neg">△50,705</td></tr>
+          <tr><td>売上高</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,979,700</td></tr>
+          <tr><td>営業利益</td><td class="pos">103,421</td><td class="pos">625,318</td><td class="pos">218,732</td><td class="pos">261,827</td><td class="neg">△50,700</td></tr>
           <tr><td>減価償却</td><td>181,204</td><td>184,512</td><td>188,932</td><td>192,436</td><td>192,436</td></tr>
-          <tr><td>EBITDA</td><td class="pos">284,625</td><td class="pos">809,830</td><td class="pos">407,664</td><td class="pos">454,263</td><td class="pos">141,731</td></tr>
+          <tr><td>EBITDA</td><td class="pos">284,625</td><td class="pos">809,830</td><td class="pos">407,664</td><td class="pos">454,263</td><td class="pos">141,736</td></tr>
           <tr><td>CAPEX</td><td>156,832</td><td>162,450</td><td>168,321</td><td>171,685</td><td>175,621</td></tr>
         </tbody>
       </table>
@@ -333,8 +333,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="co-banner-kpis">
       <div class="co-banner-kpi">
-        <div class="co-banner-kpi-label">売上収益（FY25）</div>
-        <div class="co-banner-kpi-val">243<span class="co-banner-kpi-unit">億円</span></div>
+        <div class="co-banner-kpi-label">売上高（FY25）</div>
+        <div class="co-banner-kpi-val">2,428<span class="co-banner-kpi-unit">億円</span></div>
       </div>
       <div class="co-banner-kpi">
         <div class="co-banner-kpi-label">営業利益（FY25）</div>
@@ -348,15 +348,15 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi-card yellow"><div class="kpi-label">売上収益</div><div class="kpi-val">243<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +18.5%</span><span class="badge up">増収</span></div></div>
+    <div class="kpi-card yellow"><div class="kpi-label">売上高</div><div class="kpi-val">2,428<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +18.5%</span><span class="badge up">増収</span></div></div>
     <div class="kpi-card green"><div class="kpi-label">営業利益</div><div class="kpi-val">874<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 915億円</span><span class="badge warn">微減</span></div></div>
-    <div class="kpi-card cyan"><div class="kpi-label">EBITDA</div><div class="kpi-val">1,599<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 1,630億円</span><span class="badge flat">横ばい</span></div></div>
+    <div class="kpi-card cyan"><div class="kpi-label">EBITDA</div><div class="kpi-val">1,599<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 1,640億円</span><span class="badge flat">横ばい</span></div></div>
     <div class="kpi-card yellow"><div class="kpi-label">生産量</div><div class="kpi-val">19.8<span class="kpi-unit">万BOE/日</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 18.9万</span><span class="badge up">増産</span></div></div>
     <div class="kpi-card blue"><div class="kpi-label">総資産</div><div class="kpi-val">1.2<span class="kpi-unit">兆円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 −3.2%</span><span class="badge flat">安定</span></div></div>
   </div>
 
   <div class="charts-row">
-    <div class="chart-card"><div class="chart-title">売上収益・営業利益・EBITDA 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="jx_pl_chart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">売上高・営業利益・EBITDA 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="jx_pl_chart"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">生産量・探鉱費 推移</div><div class="chart-wrap r-bar"><canvas id="jx_prod_chart"></canvas></div></div>
   </div>
   <div class="charts-row3">
@@ -369,9 +369,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <table class="data-tbl">
       <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
       <tbody>
-        <tr><td>売上収益（百万円）</td><td>164,218</td><td>228,453</td><td>271,891</td><td>204,863</td><td>242,813</td></tr>
+        <tr><td>売上高（百万円）</td><td>164,218</td><td>228,453</td><td>271,891</td><td>204,863</td><td>242,813</td></tr>
         <tr><td>営業利益（百万円）</td><td class="pos">78,342</td><td class="pos">112,651</td><td class="pos">95,214</td><td class="pos">91,498</td><td class="pos">87,407</td></tr>
-        <tr><td>EBITDA（百万円）</td><td class="pos">151,342</td><td class="pos">185,103</td><td class="pos">168,414</td><td class="pos">163,970</td><td class="pos">159,879</td></tr>
+        <tr><td>EBITDA（百万円）</td><td class="pos">150,342</td><td class="pos">184,751</td><td class="pos">167,414</td><td class="pos">163,970</td><td class="pos">159,879</td></tr>
         <tr><td>生産量（千BOE/日）</td><td>175</td><td>183</td><td>191</td><td>189</td><td>198</td></tr>
         <tr><td>CAPEX（百万円）</td><td>58,421</td><td>61,832</td><td>64,215</td><td>61,247</td><td>65,347</td></tr>
       </tbody>
@@ -389,8 +389,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="co-banner-kpis">
       <div class="co-banner-kpi">
-        <div class="co-banner-kpi-label">売上収益（FY25）</div>
-        <div class="co-banner-kpi-val">3,443<span class="co-banner-kpi-unit">億円</span></div>
+        <div class="co-banner-kpi-label">売上高（FY25）</div>
+        <div class="co-banner-kpi-val">3,470<span class="co-banner-kpi-unit">億円</span></div>
       </div>
       <div class="co-banner-kpi">
         <div class="co-banner-kpi-label">営業利益（FY25）</div>
@@ -404,9 +404,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi-card green"><div class="kpi-label">売上収益</div><div class="kpi-val">3,443<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +12.5%</span><span class="badge up">増収</span></div></div>
+    <div class="kpi-card green"><div class="kpi-label">売上高</div><div class="kpi-val">3,470<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +13.4%</span><span class="badge up">増収</span></div></div>
     <div class="kpi-card green"><div class="kpi-label">営業利益</div><div class="kpi-val">177<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +146.8%</span><span class="badge up">大幅増</span></div></div>
-    <div class="kpi-card cyan"><div class="kpi-label">EBITDA</div><div class="kpi-val">258<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 143億円</span><span class="badge up">好転</span></div></div>
+    <div class="kpi-card cyan"><div class="kpi-label">EBITDA</div><div class="kpi-val">258<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 153億円</span><span class="badge up">好転</span></div></div>
     <div class="kpi-card blue"><div class="kpi-label">CAPEX</div><div class="kpi-val">131<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +23.4%</span><span class="badge ok">積極投資</span></div></div>
     <div class="kpi-card purple"><div class="kpi-label">ROA</div><div class="kpi-val">5.6<span class="kpi-unit">%</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 2.3%</span><span class="badge up">改善</span></div></div>
   </div>
@@ -418,7 +418,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 
   <div id="jm_pl" class="inner-pane active">
     <div class="charts-row">
-      <div class="chart-card"><div class="chart-title">売上収益・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="jm_pl_chart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="jm_pl_chart"></canvas></div></div>
       <div class="chart-card"><div class="chart-title">ROA・営業利益率 推移</div><div class="chart-wrap r-bar"><canvas id="jm_margin_chart"></canvas></div></div>
     </div>
     <div class="chart-card">
@@ -426,9 +426,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <table class="data-tbl">
         <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
         <tbody>
-          <tr><td>売上収益</td><td>241,518</td><td>278,632</td><td>318,412</td><td>305,863</td><td>344,262</td></tr>
-          <tr><td>営業利益</td><td class="pos">5,218</td><td class="pos">8,432</td><td class="pos">6,812</td><td class="pos">7,161</td><td class="pos">17,671</td></tr>
-          <tr><td>EBITDA</td><td class="pos">13,458</td><td class="pos">16,672</td><td class="pos">14,932</td><td class="pos">15,287</td><td class="pos">25,797</td></tr>
+          <tr><td>売上高</td><td>241,518</td><td>278,632</td><td>318,412</td><td>305,863</td><td>347,000</td></tr>
+          <tr><td>営業利益</td><td class="pos">5,218</td><td class="pos">8,432</td><td class="pos">6,812</td><td class="pos">7,161</td><td class="pos">17,700</td></tr>
+          <tr><td>EBITDA</td><td class="pos">13,344</td><td class="pos">16,558</td><td class="pos">14,938</td><td class="pos">15,287</td><td class="pos">25,826</td></tr>
           <tr><td>CAPEX</td><td>8,521</td><td>9,832</td><td>10,614</td><td>10,632</td><td>13,139</td></tr>
           <tr><td>総資産</td><td>268,412</td><td>289,631</td><td>301,852</td><td>294,218</td><td>313,970</td></tr>
         </tbody>
@@ -468,8 +468,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="co-banner-kpis">
       <div class="co-banner-kpi">
-        <div class="co-banner-kpi-label">売上収益（FY25）</div>
-        <div class="co-banner-kpi-val">3,132<span class="co-banner-kpi-unit">億円</span></div>
+        <div class="co-banner-kpi-label">売上高（FY25）</div>
+        <div class="co-banner-kpi-val">3,199<span class="co-banner-kpi-unit">億円</span></div>
       </div>
       <div class="co-banner-kpi">
         <div class="co-banner-kpi-label">営業利益（FY25）</div>
@@ -483,15 +483,15 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi-card cyan"><div class="kpi-label">売上収益</div><div class="kpi-val">3,132<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +17.4%</span><span class="badge up">増収</span></div></div>
+    <div class="kpi-card cyan"><div class="kpi-label">売上高</div><div class="kpi-val">3,199<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +20.0%</span><span class="badge up">増収</span></div></div>
     <div class="kpi-card cyan"><div class="kpi-label">営業利益</div><div class="kpi-val">210<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 △64億円</span><span class="badge up">黒字回復</span></div></div>
     <div class="kpi-card blue"><div class="kpi-label">販売電力量</div><div class="kpi-val">28.4<span class="kpi-unit">TWh</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 25.1TWh</span><span class="badge up">+13%</span></div></div>
-    <div class="kpi-card green"><div class="kpi-label">EBITDA</div><div class="kpi-val">283<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 △36億円</span><span class="badge up">好転</span></div></div>
+    <div class="kpi-card green"><div class="kpi-label">EBITDA</div><div class="kpi-val">282<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 9億円</span><span class="badge up">好転</span></div></div>
     <div class="kpi-card yellow"><div class="kpi-label">CAPEX</div><div class="kpi-val">213<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +12.1%</span><span class="badge ok">拡大</span></div></div>
   </div>
 
   <div class="charts-row">
-    <div class="chart-card"><div class="chart-title">売上収益・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="ep_pl_chart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="ep_pl_chart"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">販売電力量・顧客数 推移</div><div class="chart-wrap r-bar"><canvas id="ep_vol_chart"></canvas></div></div>
   </div>
   <div class="charts-row3">
@@ -504,9 +504,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <table class="data-tbl">
       <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
       <tbody>
-        <tr><td>売上収益</td><td>142,318</td><td>198,432</td><td>252,814</td><td>266,707</td><td>313,228</td></tr>
-        <tr><td>営業利益</td><td class="neg">△3,218</td><td class="neg">△18,432</td><td class="pos">8,214</td><td class="neg">△6,363</td><td class="pos">20,970</td></tr>
-        <tr><td>EBITDA</td><td class="neg">△965</td><td class="neg">△10,942</td><td class="pos">15,489</td><td class="neg">△3,588</td><td class="pos">28,245</td></tr>
+        <tr><td>売上高</td><td>142,318</td><td>198,432</td><td>252,814</td><td>266,707</td><td>319,900</td></tr>
+        <tr><td>営業利益</td><td class="neg">△3,218</td><td class="neg">△18,432</td><td class="pos">8,214</td><td class="neg">△6,363</td><td class="pos">21,000</td></tr>
+        <tr><td>EBITDA</td><td class="pos">4,057</td><td class="neg">△11,157</td><td class="pos">15,489</td><td class="pos">912</td><td class="pos">28,275</td></tr>
         <tr><td>CAPEX</td><td>12,418</td><td>15,632</td><td>17,821</td><td>19,024</td><td>21,338</td></tr>
         <tr><td>販売量（TWh）</td><td>18.2</td><td>21.4</td><td>23.8</td><td>25.1</td><td>28.4</td></tr>
       </tbody>
@@ -524,8 +524,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="co-banner-kpis">
       <div class="co-banner-kpi">
-        <div class="co-banner-kpi-label">売上収益（FY25）</div>
-        <div class="co-banner-kpi-val">433<span class="co-banner-kpi-unit">億円</span></div>
+        <div class="co-banner-kpi-label">売上高（FY25）</div>
+        <div class="co-banner-kpi-val">440<span class="co-banner-kpi-unit">億円</span></div>
       </div>
       <div class="co-banner-kpi">
         <div class="co-banner-kpi-label">営業利益（FY25）</div>
@@ -539,7 +539,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi-card purple"><div class="kpi-label">売上収益</div><div class="kpi-val">433<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +3.7%</span><span class="badge ok">増収</span></div></div>
+    <div class="kpi-card purple"><div class="kpi-label">売上高</div><div class="kpi-val">440<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +5.3%</span><span class="badge ok">増収</span></div></div>
     <div class="kpi-card red"><div class="kpi-label">営業利益</div><div class="kpi-val" style="color:var(--red)">△169<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 △118億円</span><span class="badge dn">赤字拡大</span></div></div>
     <div class="kpi-card purple"><div class="kpi-label">発電容量</div><div class="kpi-val">1,850<span class="kpi-unit">MW</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 1,200MW</span><span class="badge up">+54%</span></div></div>
     <div class="kpi-card blue"><div class="kpi-label">CAPEX</div><div class="kpi-val">288<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +38.4%</span><span class="badge ok">積極投資</span></div></div>
@@ -547,7 +547,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   </div>
 
   <div class="charts-row">
-    <div class="chart-card"><div class="chart-title">発電容量・売上収益・営業利益 推移</div><div class="chart-wrap r-bar"><canvas id="er_pl_chart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">発電容量・売上高・営業利益 推移</div><div class="chart-wrap r-bar"><canvas id="er_pl_chart"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">電源種別 容量構成（FY25）</div><div class="chart-wrap r-bar"><canvas id="er_src_chart"></canvas></div></div>
   </div>
   <div class="charts-row2">
@@ -565,8 +565,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <table class="data-tbl">
       <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th></tr></thead>
       <tbody>
-        <tr><td>売上収益（百万円）</td><td>24,512</td><td>31,842</td><td>38,521</td><td>41,790</td><td>43,338</td></tr>
-        <tr><td>営業利益（百万円）</td><td class="neg">△5,218</td><td class="neg">△8,432</td><td class="neg">△9,814</td><td class="neg">△11,802</td><td class="neg">△16,906</td></tr>
+        <tr><td>売上高（百万円）</td><td>24,512</td><td>31,842</td><td>38,521</td><td>41,790</td><td>44,000</td></tr>
+        <tr><td>営業利益（百万円）</td><td class="neg">△5,218</td><td class="neg">△8,432</td><td class="neg">△9,814</td><td class="neg">△11,802</td><td class="neg">△16,900</td></tr>
         <tr><td>発電容量（MW）</td><td>320</td><td>520</td><td>850</td><td>1,200</td><td>1,850</td></tr>
         <tr><td>CAPEX（百万円）</td><td>12,418</td><td>15,632</td><td>18,921</td><td>20,798</td><td>28,772</td></tr>
         <tr><td>設備利用率（%）</td><td>18.2</td><td>19.4</td><td>20.1</td><td>21.3</td><td>22.8</td></tr>
@@ -599,11 +599,11 @@ function lo(o={}){return{...defOpts,...o,scales:{x:{grid,ticks},y:{grid,ticks,..
 function bo(o={}){return{...defOpts,...o,scales:{x:{grid,ticks,...(o.x||{})},y:{grid,ticks,...(o.y||{})}}};}
 
 const SEG=[
-  {name:'ENEOS㈱',     color:C.red,    rev25:10902305, op25:-50705,  ast25:5621315, dep25:192436, cap25:175621, rev24:11068428, op24:261827},
-  {name:'JX石油開発',  color:C.yellow, rev25:242813,   op25:87407,   ast25:1215581, dep25:72472,  cap25:65347,  rev24:204863,   op24:91498},
-  {name:'JX金属',      color:C.green,  rev25:344262,   op25:17671,   ast25:313970,  dep25:8126,   cap25:13139,  rev24:305863,   op24:7161},
-  {name:'ENEOSパワー', color:C.cyan,   rev25:313228,   op25:20970,   ast25:240850,  dep25:7275,   cap25:21338,  rev24:266707,   op24:-6363},
-  {name:'ENEOSリニュ', color:C.purple, rev25:43338,    op25:-16906,  ast25:566718,  dep25:21525,  cap25:28772,  rev24:41790,    op24:-11802},
+  {name:'ENEOS㈱',     color:C.red,    rev25:10979700, op25:-50700,  ast25:5621315, dep25:192436, cap25:175621, rev24:11068428, op24:261827},
+  {name:'JX石油開発',  color:C.yellow, rev25:242800,   op25:87400,   ast25:1215581, dep25:72472,  cap25:65347,  rev24:204863,   op24:91498},
+  {name:'JX金属',      color:C.green,  rev25:347000,   op25:17700,   ast25:313970,  dep25:8126,   cap25:13139,  rev24:305863,   op24:7161},
+  {name:'ENEOSパワー', color:C.cyan,   rev25:319900,   op25:21000,   ast25:240850,  dep25:7275,   cap25:21338,  rev24:266707,   op24:-6363},
+  {name:'ENEOSリニュ', color:C.purple, rev25:44000,    op25:-16900,  ast25:566718,  dep25:21525,  cap25:28772,  rev24:41790,    op24:-11802},
 ];
 
 const chartsBuilt={};
@@ -645,26 +645,26 @@ function buildOverview(){
         <div class="ov-card-icon" style="background:${d.color}33;color:${d.color}">${['EN','JX','JM','EP','ER'][i]}</div>
         <div><div class="ov-card-name" style="color:${d.color}">${d.name}</div><div class="ov-card-seg">${['石油製品','石油・ガス開発','機能材','電気','再エネ'][i]}</div></div>
       </div>
-      <div class="ov-metric"><span class="ov-metric-label">売上収益</span><span>${(d.rev25/1e4).toFixed(0)}億円</span></div>
-      <div class="ov-metric"><span class="ov-metric-label">営業利益</span><span class="${d.op25>=0?'pos':'neg'}">${d.op25>=0?'':'-'}${Math.abs(d.op25/1e4).toFixed(0)}億円</span></div>
-      <div class="ov-metric"><span class="ov-metric-label">前年比</span><span class="${yoy>=0?'pos':'neg'}">${yoy>=0?'+':''}${(yoy/1e4).toFixed(0)}億円</span></div>
-      <div class="ov-bar-track"><div class="ov-bar-fill" style="width:${Math.min(100,(d.rev25/10902305*100)).toFixed(1)}%;background:${d.color}"></div></div>`;
+      <div class="ov-metric"><span class="ov-metric-label">売上高</span><span>${(d.rev25/100).toFixed(0)}億円</span></div>
+      <div class="ov-metric"><span class="ov-metric-label">営業利益</span><span class="${d.op25>=0?'pos':'neg'}">${d.op25>=0?'':'-'}${Math.abs(d.op25/100).toFixed(0)}億円</span></div>
+      <div class="ov-metric"><span class="ov-metric-label">前年比</span><span class="${yoy>=0?'pos':'neg'}">${yoy>=0?'+':''}${(yoy/100).toFixed(0)}億円</span></div>
+      <div class="ov-bar-track"><div class="ov-bar-fill" style="width:${Math.min(100,(d.rev25/10979700*100)).toFixed(1)}%;background:${d.color}"></div></div>`;
     cont.appendChild(div);
   });
 
   // Rev pie
   new Chart(document.getElementById('ov_rev_pie'),{
     type:'doughnut',
-    data:{labels:SEG.map(s=>s.name),datasets:[{data:SEG.map(s=>s.rev25),backgroundColor:SEG.map(s=>s.color+'99'),borderColor:SEG.map(s=>s.color),borderWidth:1}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'#1E2B3E',titleColor:'#E2EAF4',bodyColor:'#6B7FA0'}}}
+    data:{labels:SEG.map(s=>s.name),datasets:[{data:SEG.map(s=>+(s.rev25/100).toFixed(0)),backgroundColor:SEG.map(s=>s.color+'99'),borderColor:SEG.map(s=>s.color),borderWidth:1}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'#1E2B3E',titleColor:'#E2EAF4',bodyColor:'#6B7FA0',callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed.toLocaleString()}億円`}}}}
   });
 
   // OP bar
   new Chart(document.getElementById('ov_op_bar'),{
     type:'bar',
     data:{labels:SEG.map(s=>s.name),datasets:[
-      {label:'FY24営業利益(億)',data:SEG.map(s=>+(s.op24/1e4).toFixed(1)),backgroundColor:'rgba(107,127,160,.3)',borderColor:C.muted,borderWidth:1},
-      {label:'FY25営業利益(億)',data:SEG.map(s=>+(s.op25/1e4).toFixed(1)),backgroundColor:SEG.map(s=>s.color+'66'),borderColor:SEG.map(s=>s.color),borderWidth:1},
+      {label:'FY24営業利益(億)',data:SEG.map(s=>+(s.op24/100).toFixed(1)),backgroundColor:'rgba(107,127,160,.3)',borderColor:C.muted,borderWidth:1},
+      {label:'FY25営業利益(億)',data:SEG.map(s=>+(s.op25/100).toFixed(1)),backgroundColor:SEG.map(s=>s.color+'66'),borderColor:SEG.map(s=>s.color),borderWidth:1},
     ]},
     options:bo()
   });
@@ -672,14 +672,14 @@ function buildOverview(){
   // EBITDA
   new Chart(document.getElementById('ov_ebitda'),{
     type:'bar',
-    data:{labels:SEG.map(s=>s.name),datasets:[{label:'EBITDA(億)',data:SEG.map(s=>+((s.op25+s.dep25)/1e4).toFixed(0)),backgroundColor:SEG.map(s=>s.color+'66'),borderColor:SEG.map(s=>s.color),borderWidth:1}]},
+    data:{labels:SEG.map(s=>s.name),datasets:[{label:'EBITDA(億)',data:SEG.map(s=>+((s.op25+s.dep25)/100).toFixed(0)),backgroundColor:SEG.map(s=>s.color+'66'),borderColor:SEG.map(s=>s.color),borderWidth:1}]},
     options:bo()
   });
 
   // Assets
   new Chart(document.getElementById('ov_ast'),{
     type:'bar',
-    data:{labels:SEG.map(s=>s.name),datasets:[{label:'総資産(兆円)',data:SEG.map(s=>+(s.ast25/1e8).toFixed(2)),backgroundColor:SEG.map(s=>s.color+'66'),borderColor:SEG.map(s=>s.color),borderWidth:1}]},
+    data:{labels:SEG.map(s=>s.name),datasets:[{label:'総資産(兆円)',data:SEG.map(s=>+(s.ast25/1e6).toFixed(2)),backgroundColor:SEG.map(s=>s.color+'66'),borderColor:SEG.map(s=>s.color),borderWidth:1}]},
     options:bo()
   });
 
@@ -692,15 +692,15 @@ function buildOverview(){
 
   // Revenue trend
   const revTrends=[
-    {name:'ENEOS㈱',    color:C.red,    data:[6121612,8789429,12318842,11068428,10902305]},
-    {name:'JX石油開発', color:C.yellow, data:[164218,228453,271891,204863,242813]},
-    {name:'JX金属',     color:C.green,  data:[241518,278632,318412,305863,344262]},
-    {name:'ENEOSパワー',color:C.cyan,   data:[142318,198432,252814,266707,313228]},
-    {name:'ENEOSリニュ',color:C.purple, data:[24512,31842,38521,41790,43338]},
+    {name:'ENEOS㈱',    color:C.red,    data:[6121612,8789429,12318842,11068428,10979700]},
+    {name:'JX石油開発', color:C.yellow, data:[164218,228453,271891,204863,242800]},
+    {name:'JX金属',     color:C.green,  data:[241518,278632,318412,305863,347000]},
+    {name:'ENEOSパワー',color:C.cyan,   data:[142318,198432,252814,266707,319900]},
+    {name:'ENEOSリニュ',color:C.purple, data:[24512,31842,38521,41790,44000]},
   ];
   new Chart(document.getElementById('ov_rev_trend'),{
     type:'line',
-    data:{labels:FY,datasets:revTrends.map(t=>({label:t.name,data:t.data.map(v=>+(v/1e4).toFixed(0)),borderColor:t.color,backgroundColor:'transparent',tension:.4,pointRadius:4}))},
+    data:{labels:FY,datasets:revTrends.map(t=>({label:t.name,data:t.data.map(v=>+(v/100).toFixed(0)),borderColor:t.color,backgroundColor:'transparent',tension:.4,pointRadius:4}))},
     options:lo()
   });
 
@@ -726,27 +726,27 @@ function buildOverview(){
     const roa=(d.op25/d.ast25*100).toFixed(1);
     const tr=document.createElement('tr');
     tr.innerHTML=`<td style="color:${d.color};font-weight:700">${d.name}</td>
-      <td>${(d.rev25/1e4).toFixed(0)}</td>
-      <td class="${d.op25>=0?'pos':'neg'}">${(d.op25/1e4).toFixed(0)}</td>
-      <td class="${yoy>=0?'pos':'neg'}">${yoy>=0?'+':''}${(yoy/1e4).toFixed(0)}</td>
-      <td>${(d.ast25/1e4).toFixed(0)}</td>
+      <td>${(d.rev25/100).toFixed(0)}</td>
+      <td class="${d.op25>=0?'pos':'neg'}">${(d.op25/100).toFixed(0)}</td>
+      <td class="${yoy>=0?'pos':'neg'}">${yoy>=0?'+':''}${(yoy/100).toFixed(0)}</td>
+      <td>${(d.ast25/100).toFixed(0)}</td>
       <td class="${parseFloat(roa)>=0?'pos':'neg'}">${roa}</td>
-      <td class="${ebitda>=0?'pos':'neg'}">${(ebitda/1e4).toFixed(0)}</td>
-      <td>${(d.cap25/1e4).toFixed(0)}</td>`;
+      <td class="${ebitda>=0?'pos':'neg'}">${(ebitda/100).toFixed(0)}</td>
+      <td>${(d.cap25/100).toFixed(0)}</td>`;
     tb.appendChild(tr);
   });
 }
 
 /* ═══ ENERGY (ENEOS㈱) ═══ */
 function buildEnergy(){
-  const revEN=[6121612,8789429,12318842,11068428,10902305];
-  const opEN=[103421,625318,218732,261827,-50705];
+  const revEN=[6121612,8789429,12318842,11068428,10979700];
+  const opEN=[103421,625318,218732,261827,-50700];
   const depEN=[181204,184512,188932,192436,192436];
 
   new Chart(document.getElementById('en_pl_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'売上収益(億)',data:revEN.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(248,113,113,.15)',borderColor:C.red,borderWidth:1,yAxisID:'y1'},
-      {label:'営業利益(億)',data:opEN.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.yellow,backgroundColor:'rgba(251,191,36,.1)',fill:true,tension:.4,yAxisID:'y2',pointRadius:5},
+      {label:'売上高(億)',data:revEN.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(248,113,113,.15)',borderColor:C.red,borderWidth:1,yAxisID:'y1'},
+      {label:'営業利益(億)',data:opEN.map(v=>+(v/100).toFixed(0)),type:'line',borderColor:C.yellow,backgroundColor:'rgba(251,191,36,.1)',fill:true,tension:.4,yAxisID:'y2',pointRadius:5},
     ]},
     options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}
   });
@@ -759,7 +759,7 @@ function buildEnergy(){
     options:lo()
   });
 
-  const ebitdaEN=opEN.map((op,i)=>+((op+depEN[i])/1e4).toFixed(0));
+  const ebitdaEN=opEN.map((op,i)=>+((op+depEN[i])/100).toFixed(0));
   new Chart(document.getElementById('en_ebitda_chart'),{
     type:'bar',data:{labels:FY,datasets:[{label:'EBITDA(億)',data:ebitdaEN,backgroundColor:ebitdaEN.map(v=>v>=0?'rgba(248,113,113,.35)':'rgba(107,127,160,.35)'),borderColor:ebitdaEN.map(v=>v>=0?C.red:C.muted),borderWidth:1}]},
     options:bo()
@@ -768,8 +768,8 @@ function buildEnergy(){
   const capexEN=[156832,162450,168321,171685,175621];
   new Chart(document.getElementById('en_capex_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'CAPEX(億)',    data:capexEN.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(74,158,255,.3)',borderColor:C.blue,borderWidth:1},
-      {label:'減価償却(億)',  data:depEN.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(167,139,250,.3)',borderColor:C.purple,borderWidth:1},
+      {label:'CAPEX(億)',    data:capexEN.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(74,158,255,.3)',borderColor:C.blue,borderWidth:1},
+      {label:'減価償却(億)',  data:depEN.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(167,139,250,.3)',borderColor:C.purple,borderWidth:1},
     ]},
     options:bo()
   });
@@ -794,15 +794,15 @@ function buildEnergy(){
 
 /* ═══ OILGAS (JX石油開発) ═══ */
 function buildOilgas(){
-  const revJX=[164218,228453,271891,204863,242813];
-  const opJX=[78342,112651,95214,91498,87407];
+  const revJX=[164218,228453,271891,204863,242800];
+  const opJX=[78342,112651,95214,91498,87400];
   const depJX=[72000,72100,72200,72472,72472];
 
   new Chart(document.getElementById('jx_pl_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'売上収益(億)',data:revJX.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(251,191,36,.15)',borderColor:C.yellow,borderWidth:1,yAxisID:'y1'},
-      {label:'営業利益(億)',data:opJX.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.green,tension:.4,pointRadius:5,yAxisID:'y2'},
-      {label:'EBITDA(億)',  data:opJX.map((v,i)=>+((v+depJX[i])/1e4).toFixed(0)),type:'line',borderColor:C.cyan,borderDash:[4,4],tension:.4,pointRadius:4,yAxisID:'y2'},
+      {label:'売上高(億)',data:revJX.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(251,191,36,.15)',borderColor:C.yellow,borderWidth:1,yAxisID:'y1'},
+      {label:'営業利益(億)',data:opJX.map(v=>+(v/100).toFixed(0)),type:'line',borderColor:C.green,tension:.4,pointRadius:5,yAxisID:'y2'},
+      {label:'EBITDA(億)',  data:opJX.map((v,i)=>+((v+depJX[i])/100).toFixed(0)),type:'line',borderColor:C.cyan,borderDash:[4,4],tension:.4,pointRadius:4,yAxisID:'y2'},
     ]},
     options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}
   });
@@ -839,13 +839,13 @@ function buildOilgas(){
 
 /* ═══ METALS (JX金属) ═══ */
 function buildMetals(){
-  const revJM=[241518,278632,318412,305863,344262];
-  const opJM=[5218,8432,6812,7161,17671];
+  const revJM=[241518,278632,318412,305863,347000];
+  const opJM=[5218,8432,6812,7161,17700];
 
   new Chart(document.getElementById('jm_pl_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'売上収益(億)',data:revJM.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(52,211,153,.15)',borderColor:C.green,borderWidth:1,yAxisID:'y1'},
-      {label:'営業利益(億)',data:opJM.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.yellow,tension:.4,pointRadius:5,yAxisID:'y2'},
+      {label:'売上高(億)',data:revJM.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(52,211,153,.15)',borderColor:C.green,borderWidth:1,yAxisID:'y1'},
+      {label:'営業利益(億)',data:opJM.map(v=>+(v/100).toFixed(0)),type:'line',borderColor:C.yellow,tension:.4,pointRadius:5,yAxisID:'y2'},
     ]},
     options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}
   });
@@ -884,13 +884,13 @@ function buildMetals(){
 
 /* ═══ ELECTRIC (ENEOSパワー) ═══ */
 function buildElectric(){
-  const revEP=[142318,198432,252814,266707,313228];
-  const opEP=[-3218,-18432,8214,-6363,20970];
+  const revEP=[142318,198432,252814,266707,319900];
+  const opEP=[-3218,-18432,8214,-6363,21000];
 
   new Chart(document.getElementById('ep_pl_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'売上収益(億)',data:revEP.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(34,211,238,.15)',borderColor:C.cyan,borderWidth:1,yAxisID:'y1'},
-      {label:'営業利益(億)',data:opEP.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.green,tension:.4,pointRadius:5,yAxisID:'y2'},
+      {label:'売上高(億)',data:revEP.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(34,211,238,.15)',borderColor:C.cyan,borderWidth:1,yAxisID:'y1'},
+      {label:'営業利益(億)',data:opEP.map(v=>+(v/100).toFixed(0)),type:'line',borderColor:C.green,tension:.4,pointRadius:5,yAxisID:'y2'},
     ]},
     options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}
   });
@@ -926,16 +926,16 @@ function buildElectric(){
 
 /* ═══ RENEWABLES ═══ */
 function buildRenewables(){
-  const revER=[24512,31842,38521,41790,43338];
-  const opER=[-5218,-8432,-9814,-11802,-16906];
+  const revER=[24512,31842,38521,41790,44000];
+  const opER=[-5218,-8432,-9814,-11802,-16900];
   const capER=[12418,15632,18921,20798,28772];
   const mwER=[320,520,850,1200,1850];
 
   new Chart(document.getElementById('er_pl_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'売上収益(億)',data:revER.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(167,139,250,.2)',borderColor:C.purple,borderWidth:1,yAxisID:'y1'},
+      {label:'売上高(億)',data:revER.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(167,139,250,.2)',borderColor:C.purple,borderWidth:1,yAxisID:'y1'},
       {label:'発電容量(MW)',data:mwER,type:'line',borderColor:C.cyan,tension:.4,pointRadius:5,yAxisID:'y2'},
-      {label:'営業利益(億)',data:opER.map(v=>+(v/1e4).toFixed(0)),type:'line',borderColor:C.red,tension:.4,pointRadius:4,yAxisID:'y1'},
+      {label:'営業利益(億)',data:opER.map(v=>+(v/100).toFixed(0)),type:'line',borderColor:C.red,tension:.4,pointRadius:4,yAxisID:'y1'},
     ]},
     options:{...defOpts,scales:{x:{grid,ticks},y1:{type:'linear',position:'left',grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}
   });
@@ -959,8 +959,8 @@ function buildRenewables(){
 
   new Chart(document.getElementById('er_capex_chart'),{
     type:'bar',data:{labels:FY,datasets:[
-      {label:'CAPEX実績(億)',data:capER.map(v=>+(v/1e4).toFixed(0)),backgroundColor:'rgba(167,139,250,.4)',borderColor:C.purple,borderWidth:1},
-      {label:'CAPEX計画(億)',data:[1.2,1.6,1.9,2.1,2.9],type:'line',borderColor:C.cyan,borderDash:[4,4],tension:.4,pointRadius:4},
+      {label:'CAPEX実績(億)',data:capER.map(v=>+(v/100).toFixed(0)),backgroundColor:'rgba(167,139,250,.4)',borderColor:C.purple,borderWidth:1},
+      {label:'CAPEX計画(億)',data:[124,156,189,208,288],type:'line',borderColor:C.cyan,borderDash:[4,4],tension:.4,pointRadius:4},
     ]},
     options:bo()
   });
