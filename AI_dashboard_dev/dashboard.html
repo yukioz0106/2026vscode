@@ -184,7 +184,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 <div class="header">
   <div>
     <h1>ENEOSグループ 経営ダッシュボード</h1>
-    <div class="header-sub">有価証券報告書データ基準 ／ FY2021〜FY2025 連結</div>
+    <div class="header-sub">有価証券報告書データ基準 ／ FY21/3〜FY25/3 連結</div>
   </div>
   <div class="header-right">
     <span class="badge-live">LIVE</span>
@@ -207,7 +207,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 <!-- ═══════════════ P-01 経営サマリー ═══════════════ -->
 <div id="p01" class="screen active">
   <div class="sec-hdr">
-    <div><div class="sec-title">経営サマリー</div><div class="sec-sub">FY2026（2026年3月期）連結実績</div></div>
+    <div><div class="sec-title">経営サマリー</div><div class="sec-sub">FY26/3（2026年3月期）連結実績</div></div>
   </div>
 
   <!-- KPI CARDS -->
@@ -286,7 +286,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div class="gauge-card" onclick="openModal('m_fcf')">
       <div class="gauge-wrap"><canvas id="g2"></canvas><div class="gauge-center" style="color:var(--yellow)">74%</div></div>
-      <div class="gauge-label">FCF目標達成（FY26）</div>
+      <div class="gauge-label">FCF目標達成（FY26/3）</div>
     </div>
     <div class="gauge-card" onclick="openModal('m_de')">
       <div class="gauge-wrap"><canvas id="g3"></canvas><div class="gauge-center" style="color:var(--green)">100%</div></div>
@@ -300,11 +300,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 
   <!-- SEGMENT TABLE -->
   <div class="chart-card">
-    <div class="chart-title">セグメント別業績（FY2026 / FY2025比較）</div>
+    <div class="chart-title">セグメント別業績（FY26/3 / FY25/3比較）</div>
     <table class="seg-table">
       <thead><tr>
         <th style="text-align:left">セグメント</th>
-        <th>売上高(FY26)</th><th>営業利益(FY26)</th><th>前年比</th>
+        <th>売上高(FY26/3)</th><th>営業利益(FY26/3)</th><th>前年比</th>
         <th>資産</th><th>売上シェア</th>
       </tr></thead>
       <tbody id="segTbody"></tbody>
@@ -332,7 +332,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="chart-card">
       <div class="chart-title">P/L サマリー（百万円）</div>
       <table class="data-tbl">
-        <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+        <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
         <tbody id="plTbody"></tbody>
       </table>
     </div>
@@ -346,7 +346,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="chart-card">
       <div class="chart-title">B/S サマリー（百万円）</div>
       <table class="data-tbl">
-        <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+        <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
         <tbody id="bsTbody"></tbody>
       </table>
     </div>
@@ -360,7 +360,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="chart-card">
       <div class="chart-title">CF サマリー（百万円）</div>
       <table class="data-tbl">
-        <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+        <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
         <tbody id="cfTbody"></tbody>
       </table>
     </div>
@@ -382,14 +382,14 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 <!-- ═══════════════ P-04 セグメント分析 ═══════════════ -->
 <div id="p04" class="screen">
   <div class="sec-hdr">
-    <div><div class="sec-title">セグメント分析</div><div class="sec-sub">FY2025 セグメント別詳細</div></div>
+    <div><div class="sec-title">セグメント分析</div><div class="sec-sub">FY26/3 セグメント別詳細</div></div>
   </div>
   <div class="charts-row2">
-    <div class="chart-card"><div class="chart-title">セグメント別 売上高構成（FY26）</div><div class="chart-wrap r-donut"><canvas id="segRevChart"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">セグメント別 営業利益比較（FY25 vs FY26）</div><div class="chart-wrap r-bar-n"><canvas id="segOpChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">セグメント別 売上高構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="segRevChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">セグメント別 営業利益比較（FY25/3 vs FY26/3）</div><div class="chart-wrap r-bar-n"><canvas id="segOpChart"></canvas></div></div>
   </div>
   <div class="chart-card" style="margin-bottom:16px">
-    <div class="chart-title">セグメント別 詳細（FY2025 / 百万円）</div>
+    <div class="chart-title">セグメント別 詳細（FY26/3 / 百万円）</div>
     <table class="seg-table">
       <thead><tr>
         <th style="text-align:left">セグメント</th>
@@ -399,9 +399,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
   <div class="charts-row3">
-    <div class="chart-card"><div class="chart-title">CAPEX構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="capexChart"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">資産構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="astChart"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">セグメント別EBITDA（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="segEbtChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">CAPEX構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="capexChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">資産構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="astChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">セグメント別EBITDA（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="segEbtChart"></canvas></div></div>
   </div>
 </div>
 
@@ -428,12 +428,12 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div><div class="sec-title">比較・分析</div><div class="sec-sub">競合他社比較（推定値）・業界平均</div></div>
   </div>
   <div class="charts-row3">
-    <div class="chart-card"><div class="chart-title">ROE 比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="cmpRoe"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">ROIC 比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="cmpRoic"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">D/Eレシオ 比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="cmpDe"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">ROE 比較（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="cmpRoe"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">ROIC 比較（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="cmpRoic"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">D/Eレシオ 比較（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="cmpDe"></canvas></div></div>
   </div>
   <div class="charts-row2">
-    <div class="chart-card"><div class="chart-title">売上高成長率 比較（CAGR FY21→FY25）</div><div class="chart-wrap r-bar-n"><canvas id="cmpRev"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">売上高成長率 比較（CAGR FY21/3→FY25/3）</div><div class="chart-wrap r-bar-n"><canvas id="cmpRev"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">ENEOS vs 業界平均 レーダー</div><div class="chart-wrap r-radar"><canvas id="cmpRadar"></canvas></div></div>
   </div>
 </div>
@@ -477,16 +477,16 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div id="p07_ov" class="comp-screen active">
     <div class="ov-grid" id="p07_ov_cards"></div>
     <div class="charts-row2">
-      <div class="chart-card"><div class="chart-title">売上高構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_ov_pie"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">営業利益 FY24 vs FY25（億円）</div><div class="chart-wrap r-bar-n"><canvas id="p07_ov_op"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">売上高構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="p07_ov_pie"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">営業利益 FY25/3 vs FY26/3（億円）</div><div class="chart-wrap r-bar-n"><canvas id="p07_ov_op"></canvas></div></div>
     </div>
     <div class="charts-row3">
-      <div class="chart-card"><div class="chart-title">EBITDA比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="p07_ov_ebitda"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">資産規模（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="p07_ov_ast"></canvas></div></div>
-      <div class="chart-card"><div class="chart-title">ROA比較（FY25）</div><div class="chart-wrap r-bar-s"><canvas id="p07_ov_roa"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">EBITDA比較（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="p07_ov_ebitda"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">資産規模（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="p07_ov_ast"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">ROA比較（FY26/3）</div><div class="chart-wrap r-bar-s"><canvas id="p07_ov_roa"></canvas></div></div>
     </div>
     <div class="chart-card" style="margin-bottom:14px">
-      <div class="chart-title">事業会社別 業績サマリー（FY2025）</div>
+      <div class="chart-title">事業会社別 業績サマリー（FY26/3）</div>
       <table class="seg-table">
         <thead><tr>
           <th style="text-align:left">事業会社</th>
@@ -508,8 +508,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo">EN</div>
       <div><div class="co-title">ENEOS株式会社</div><div class="co-sub">石油製品・エネルギー供給 ／ ENEOSグループ中核事業会社</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26）</div><div class="co-kpi-val">103,953<span class="co-kpi-unit">億円</span></div></div>
-        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26）</div><div class="co-kpi-val" style="color:#34D399">2,924<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26/3）</div><div class="co-kpi-val">103,953<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26/3）</div><div class="co-kpi-val" style="color:#34D399">2,924<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">総資産</div><div class="co-kpi-val">5.9<span class="co-kpi-unit">兆円</span></div></div>
       </div>
     </div>
@@ -528,7 +528,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div id="p07_en_pltab" class="inner-pane active">
       <div class="charts-row">
         <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_en_pl"></canvas></div></div>
-        <div class="chart-card"><div class="chart-title">FY26 営業利益回復要因（ウォーターフォール）</div><div class="chart-wrap r-bar"><canvas id="p07_en_wf"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">FY26/3 営業利益回復要因（ウォーターフォール）</div><div class="chart-wrap r-bar"><canvas id="p07_en_wf"></canvas></div></div>
       </div>
       <div class="charts-row2">
         <div class="chart-card"><div class="chart-title">EBITDA推移（億円）</div><div class="chart-wrap r-bar-n"><canvas id="p07_en_ebitda"></canvas></div></div>
@@ -537,7 +537,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="chart-card">
         <div class="chart-title">P/L サマリー（百万円）</div>
         <table class="data-tbl">
-          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
           <tbody>
             <tr><td>売上高</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,979,700</td><td>10,341,787</td></tr>
             <tr><td>営業利益</td><td class="pos">103,421</td><td class="pos">625,318</td><td class="pos">218,732</td><td class="pos">261,827</td><td class="neg">△50,700</td><td class="pos">292,362</td></tr>
@@ -551,7 +551,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div id="p07_en_opstab" class="inner-pane">
       <div class="charts-row2">
         <div class="chart-card">
-          <div class="chart-title">FY26 営業利益回復要因分析（億円）</div>
+          <div class="chart-title">FY26/3 営業利益回復要因分析（億円）</div>
           <div class="chart-wrap r-bar-n"><canvas id="p07_en_wf2"></canvas></div>
         </div>
         <div class="chart-card">
@@ -609,8 +609,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo" style="background:rgba(251,191,36,.3)">JX</div>
       <div><div class="co-title">ENEOS Xplora株式会社</div><div class="co-sub">石油・天然ガス探鉱・開発・生産 ／ 海外上流事業</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26）</div><div class="co-kpi-val">2,167<span class="co-kpi-unit">億円</span></div></div>
-        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26）</div><div class="co-kpi-val" style="color:#FBBF24">508<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26/3）</div><div class="co-kpi-val">2,167<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26/3）</div><div class="co-kpi-val" style="color:#FBBF24">508<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">生産量</div><div class="co-kpi-val">19.0<span class="co-kpi-unit">万BOE/日</span></div></div>
       </div>
     </div>
@@ -631,9 +631,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
         <div class="chart-card"><div class="chart-title">生産量・探鉱費 推移</div><div class="chart-wrap r-bar"><canvas id="p07_jx_prod"></canvas></div></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">主要操業指標（FY2026）</div>
+        <div class="chart-title">主要操業指標（FY26/3）</div>
         <table class="data-tbl">
-          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
           <tbody>
             <tr><td>売上高（百万円）</td><td>164,218</td><td>228,453</td><td>271,891</td><td>204,863</td><td>242,813</td><td>216,744</td></tr>
             <tr><td>営業利益（百万円）</td><td class="pos">78,342</td><td class="pos">112,651</td><td class="pos">95,214</td><td class="pos">91,498</td><td class="pos">87,407</td><td class="pos">50,833</td></tr>
@@ -646,7 +646,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div id="p07_jx_opstab" class="inner-pane">
       <div class="charts-row3">
-        <div class="chart-card"><div class="chart-title">地域別生産構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_jx_region"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">地域別生産構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="p07_jx_region"></canvas></div></div>
         <div class="chart-card"><div class="chart-title">F&Dコスト・採掘コスト推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jx_cost"></canvas></div></div>
         <div class="chart-card"><div class="chart-title">確認埋蔵量推移（億BOE）</div><div class="chart-wrap r-bar-s"><canvas id="p07_jx_reserve"></canvas></div></div>
       </div>
@@ -659,8 +659,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo" style="background:rgba(52,211,153,.3)">JM</div>
       <div><div class="co-title">JX金属株式会社</div><div class="co-sub">非鉄金属・機能材・電子材料 ／ 2024年東証プライム上場</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26）</div><div class="co-kpi-val">3,365<span class="co-kpi-unit">億円</span></div></div>
-        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26）</div><div class="co-kpi-val" style="color:#34D399">111<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26/3）</div><div class="co-kpi-val">3,365<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26/3）</div><div class="co-kpi-val" style="color:#34D399">111<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">時価総額</div><div class="co-kpi-val">1.8<span class="co-kpi-unit">兆円</span></div></div>
       </div>
     </div>
@@ -683,7 +683,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="chart-card">
         <div class="chart-title">P/L サマリー（百万円）</div>
         <table class="data-tbl">
-          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
           <tbody>
             <tr><td>売上高</td><td>241,518</td><td>278,632</td><td>318,412</td><td>305,863</td><td>347,000</td><td>336,507</td></tr>
             <tr><td>営業利益</td><td class="pos">5,218</td><td class="pos">8,432</td><td class="pos">6,812</td><td class="pos">7,161</td><td class="pos">17,700</td><td class="pos">11,076</td></tr>
@@ -696,12 +696,12 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
     <div id="p07_jm_prodtab" class="inner-pane">
       <div class="charts-row3">
-        <div class="chart-card"><div class="chart-title">製品別売上構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_jm_pie"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">製品別売上構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="p07_jm_pie"></canvas></div></div>
         <div class="chart-card"><div class="chart-title">主力製品別 収益推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_prod"></canvas></div></div>
         <div class="chart-card"><div class="chart-title">半導体材料 成長トレンド</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_semi"></canvas></div></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">製品別 業況（FY25）</div>
+        <div class="chart-title">製品別 業況（FY26/3）</div>
         <table class="data-tbl">
           <thead><tr><th>製品区分</th><th>売上比率</th><th>成長率(YoY)</th><th>利益貢献</th><th>市場動向</th></tr></thead>
           <tbody>
@@ -722,8 +722,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo" style="background:rgba(34,211,238,.3)">EP</div>
       <div><div class="co-title">ENEOS Power株式会社</div><div class="co-sub">電力小売・発電 ／ 新電力事業（低圧・高圧・特別高圧）</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26）</div><div class="co-kpi-val">3,492<span class="co-kpi-unit">億円</span></div></div>
-        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26）</div><div class="co-kpi-val" style="color:#22D3EE">220<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26/3）</div><div class="co-kpi-val">3,492<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26/3）</div><div class="co-kpi-val" style="color:#22D3EE">220<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">販売電力量</div><div class="co-kpi-val">31.2<span class="co-kpi-unit">TWh</span></div></div>
       </div>
     </div>
@@ -743,14 +743,14 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
         <div class="chart-card"><div class="chart-title">販売電力量・顧客数 推移</div><div class="chart-wrap r-bar"><canvas id="p07_ep_vol"></canvas></div></div>
       </div>
       <div class="charts-row3">
-        <div class="chart-card"><div class="chart-title">電源調達構成（FY25）</div><div class="chart-wrap r-donut"><canvas id="p07_ep_src"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">電源調達構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="p07_ep_src"></canvas></div></div>
         <div class="chart-card"><div class="chart-title">顧客区分別 売上構成</div><div class="chart-wrap r-donut"><canvas id="p07_ep_cust"></canvas></div></div>
         <div class="chart-card"><div class="chart-title">電力マージン推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_ep_margin"></canvas></div></div>
       </div>
       <div class="chart-card">
         <div class="chart-title">電気事業 P/L サマリー（百万円）</div>
         <table class="data-tbl">
-          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
           <tbody>
             <tr><td>売上高</td><td>142,318</td><td>198,432</td><td>252,814</td><td>266,707</td><td>319,900</td><td>332,198</td></tr>
             <tr><td>営業利益</td><td class="neg">△3,218</td><td class="neg">△18,432</td><td class="pos">8,214</td><td class="neg">△6,363</td><td class="pos">21,000</td><td class="pos">21,996</td></tr>
@@ -769,8 +769,8 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="co-logo" style="background:rgba(167,139,250,.3)">ER</div>
       <div><div class="co-title">ENEOSリニューアブル・エナジー株式会社</div><div class="co-sub">再生可能エネルギー開発・運営 ／ 太陽光・風力・地熱</div></div>
       <div class="co-kpis">
-        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26）</div><div class="co-kpi-val">487<span class="co-kpi-unit">億円</span></div></div>
-        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26）</div><div class="co-kpi-val" style="color:#F87171">△9<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">売上高（FY26/3）</div><div class="co-kpi-val">487<span class="co-kpi-unit">億円</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26/3）</div><div class="co-kpi-val" style="color:#F87171">△9<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">発電容量</div><div class="co-kpi-val">2,200<span class="co-kpi-unit">MW</span></div></div>
       </div>
     </div>
@@ -809,7 +809,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="chart-card">
         <div class="chart-title">再エネ事業 指標サマリー</div>
         <table class="data-tbl">
-          <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
           <tbody>
             <tr><td>売上高（百万円）</td><td>24,512</td><td>31,842</td><td>38,521</td><td>41,790</td><td>44,000</td><td>46,861</td></tr>
             <tr><td>営業利益（百万円）</td><td class="neg">△5,218</td><td class="neg">△8,432</td><td class="neg">△9,814</td><td class="neg">△11,802</td><td class="neg">△16,900</td><td class="neg">△929</td></tr>
@@ -844,15 +844,15 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_en_rev')">×</div>
     <div class="modal-title">ENEOS㈱ 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY26 売上高 103,418億円（前年比 △5.3%）</div>
+    <div class="modal-sub">FY26/3 売上高 103,418億円（前年比 △5.3%）</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26 売上高</div><div class="modal-kpi-val" style="color:var(--blue)">103,418億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 売上高</div><div class="modal-kpi-val" style="color:var(--blue)">103,418億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">前年差</div><div class="modal-kpi-val" style="color:var(--red)">△6,379億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">グループ売上比</div><div class="modal-kpi-val" style="color:var(--cyan)">87.9%</div></div>
     </div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">売上高 6期推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_en_rev"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>売上高（百万円）</td><td>6,121,612</td><td>8,789,429</td><td>12,318,842</td><td>11,068,428</td><td>10,979,700</td><td>10,341,787</td></tr>
         <tr><td>前年比</td><td>−</td><td class="pos">+43.6%</td><td class="pos">+40.2%</td><td class="neg">△10.1%</td><td class="neg">△0.8%</td><td class="neg">△5.8%</td></tr>
@@ -865,13 +865,13 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_en_op')">×</div>
     <div class="modal-title">ENEOS㈱ 営業利益 ドリルダウン</div>
-    <div class="modal-sub">FY26 2,924億円（前年 △508億円 → 黒字回復）</div>
+    <div class="modal-sub">FY26/3 2,924億円（前年 △508億円 → 黒字回復）</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26 営業利益</div><div class="modal-kpi-val" style="color:var(--green)">2,924億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 営業利益</div><div class="modal-kpi-val" style="color:var(--green)">2,924億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">前年差</div><div class="modal-kpi-val" style="color:var(--green)">+3,432億円</div></div>
-      <div class="modal-kpi-item"><div class="modal-kpi-label">EBITDA（FY26）</div><div class="modal-kpi-val" style="color:var(--yellow)">5,015億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">EBITDA（FY26/3）</div><div class="modal-kpi-val" style="color:var(--yellow)">5,015億円</div></div>
     </div>
-    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益ウォーターフォール（FY25→FY26）</div><div class="chart-wrap r-bar-m"><canvas id="md_en_op_wf"></canvas></div></div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益ウォーターフォール（FY25/3→FY26/3）</div><div class="chart-wrap r-bar-m"><canvas id="md_en_op_wf"></canvas></div></div>
     <table class="data-tbl">
       <thead><tr><th>要因</th><th>金額（億円）</th><th>内容</th></tr></thead>
       <tbody>
@@ -890,10 +890,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_en_ebitda')">×</div>
     <div class="modal-title">ENEOS㈱ EBITDA ドリルダウン</div>
-    <div class="modal-sub">FY26 EBITDA 5,015億円（= 営業利益 2,924億 + 減価償却 2,091億）</div>
+    <div class="modal-sub">FY26/3 EBITDA 5,015億円（= 営業利益 2,924億 + 減価償却 2,091億）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">EBITDA推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_en_ebitda2"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>営業利益（億）</td><td class="pos">1,034</td><td class="pos">6,253</td><td class="pos">2,187</td><td class="pos">2,618</td><td class="neg">△508</td><td class="pos">2,924</td></tr>
         <tr><td>減価償却（億）</td><td>1,812</td><td>1,845</td><td>1,889</td><td>1,924</td><td>1,924</td><td>2,091</td></tr>
@@ -907,15 +907,15 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jx_rev')">×</div>
     <div class="modal-title">ENEOS Xplora 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY26 売上高 2,167億円（△10.7%）― 油価下落・生産量減の影響</div>
+    <div class="modal-sub">FY26/3 売上高 2,167億円（△10.7%）― 油価下落・生産量減の影響</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26 売上高</div><div class="modal-kpi-val" style="color:var(--yellow)">2,167億円</div></div>
-      <div class="modal-kpi-item"><div class="modal-kpi-label">生産量（FY26）</div><div class="modal-kpi-val" style="color:var(--green)">19.0万BOE/日</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 売上高</div><div class="modal-kpi-val" style="color:var(--yellow)">2,167億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">生産量（FY26/3）</div><div class="modal-kpi-val" style="color:var(--green)">19.0万BOE/日</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">営業利益率</div><div class="modal-kpi-val" style="color:var(--cyan)">23.5%</div></div>
     </div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">売上高・生産量 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_jx_rev"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>売上高（百万円）</td><td>164,218</td><td>228,453</td><td>271,891</td><td>204,863</td><td>242,813</td><td>216,744</td></tr>
         <tr><td>生産量（千BOE/日）</td><td>175</td><td>183</td><td>191</td><td>189</td><td>198</td><td>190</td></tr>
@@ -929,10 +929,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jx_op')">×</div>
     <div class="modal-title">ENEOS Xplora 営業利益 ドリルダウン</div>
-    <div class="modal-sub">FY26 508億円（前年 874億円 / 営業利益率 23.5%）</div>
+    <div class="modal-sub">FY26/3 508億円（前年 874億円 / 営業利益率 23.5%）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・EBITDA 推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_jx_op"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>営業利益（億円）</td><td class="pos">783</td><td class="pos">1,127</td><td class="pos">952</td><td class="pos">915</td><td class="pos">874</td><td class="pos">508</td></tr>
         <tr><td>EBITDA（億円）</td><td class="pos">1,503</td><td class="pos">1,848</td><td class="pos">1,674</td><td class="pos">1,640</td><td class="pos">1,599</td><td class="pos">1,160</td></tr>
@@ -946,9 +946,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jm_rev')">×</div>
     <div class="modal-title">JX金属 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY26 3,365億円（△2.3%）― ENEOSマテリアル単体（JX金属は持分法適用）</div>
+    <div class="modal-sub">FY26/3 3,365億円（△2.3%）― ENEOSマテリアル単体（JX金属は持分法適用）</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26 売上高</div><div class="modal-kpi-val" style="color:var(--green)">3,365億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 売上高</div><div class="modal-kpi-val" style="color:var(--green)">3,365億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">前年差</div><div class="modal-kpi-val" style="color:var(--red)">△105億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">YoY成長率</div><div class="modal-kpi-val" style="color:var(--red)">△2.3%</div></div>
     </div>
@@ -970,10 +970,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_jm_op')">×</div>
     <div class="modal-title">JX金属 営業利益 ドリルダウン</div>
-    <div class="modal-sub">FY26 111億円（前年 177億円 → △37.3% 減益）</div>
+    <div class="modal-sub">FY26/3 111億円（前年 177億円 → △37.3% 減益）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・ROA 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_jm_op"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>営業利益（百万円）</td><td class="pos">5,218</td><td class="pos">8,432</td><td class="pos">6,812</td><td class="pos">7,161</td><td class="pos">17,671</td><td class="pos">11,076</td></tr>
         <tr><td>営業利益率（%）</td><td>2.2</td><td>3.0</td><td>2.1</td><td>2.3</td><td class="pos">5.1</td><td>3.3</td></tr>
@@ -987,15 +987,15 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_ep_rev')">×</div>
     <div class="modal-title">ENEOS Power 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY26 3,492億円（+11.5%）― 販売量拡大・顧客数増加が寄与</div>
+    <div class="modal-sub">FY26/3 3,492億円（+11.5%）― 販売量拡大・顧客数増加が寄与</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26 売上高</div><div class="modal-kpi-val" style="color:var(--cyan)">3,492億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 売上高</div><div class="modal-kpi-val" style="color:var(--cyan)">3,492億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">販売電力量</div><div class="modal-kpi-val" style="color:var(--blue)">31.2TWh</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">顧客数</div><div class="modal-kpi-val" style="color:var(--purple)">118万件</div></div>
     </div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">売上高・販売量 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_ep_rev"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>売上高（百万円）</td><td>142,318</td><td>198,432</td><td>252,814</td><td>266,707</td><td>313,228</td><td>332,198</td></tr>
         <tr><td>販売量（TWh）</td><td>18.2</td><td>21.4</td><td>23.8</td><td>25.1</td><td>28.4</td><td>31.2</td></tr>
@@ -1009,10 +1009,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_ep_op')">×</div>
     <div class="modal-title">ENEOS Power 営業利益 ドリルダウン</div>
-    <div class="modal-sub">FY26 220億円（前年 210億円 → +4.9% 増益）</div>
+    <div class="modal-sub">FY26/3 220億円（前年 210億円 → +4.9% 増益）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・電力マージン 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_ep_op"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>営業利益（百万円）</td><td class="neg">△3,218</td><td class="neg">△18,432</td><td class="pos">8,214</td><td class="neg">△6,363</td><td class="pos">20,970</td><td class="pos">21,996</td></tr>
         <tr><td>電力マージン（%）</td><td class="neg">△2.3</td><td class="neg">△9.3</td><td class="pos">3.2</td><td class="neg">△2.4</td><td class="pos">6.7</td><td class="pos">6.6</td></tr>
@@ -1026,15 +1026,15 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_er_rev')">×</div>
     <div class="modal-title">ENEOSリニューアブル・エナジー 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY26 487億円（+10.7%）― 発電容量 2,200MW・設備利用率改善</div>
+    <div class="modal-sub">FY26/3 487億円（+10.7%）― 発電容量 2,200MW・設備利用率改善</div>
     <div class="modal-kpi-grid">
-      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26 売上高</div><div class="modal-kpi-val" style="color:var(--purple)">487億円</div></div>
+      <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 売上高</div><div class="modal-kpi-val" style="color:var(--purple)">487億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">発電容量</div><div class="modal-kpi-val" style="color:var(--cyan)">2,200MW</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">設備利用率</div><div class="modal-kpi-val" style="color:var(--yellow)">24.1%</div></div>
     </div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">売上高・発電容量 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_er_rev"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>売上高（百万円）</td><td>24,512</td><td>31,842</td><td>38,521</td><td>41,790</td><td>44,042</td><td>46,861</td></tr>
         <tr><td>発電容量（MW）</td><td>320</td><td>520</td><td>850</td><td>1,200</td><td>1,850</td><td>2,200</td></tr>
@@ -1048,10 +1048,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_p07_er_op')">×</div>
     <div class="modal-title">ENEOSリニューアブル・エナジー 営業利益 ドリルダウン</div>
-    <div class="modal-sub">FY26 △9億円（赤字大幅縮小）― 発電容量拡大でコスト回収進展。</div>
+    <div class="modal-sub">FY26/3 △9億円（赤字大幅縮小）― 発電容量拡大でコスト回収進展。</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・CAPEX 推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_er_op"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>営業利益（百万円）</td><td class="neg">△5,218</td><td class="neg">△8,432</td><td class="neg">△9,814</td><td class="neg">△11,802</td><td class="neg">△16,906</td><td class="neg">△929</td></tr>
         <tr><td>CAPEX（百万円）</td><td>12,418</td><td>15,632</td><td>18,921</td><td>20,798</td><td>28,772</td><td>27,086</td></tr>
@@ -1075,7 +1075,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 
   <div id="in_qtr" class="inner-pane active">
     <div class="input-form">
-      <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">四半期財務データ入力（FY2026）</div>
+      <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">四半期財務データ入力（FY26/3）</div>
       <div style="font-size:11px;color:var(--muted);margin-bottom:12px">年計：売上高 11,765,470百万円 ／ 営業利益 466,627百万円 ／ 純利益 258,726百万円</div>
       <div class="form-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="form-group"><label class="form-label">Q1 売上高（百万円）</label><input class="form-input" value="3120000"></div>
@@ -1102,16 +1102,16 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="input-form">
       <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">EPS・株式情報入力</div>
       <div class="form-grid">
-        <div class="form-group"><label class="form-label">FY21 発行済株式数（千株）</label><input class="form-input" value="4685000"></div>
-        <div class="form-group"><label class="form-label">FY22 発行済株式数（千株）</label><input class="form-input" value="4685000"></div>
-        <div class="form-group"><label class="form-label">FY23 発行済株式数（千株）</label><input class="form-input" value="4642000"></div>
-        <div class="form-group"><label class="form-label">FY24 発行済株式数（千株）</label><input class="form-input" value="4630000"></div>
-        <div class="form-group"><label class="form-label">FY25 発行済株式数（千株）</label><input class="form-input" value="4550000"></div>
-        <div class="form-group"><label class="form-label">FY21 1株配当（円）</label><input class="form-input" value="22"></div>
-        <div class="form-group"><label class="form-label">FY22 1株配当（円）</label><input class="form-input" value="22"></div>
-        <div class="form-group"><label class="form-label">FY23 1株配当（円）</label><input class="form-input" value="22"></div>
-        <div class="form-group"><label class="form-label">FY24 1株配当（円）</label><input class="form-input" value="22"></div>
-        <div class="form-group"><label class="form-label">FY25 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY21/3 発行済株式数（千株）</label><input class="form-input" value="4685000"></div>
+        <div class="form-group"><label class="form-label">FY22/3 発行済株式数（千株）</label><input class="form-input" value="4685000"></div>
+        <div class="form-group"><label class="form-label">FY23/3 発行済株式数（千株）</label><input class="form-input" value="4642000"></div>
+        <div class="form-group"><label class="form-label">FY24/3 発行済株式数（千株）</label><input class="form-input" value="4630000"></div>
+        <div class="form-group"><label class="form-label">FY25/3 発行済株式数（千株）</label><input class="form-input" value="4550000"></div>
+        <div class="form-group"><label class="form-label">FY21/3 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY22/3 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY23/3 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY24/3 1株配当（円）</label><input class="form-input" value="22"></div>
+        <div class="form-group"><label class="form-label">FY25/3 1株配当（円）</label><input class="form-input" value="22"></div>
       </div>
       <div style="margin-top:16px;display:flex;gap:8px">
         <button class="btn-primary">保存・EPS計算</button>
@@ -1124,14 +1124,14 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="input-form">
       <div style="font-size:12px;font-weight:600;margin-bottom:16px;color:var(--blue)">ESG指標入力</div>
       <div class="form-grid">
-        <div class="form-group"><label class="form-label">FY21 CO2排出量（百万t）</label><input class="form-input" value="64.2"></div>
-        <div class="form-group"><label class="form-label">FY22 CO2排出量（百万t）</label><input class="form-input" value="63.1"></div>
-        <div class="form-group"><label class="form-label">FY23 CO2排出量（百万t）</label><input class="form-input" value="61.8"></div>
-        <div class="form-group"><label class="form-label">FY24 CO2排出量（百万t）</label><input class="form-input" value="60.2"></div>
-        <div class="form-group"><label class="form-label">FY25 CO2排出量（百万t）</label><input class="form-input" value="58.5"></div>
-        <div class="form-group"><label class="form-label">FY25 再エネ容量（MW）</label><input class="form-input" value="1850"></div>
-        <div class="form-group"><label class="form-label">FY25 女性管理職比率（%）</label><input class="form-input" value="8.2"></div>
-        <div class="form-group"><label class="form-label">FY25 TRIR（件/100万時間）</label><input class="form-input" value="0.42"></div>
+        <div class="form-group"><label class="form-label">FY21/3 CO2排出量（百万t）</label><input class="form-input" value="64.2"></div>
+        <div class="form-group"><label class="form-label">FY22/3 CO2排出量（百万t）</label><input class="form-input" value="63.1"></div>
+        <div class="form-group"><label class="form-label">FY23/3 CO2排出量（百万t）</label><input class="form-input" value="61.8"></div>
+        <div class="form-group"><label class="form-label">FY24/3 CO2排出量（百万t）</label><input class="form-input" value="60.2"></div>
+        <div class="form-group"><label class="form-label">FY25/3 CO2排出量（百万t）</label><input class="form-input" value="58.5"></div>
+        <div class="form-group"><label class="form-label">FY25/3 再エネ容量（MW）</label><input class="form-input" value="1850"></div>
+        <div class="form-group"><label class="form-label">FY25/3 女性管理職比率（%）</label><input class="form-input" value="8.2"></div>
+        <div class="form-group"><label class="form-label">FY25/3 TRIR（件/100万時間）</label><input class="form-input" value="0.42"></div>
         <div class="form-group"><label class="form-label">取締役会独立性（%）</label><input class="form-input" value="46.7"></div>
       </div>
       <div style="margin-top:16px;display:flex;gap:8px">
@@ -1171,11 +1171,11 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="modal-title">売上高 ドリルダウン</div>
     <div class="modal-sub">セグメント別売上構成 / 前年比分析</div>
     <div class="charts-row2">
-      <div class="chart-card"><div class="chart-title">セグメント構成（FY26）</div><div class="chart-wrap r-donut"><canvas id="md_rev_pie"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">セグメント構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="md_rev_pie"></canvas></div></div>
       <div class="chart-card"><div class="chart-title">6期トレンド（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_rev_trend"></canvas></div></div>
     </div>
     <table class="data-tbl">
-      <thead><tr><th>セグメント</th><th>FY26 売上高</th><th>FY25 売上高</th><th>増減</th></tr></thead>
+      <thead><tr><th>セグメント</th><th>FY26/3 売上高</th><th>FY25/3 売上高</th><th>増減</th></tr></thead>
       <tbody>
         <tr><td>石油製品ほか</td><td>10,341,787</td><td>10,979,700</td><td class="neg">△637,913</td></tr>
         <tr><td>石油・天然ガス開発</td><td>216,744</td><td>242,813</td><td class="neg">△26,069</td></tr>
@@ -1193,10 +1193,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_op')">×</div>
     <div class="modal-title">営業利益 ドリルダウン</div>
-    <div class="modal-sub">FY26 営業利益 4,666億円（前年比 +3,605億円 大幅増益）</div>
-    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益 ウォーターフォール（FY25→FY26）</div><div class="chart-wrap r-bar-m"><canvas id="md_op_wfall"></canvas></div></div>
+    <div class="modal-sub">FY26/3 営業利益 4,666億円（前年比 +3,605億円 大幅増益）</div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益 ウォーターフォール（FY25/3→FY26/3）</div><div class="chart-wrap r-bar-m"><canvas id="md_op_wfall"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>セグメント</th><th>FY26</th><th>FY25</th><th>増減</th></tr></thead>
+      <thead><tr><th>セグメント</th><th>FY26/3</th><th>FY25/3</th><th>増減</th></tr></thead>
       <tbody>
         <tr><td>石油製品ほか</td><td class="pos">292,362</td><td class="neg">△50,705</td><td class="pos">+343,067</td></tr>
         <tr><td>石油・天然ガス開発</td><td class="pos">50,833</td><td class="pos">87,407</td><td class="neg">△36,574</td></tr>
@@ -1214,10 +1214,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_roe')">×</div>
     <div class="modal-title">ROE デュポン分析</div>
-    <div class="modal-sub">FY26 ROE 8.0% = 純利益率 × 総資産回転率 × 財務レバレッジ</div>
+    <div class="modal-sub">FY26/3 ROE 8.0% = 純利益率 × 総資産回転率 × 財務レバレッジ</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">デュポン 3要素推移</div><div class="chart-wrap r-bar-m"><canvas id="md_dupont"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>指標</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>指標</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>ROE（%）</td><td>4.9</td><td>20.7</td><td>5.0</td><td>9.5</td><td>7.1</td><td>8.0</td></tr>
         <tr><td>純利益率（%）</td><td>1.49</td><td>4.92</td><td>0.96</td><td>2.08</td><td>1.83</td><td>2.20</td></tr>
@@ -1236,7 +1236,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     <div class="modal-sub">ROIC = NOPAT ÷ 投下資本（自己資本＋有利子負債）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">ROIC コンポーネント推移（%）</div><div class="chart-wrap r-bar-m"><canvas id="md_roic"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>指標</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>指標</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>ROIC（%）</td><td>4.1</td><td>9.8</td><td>3.3</td><td>4.4</td><td>1.4</td><td>5.9</td></tr>
         <tr><td>NOPAT（億円）</td><td>1,779</td><td>5,501</td><td>1,969</td><td>3,254</td><td>743</td><td>3,173</td></tr>
@@ -1252,10 +1252,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_fcf')">×</div>
     <div class="modal-title">FCF ウォーターフォール</div>
-    <div class="modal-sub">FY26 FCF 3,680億円（営業CF 6,200億円 + 投資CF △2,520億円）</div>
+    <div class="modal-sub">FY26/3 FCF 3,680億円（営業CF 6,200億円 + 投資CF △2,520億円）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">FCF 推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_fcf"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>営業CF（億円）</td><td class="pos">6,791</td><td class="pos">2,095</td><td class="neg">△1,102</td><td class="pos">10,103</td><td class="pos">5,768</td><td class="pos">6,200</td></tr>
         <tr><td>投資CF（億円）</td><td class="neg">△3,068</td><td class="neg">△3,499</td><td class="neg">△1,159</td><td class="neg">△2,410</td><td class="pos">1,308</td><td class="neg">△2,520</td></tr>
@@ -1271,10 +1271,10 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_de')">×</div>
     <div class="modal-title">D/Eレシオ・財務安全性分析</div>
-    <div class="modal-sub">FY26 D/Eレシオ 0.65倍（目標≦1.0倍 達成・改善）</div>
+    <div class="modal-sub">FY26/3 D/Eレシオ 0.65倍（目標≦1.0倍 達成・改善）</div>
     <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">D/E・ネットD/E 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_de"></canvas></div></div>
     <table class="data-tbl">
-      <thead><tr><th>項目</th><th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+      <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
         <tr><td>D/Eレシオ（倍）</td><td>0.88</td><td>0.96</td><td>1.09</td><td>0.87</td><td>0.75</td><td>0.65</td></tr>
         <tr><td>有利子負債（億円）</td><td>20,369</td><td>27,355</td><td>31,094</td><td>28,200</td><td>23,368</td><td>21,915</td></tr>
@@ -1309,7 +1309,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
   <div class="modal">
     <div class="modal-close" onclick="closeModalById('m_esg')">×</div>
     <div class="modal-title">ESG指標 詳細</div>
-    <div class="modal-sub">環境・社会・ガバナンス KPI（FY26）</div>
+    <div class="modal-sub">環境・社会・ガバナンス KPI（FY26/3）</div>
     <table class="data-tbl">
       <thead><tr><th>指標</th><th>FY26実績</th><th>目標</th><th>状況</th></tr></thead>
       <tbody>
@@ -1325,7 +1325,7 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
 
 <script>
 /* ═══ DATA ═══ */
-const FY=['FY21','FY22','FY23','FY24','FY25','FY26'];
+const FY=['FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26/3'];
 // P/L 百万円
 const revenue   =[7658011,10921759,15016600,13856700,12322500,11765470];
 const op_profit =[254175,785900,281300,464900,106100,466627];
@@ -1648,7 +1648,7 @@ function buildP05(){
   new Chart(document.getElementById('esgRadar'),{
     type:'radar',
     data:{labels:['環境(E)','社会(S)','ガバナンス(G)','気候変動対応','人材','情報開示'],
-      datasets:[{label:'FY25',data:[45,65,80,40,70,75],backgroundColor:'rgba(52,211,153,.15)',borderColor:C.green,pointBackgroundColor:C.green}]},
+      datasets:[{label:'FY25/3',data:[45,65,80,40,70,75],backgroundColor:'rgba(52,211,153,.15)',borderColor:C.green,pointBackgroundColor:C.green}]},
     options:{responsive:true,plugins:{legend:{labels:{color:C.muted,font:{size:9}}}},scales:{r:{backgroundColor:'transparent',grid:{color:'rgba(30,43,62,.6)'},pointLabels:{color:C.muted,font:{size:9}},ticks:{display:false},min:0,max:100}}}
   });
 }
@@ -2034,7 +2034,7 @@ function buildP07Co(coId){
     }
     if(document.getElementById('p07_er_road')){
       new Chart(document.getElementById('p07_er_road'),{
-        type:'line',data:{labels:['FY21','FY22','FY23','FY24','FY25','FY26E','FY27E','FY28E','FY29E','FY30E'],datasets:[
+        type:'line',data:{labels:['FY21/3','FY22/3','FY23/3','FY24/3','FY25/3','FY26E','FY27E','FY28E','FY29E','FY30E'],datasets:[
           {label:'実績・計画(MW)',data:[320,520,850,1200,1850,2400,3200,3900,4500,5000],borderColor:d.color,backgroundColor:d.color+'1a',fill:true,tension:.4,pointRadius:5},
           {label:'目標(MW)',data:[null,null,null,null,null,null,null,null,null,5000],borderColor:C.green,borderDash:[4,4],borderWidth:1.5,fill:false,pointRadius:6,pointBackgroundColor:C.green},
         ]},options:{...defOpts}
