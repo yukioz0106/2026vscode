@@ -459,9 +459,9 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
       <div class="comp-icon" style="background:#FBBF24">JX</div>
       <div><div class="comp-btn-name">ENEOS Xplora</div><div class="comp-btn-seg">石油・天然ガス</div></div>
     </div>
-    <div class="comp-btn" onclick="selectComp('p07_em',this)">
-      <div class="comp-icon" style="background:#34D399">EM</div>
-      <div><div class="comp-btn-name">ENEOSマテリアル</div><div class="comp-btn-seg">機能材・化学品</div></div>
+    <div class="comp-btn" onclick="selectComp('p07_jm',this)">
+      <div class="comp-icon" style="background:#34D399">JM</div>
+      <div><div class="comp-btn-name">JX金属</div><div class="comp-btn-seg">機能材</div></div>
     </div>
     <div class="comp-btn" onclick="selectComp('p07_ep',this)">
       <div class="comp-icon" style="background:#22D3EE">EP</div>
@@ -653,32 +653,32 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </div>
   </div>
 
-  <!-- ── ENEOSマテリアル ── -->
-  <div id="p07_em" class="comp-screen">
+  <!-- ── JX金属 ── -->
+  <div id="p07_jm" class="comp-screen">
     <div class="co-banner" style="background:linear-gradient(135deg,#0a1a0e,#122411,#0d1e0f)">
-      <div class="co-logo" style="background:rgba(52,211,153,.3)">EM</div>
-      <div><div class="co-title">ENEOSマテリアル株式会社</div><div class="co-sub">合成ゴム・化学品・高機能材料 ／ ENEOSグループ機能材事業</div></div>
+      <div class="co-logo" style="background:rgba(52,211,153,.3)">JM</div>
+      <div><div class="co-title">JX金属株式会社</div><div class="co-sub">非鉄金属・機能材・電子材料 ／ 2024年東証プライム上場</div></div>
       <div class="co-kpis">
         <div class="co-kpi"><div class="co-kpi-label">売上高（FY26/3）</div><div class="co-kpi-val">3,365<span class="co-kpi-unit">億円</span></div></div>
         <div class="co-kpi"><div class="co-kpi-label">営業利益（FY26/3）</div><div class="co-kpi-val" style="color:#34D399">111<span class="co-kpi-unit">億円</span></div></div>
-        <div class="co-kpi"><div class="co-kpi-label">営業利益率</div><div class="co-kpi-val">3.3<span class="co-kpi-unit">%</span></div></div>
+        <div class="co-kpi"><div class="co-kpi-label">時価総額</div><div class="co-kpi-val">1.8<span class="co-kpi-unit">兆円</span></div></div>
       </div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card green" onclick="openModal('m_p07_em_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">3,365<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 △2.3%</span><span class="badge dn">減収</span></div></div>
-      <div class="kpi-card green" onclick="openModal('m_p07_em_op')"><div class="kpi-label">営業利益</div><div class="kpi-val">111<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 177億円</span><span class="badge dn">減益</span></div></div>
+      <div class="kpi-card green" onclick="openModal('m_p07_jm_rev')"><div class="kpi-label">売上高</div><div class="kpi-val">3,365<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 △2.3%</span><span class="badge dn">減収</span></div></div>
+      <div class="kpi-card green" onclick="openModal('m_p07_jm_op')"><div class="kpi-label">営業利益</div><div class="kpi-val">111<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 177億円</span><span class="badge dn">減益</span></div></div>
       <div class="kpi-card cyan"><div class="kpi-label">EBITDA</div><div class="kpi-val">190<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 258億円</span><span class="badge dn">減少</span></div></div>
       <div class="kpi-card blue"><div class="kpi-label">CAPEX</div><div class="kpi-val">171<span class="kpi-unit">億円</span></div><div class="kpi-foot"><span class="kpi-yoy">前年比 +30.5%</span><span class="badge ok">積極投資</span></div></div>
       <div class="kpi-card purple"><div class="kpi-label">ROA</div><div class="kpi-val">3.5<span class="kpi-unit">%</span></div><div class="kpi-foot"><span class="kpi-yoy">前年 5.6%</span><span class="badge dn">低下</span></div></div>
     </div>
     <div class="inner-tabs">
-      <div class="inner-tab active" onclick="showTab('p07_em_pltab',this)">P/L分析</div>
-      <div class="inner-tab" onclick="showTab('p07_em_prodtab',this)">製品別構成</div>
+      <div class="inner-tab active" onclick="showTab('p07_jm_pltab',this)">P/L分析</div>
+      <div class="inner-tab" onclick="showTab('p07_jm_prodtab',this)">製品別構成</div>
     </div>
-    <div id="p07_em_pltab" class="inner-pane active">
+    <div id="p07_jm_pltab" class="inner-pane active">
       <div class="charts-row">
-        <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_em_pl"></canvas></div></div>
-        <div class="chart-card"><div class="chart-title">ROA・営業利益率 推移</div><div class="chart-wrap r-bar"><canvas id="p07_em_margin"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">売上高・営業利益 推移（億円）</div><div class="chart-wrap r-bar"><canvas id="p07_jm_pl"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">ROA・営業利益率 推移</div><div class="chart-wrap r-bar"><canvas id="p07_jm_margin"></canvas></div></div>
       </div>
       <div class="chart-card">
         <div class="chart-title">P/L サマリー（百万円）</div>
@@ -694,22 +694,22 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
         </table>
       </div>
     </div>
-    <div id="p07_em_prodtab" class="inner-pane">
+    <div id="p07_jm_prodtab" class="inner-pane">
       <div class="charts-row3">
-        <div class="chart-card"><div class="chart-title">製品別売上構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="p07_em_pie"></canvas></div></div>
-        <div class="chart-card"><div class="chart-title">主力製品別 収益推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_em_prod"></canvas></div></div>
-        <div class="chart-card"><div class="chart-title">高機能材料 成長トレンド</div><div class="chart-wrap r-bar-s"><canvas id="p07_em_semi"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">製品別売上構成（FY26/3）</div><div class="chart-wrap r-donut"><canvas id="p07_jm_pie"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">主力製品別 収益推移</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_prod"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title">半導体材料 成長トレンド</div><div class="chart-wrap r-bar-s"><canvas id="p07_jm_semi"></canvas></div></div>
       </div>
       <div class="chart-card">
         <div class="chart-title">製品別 業況（FY26/3）</div>
         <table class="data-tbl">
           <thead><tr><th>製品区分</th><th>売上比率</th><th>成長率(YoY)</th><th>利益貢献</th><th>市場動向</th></tr></thead>
           <tbody>
-            <tr><td>合成ゴム（SBR/BR）</td><td>34%</td><td class="neg">△4.2%</td><td class="pos">中</td><td>自動車向け需要調整</td></tr>
-            <tr><td>機能性化学品</td><td>28%</td><td class="pos">+6.8%</td><td class="pos">高</td><td>電子材料向け堅調</td></tr>
-            <tr><td>エラストマー</td><td>22%</td><td class="pos">+3.1%</td><td class="pos">中</td><td>産業・医療向け</td></tr>
-            <tr><td>石化原料</td><td>10%</td><td class="neg">△7.5%</td><td>低</td><td>需給軟化</td></tr>
-            <tr><td>その他</td><td>6%</td><td class="neg">△2.1%</td><td>低</td><td>横ばい</td></tr>
+            <tr><td>電解銅箔</td><td>28%</td><td class="pos">+18.2%</td><td class="pos">高</td><td>EV向け急拡大</td></tr>
+            <tr><td>スパッタリングターゲット</td><td>22%</td><td class="pos">+24.5%</td><td class="pos">最高</td><td>半導体需要旺盛</td></tr>
+            <tr><td>銅製錬</td><td>31%</td><td class="pos">+8.1%</td><td class="pos">中</td><td>銅価格高水準</td></tr>
+            <tr><td>チタン製品</td><td>12%</td><td class="pos">+5.3%</td><td class="pos">中</td><td>航空・医療向け</td></tr>
+            <tr><td>その他材料</td><td>7%</td><td class="pos">+3.2%</td><td>低</td><td>横ばい</td></tr>
           </tbody>
         </table>
       </div>
@@ -941,37 +941,37 @@ body{background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Goth
     </table>
   </div>
 </div>
-<!-- ENEOSマテリアル 売上高 -->
-<div id="m_p07_em_rev" class="modal-overlay" onclick="closeModal(event,this)">
+<!-- JX金属 売上高 -->
+<div id="m_p07_jm_rev" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
-    <div class="modal-close" onclick="closeModalById('m_p07_em_rev')">×</div>
-    <div class="modal-title">ENEOSマテリアル 売上高 ドリルダウン</div>
-    <div class="modal-sub">FY26/3 3,365億円（△2.3%）― 合成ゴム・機能性化学品が主力</div>
+    <div class="modal-close" onclick="closeModalById('m_p07_jm_rev')">×</div>
+    <div class="modal-title">JX金属 売上高 ドリルダウン</div>
+    <div class="modal-sub">FY26/3 3,365億円（△2.3%）― ENEOSマテリアル単体（JX金属は持分法適用）</div>
     <div class="modal-kpi-grid">
       <div class="modal-kpi-item"><div class="modal-kpi-label">FY26/3 売上高</div><div class="modal-kpi-val" style="color:var(--green)">3,365億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">前年差</div><div class="modal-kpi-val" style="color:var(--red)">△105億円</div></div>
       <div class="modal-kpi-item"><div class="modal-kpi-label">YoY成長率</div><div class="modal-kpi-val" style="color:var(--red)">△2.3%</div></div>
     </div>
-    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">製品区分別 売上推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_em_rev"></canvas></div></div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">製品区分別 売上推移（億円）</div><div class="chart-wrap r-bar-m"><canvas id="md_jm_rev"></canvas></div></div>
     <table class="data-tbl">
       <thead><tr><th>製品区分</th><th>売上比率</th><th>YoY成長率</th><th>市場動向</th></tr></thead>
       <tbody>
-        <tr><td>合成ゴム（SBR/BR）</td><td>34%</td><td class="neg">△4.2%</td><td>自動車向け需要調整</td></tr>
-        <tr><td>機能性化学品</td><td>28%</td><td class="pos">+6.8%</td><td>電子材料向け堅調</td></tr>
-        <tr><td>エラストマー</td><td>22%</td><td class="pos">+3.1%</td><td>産業・医療向け</td></tr>
-        <tr><td>石化原料</td><td>10%</td><td class="neg">△7.5%</td><td>需給軟化</td></tr>
-        <tr><td>その他</td><td>6%</td><td class="neg">△2.1%</td><td>横ばい</td></tr>
+        <tr><td>電解銅箔</td><td>27%</td><td class="neg">△3.2%</td><td>EV向け需要調整</td></tr>
+        <tr><td>スパッタリングターゲット</td><td>22%</td><td class="pos">+1.5%</td><td>半導体向け堅調</td></tr>
+        <tr><td>銅製錬</td><td>32%</td><td class="pos">+2.8%</td><td>銅価格安定</td></tr>
+        <tr><td>チタン製品</td><td>12%</td><td class="neg">△1.2%</td><td>航空・医療向け</td></tr>
+        <tr><td>その他材料</td><td>7%</td><td class="neg">△5.1%</td><td>需要軟化</td></tr>
       </tbody>
     </table>
   </div>
 </div>
-<!-- ENEOSマテリアル 営業利益 -->
-<div id="m_p07_em_op" class="modal-overlay" onclick="closeModal(event,this)">
+<!-- JX金属 営業利益 -->
+<div id="m_p07_jm_op" class="modal-overlay" onclick="closeModal(event,this)">
   <div class="modal">
-    <div class="modal-close" onclick="closeModalById('m_p07_em_op')">×</div>
-    <div class="modal-title">ENEOSマテリアル 営業利益 ドリルダウン</div>
+    <div class="modal-close" onclick="closeModalById('m_p07_jm_op')">×</div>
+    <div class="modal-title">JX金属 営業利益 ドリルダウン</div>
     <div class="modal-sub">FY26/3 111億円（前年 177億円 → △37.3% 減益）</div>
-    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・ROA 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_em_op"></canvas></div></div>
+    <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">営業利益・ROA 推移</div><div class="chart-wrap r-bar-m"><canvas id="md_jm_op"></canvas></div></div>
     <table class="data-tbl">
       <thead><tr><th>項目</th><th>FY21/3</th><th>FY22/3</th><th>FY23/3</th><th>FY24/3</th><th>FY25/3</th><th>FY26/3</th></tr></thead>
       <tbody>
@@ -1729,7 +1729,7 @@ const CO_SEG=[
    dep:[72000,72100,72200,72472,72472,65077],
    cap:[58421,61832,64215,61247,65347,61441],
    ast:[1280000,1350000,1300000,1260000,1215581,1294205]},
-  {id:'em', name:'ENEOSマテリアル', abbr:'EM', color:'#34D399', seg:'機能材・化学品',
+  {id:'jm', name:'JX金属',     abbr:'JM', color:'#34D399', seg:'機能材',
    rev:[241518,278632,318412,305863,347000,336507],
    op:[5218,8432,6812,7161,17700,11076],
    dep:[8126,8126,8126,8126,8126,7873],
@@ -1762,7 +1762,7 @@ function buildP07Screen(id){
   if(id==='p07_ov') buildP07Overview();
   if(id==='p07_en') buildP07Co('en');
   if(id==='p07_jx') buildP07Co('jx');
-  if(id==='p07_em') buildP07Co('em');
+  if(id==='p07_jm') buildP07Co('jm');
   if(id==='p07_ep') buildP07Co('ep');
   if(id==='p07_er') buildP07Co('er');
 }
@@ -1839,7 +1839,7 @@ function buildP07Overview(){
       datasets:[
         {label:'ENEOS㈱',    data:[100,20,35,18,42],backgroundColor:'rgba(248,113,113,.12)',borderColor:C.red,pointBackgroundColor:C.red},
         {label:'ENEOS Xplora', data:[12,90,55,72,60],backgroundColor:'rgba(251,191,36,.12)',borderColor:C.yellow,pointBackgroundColor:C.yellow},
-        {label:'ENEOSマテリアル',data:[18,75,80,56,65],backgroundColor:'rgba(52,211,153,.12)',borderColor:C.green,pointBackgroundColor:C.green},
+        {label:'JX金属',     data:[18,75,80,56,65],backgroundColor:'rgba(52,211,153,.12)',borderColor:C.green,pointBackgroundColor:C.green},
         {label:'ENEOS Power',data:[16,65,85,87,70],backgroundColor:'rgba(34,211,238,.12)',borderColor:C.cyan,pointBackgroundColor:C.cyan},
         {label:'ENEOSリニューアブル・エナジー',data:[4,10,95,30,100],backgroundColor:'rgba(167,139,250,.12)',borderColor:C.purple,pointBackgroundColor:C.purple},
       ]},
@@ -1958,34 +1958,34 @@ function buildP07Co(coId){
     }
   }
 
-  if(coId==='em'){
-    if(document.getElementById('p07_em_margin')){
+  if(coId==='jm'){
+    if(document.getElementById('p07_jm_margin')){
       const roa=d.op.map((v,i)=>+(v/d.ast[i]*100).toFixed(1));
       const margin=d.op.map((v,i)=>+(v/d.rev[i]*100).toFixed(2));
-      new Chart(document.getElementById('p07_em_margin'),{
+      new Chart(document.getElementById('p07_jm_margin'),{
         type:'line',data:{labels:FY,datasets:[
           {label:'ROA(%)',data:roa,borderColor:d.color,tension:.4,pointRadius:5},
           {label:'営業利益率(%)',data:margin,borderColor:C.cyan,tension:.4,pointRadius:5},
         ]},options:{...defOpts}
       });
     }
-    if(document.getElementById('p07_em_pie')){
-      new Chart(document.getElementById('p07_em_pie'),{
-        type:'doughnut',data:{labels:['合成ゴム（SBR/BR）','機能性化学品','エラストマー','石化原料','その他'],datasets:[{data:[34,28,22,10,6],backgroundColor:[C.green+'99',C.cyan+'99',C.orange+'99',C.purple+'99',C.muted+'99'],borderColor:[C.green,C.cyan,C.orange,C.purple,C.muted],borderWidth:1}]},
+    if(document.getElementById('p07_jm_pie')){
+      new Chart(document.getElementById('p07_jm_pie'),{
+        type:'doughnut',data:{labels:['電解銅箔','スパッタリングターゲット','銅製錬','チタン製品','その他'],datasets:[{data:[28,22,31,12,7],backgroundColor:[C.green+'99',C.cyan+'99',C.orange+'99',C.purple+'99',C.muted+'99'],borderColor:[C.green,C.cyan,C.orange,C.purple,C.muted],borderWidth:1}]},
         options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:C.muted,font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'#1E2B3E',titleColor:'#E2EAF4',bodyColor:'#6B7FA0'}}}
       });
     }
-    if(document.getElementById('p07_em_prod')){
-      new Chart(document.getElementById('p07_em_prod'),{
+    if(document.getElementById('p07_jm_prod')){
+      new Chart(document.getElementById('p07_jm_prod'),{
         type:'bar',data:{labels:FY,datasets:[
-          {label:'合成ゴム(億)',data:[82,98,108,104,118,112],backgroundColor:'rgba(52,211,153,.4)',borderColor:C.green,borderWidth:1},
-          {label:'機能性化学品(億)',data:[58,68,80,82,96,94],backgroundColor:'rgba(34,211,238,.4)',borderColor:C.cyan,borderWidth:1},
+          {label:'電解銅箔(億)',data:[18,22,26,28,34],backgroundColor:'rgba(52,211,153,.4)',borderColor:C.green,borderWidth:1},
+          {label:'スパッタリング(億)',data:[12,16,20,23,30],backgroundColor:'rgba(34,211,238,.4)',borderColor:C.cyan,borderWidth:1},
         ]},options:{...defOpts}
       });
     }
-    if(document.getElementById('p07_em_semi')){
-      new Chart(document.getElementById('p07_em_semi'),{
-        type:'line',data:{labels:FY,datasets:[{label:'高機能材料売上(億)',data:[42,52,64,68,82,80],borderColor:C.cyan,backgroundColor:'rgba(34,211,238,.1)',fill:true,tension:.4,pointRadius:5}]},
+    if(document.getElementById('p07_jm_semi')){
+      new Chart(document.getElementById('p07_jm_semi'),{
+        type:'line',data:{labels:FY,datasets:[{label:'半導体材料売上(億)',data:[24,35,48,53,68],borderColor:C.cyan,backgroundColor:'rgba(34,211,238,.1)',fill:true,tension:.4,pointRadius:5}]},
         options:{...defOpts}
       });
     }
@@ -2067,16 +2067,16 @@ function buildP07ModalChart(id){
       {label:'EBITDA(億)',data:[1503,1848,1674,1640,1599,1160],borderColor:C.cyan,tension:.4,pointRadius:4},
     ]},options:{...defOpts}});
   }
-  if(id==='m_p07_em_rev'){
-    new Chart(document.getElementById('md_em_rev'),{type:'bar',data:{labels:FYl,datasets:[
-      {label:'合成ゴム(億)',data:[82,98,108,104,118,112],backgroundColor:C.green+'55',borderColor:C.green,borderWidth:1,stack:'a'},
-      {label:'機能性化学品(億)',data:[58,68,80,82,96,94],backgroundColor:C.cyan+'55',borderColor:C.cyan,borderWidth:1,stack:'a'},
-      {label:'エラストマー(億)',data:[52,62,70,68,78,74],backgroundColor:C.orange+'55',borderColor:C.orange,borderWidth:1,stack:'a'},
-      {label:'その他(億)',data:[50,51,60,52,55,57],backgroundColor:C.muted+'55',borderColor:C.muted,borderWidth:1,stack:'a'},
+  if(id==='m_p07_jm_rev'){
+    new Chart(document.getElementById('md_jm_rev'),{type:'bar',data:{labels:FYl,datasets:[
+      {label:'電解銅箔(億)',data:[18,22,26,28,34,31],backgroundColor:C.green+'55',borderColor:C.green,borderWidth:1,stack:'a'},
+      {label:'スパッタリング(億)',data:[12,16,20,23,30,31],backgroundColor:C.cyan+'55',borderColor:C.cyan,borderWidth:1,stack:'a'},
+      {label:'銅製錬(億)',data:[48,58,72,76,88,90],backgroundColor:C.orange+'55',borderColor:C.orange,borderWidth:1,stack:'a'},
+      {label:'その他(億)',data:[68,78,100,80,92,85],backgroundColor:C.muted+'55',borderColor:C.muted,borderWidth:1,stack:'a'},
     ]},options:{...defOpts,scales:{x:{grid,ticks,stacked:true},y:{grid,ticks,stacked:true}}}});
   }
-  if(id==='m_p07_em_op'){
-    new Chart(document.getElementById('md_em_op'),{type:'line',data:{labels:FYl,datasets:[
+  if(id==='m_p07_jm_op'){
+    new Chart(document.getElementById('md_jm_op'),{type:'line',data:{labels:FYl,datasets:[
       {label:'営業利益(億)',data:[52,84,68,72,177,111],borderColor:C.green,backgroundColor:'rgba(52,211,153,.1)',fill:true,tension:.4,pointRadius:5},
       {label:'ROA(%)',data:[1.9,2.9,2.3,2.4,5.6,3.5],borderColor:C.cyan,tension:.4,pointRadius:4,yAxisID:'y2'},
     ]},options:{...defOpts,scales:{x:{grid,ticks},y:{grid,ticks},y2:{type:'linear',position:'right',grid:{display:false},ticks}}}});
